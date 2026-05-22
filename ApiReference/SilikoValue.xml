@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoValue</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><type>SilikoValue</type></refname>
+  <refpurpose>Numerical or error value</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
+<programlisting language="C">typedef struct SilikoValue SilikoValue;</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>A <type>SilikoValue</type> represents value used by Siliko Core,
+either a 64-bit integer, a 64-bit real number, or an error as a
+<type>SilikoError</type>.</para>
+</refsection>
+</refentry>

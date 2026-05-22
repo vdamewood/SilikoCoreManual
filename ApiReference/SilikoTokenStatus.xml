@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoTokenStatus</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname>SilikoTokenStatus</refname>
+  <refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Token.h&gt;</programlisting>
+<programlisting language="C">enum SilikoTokenStatus
+{
+    SilikoTokenUnset = 0,
+    SilikoTokenInteger,
+    SilikoTokenReal,
+    SilikoTokenCharacter,
+    SilikoTokenId,
+    SilikoTokenEndOfInput
+};</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <type>SilikoTokenStatus</type> enumeration represents the type
+of a <type>SilikoToken</type>, such as a single-character token, an
+integer, a real number, or a function identifier.</para>
+</refsection>
+</refentry>

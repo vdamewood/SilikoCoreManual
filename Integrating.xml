@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article version="5.1"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>Integrating Siliko Core into Your Program</title>
+</info>
+
+<para>Siliko Core provides an interface to integrate parsing and mathematical
+evaluation into a program. A developer can use the simple infix parser
+with the built-in set of functions to provide basic functionality,
+or write their own parser for another syntax, or add additional, custom
+functions to the lnguage.</para>
+
+<section>
+<info>
+<title>Header Files</title>
+</info>
+
+<para>Siliko Core includes 13 public header files:</para>
+
+<itemizedlist>
+<listitem><para>Master header, includes all other headers<itemizedlist>
+<listitem><para><filename>SilikoCore/SilikoCore.h</filename></para></listitem>
+</itemizedlist></para></listitem>
+
+<listitem><para>Types<itemizedlist>
+<listitem><para><filename>SilikoCore/Engine.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Function.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Input.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Lexer.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Node.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Token.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Value.h</filename></para></listitem>
+</itemizedlist></para></listitem>
+
+<listitem><para>Free Functions<itemizedlist>
+<listitem><para><filename>SilikoCore/Evaluate.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/ParseInfix.h</filename></para></listitem>
+</itemizedlist></para></listitem>
+
+<listitem><para>In-language Functions<itemizedlist>
+<listitem><para><filename>SilikoCore/Math.h</filename></para></listitem>
+<listitem><para><filename>SilikoCore/Operation.h</filename></para></listitem>
+</itemizedlist></para></listitem>
+
+<listitem><para>Metadata<itemizedlist>
+<listitem><para><filename>SilikoCore/Version.h</filename></para></listitem>
+</itemizedlist></para></listitem>
+</itemizedlist>
+
+<para>Each header file is associated with a component of Siliko Core,
+such as in-language functions, the lexer, parser, and so on. For an
+exact listing of which types and functions are in each header, see the
+API Reference.</para>
+<!-- XREF ApiReference -->
+</section>
+<section>
+<info>
+<title>Values and Errors</title>
+</info>
+
+<para>The <filename>SilikoCore/Value.h</filename> header contains three
+types. The <type>SilikoValue</type> type represents a value passed
+to and yielded by the Siliko Core library. The
+<type>SilikoValueStatus</type> enumeration represents which type of value a
+<type>SilikoValue</type> holds: an integer
+(<literal>SilikoValueInteger</literal>), a real number
+(<literal>SilikoValueReal</literal>), or an error
+(<literal>SilikoValueError</literal>). The <type>SilikoError</type>
+enumeration represents an error that Siliko Core
+can encounter while parsing or evaluating expressions, for example
+a syntax error (<literal>SilikoErrorSyntax</literal>) or a division
+by zero error (<literal>SilikoErrorZeroDivision</literal>). For a full
+list of error values, see the API Reference.</para>
+
+<para>To make a <type>SilikoValue</type> object, you can use the
+functions,
+<function>SilikoValueCreateFromInteger</function>, or
+<function>SilikoValueCreateFromReal</function>. These functions take
+a <type>long long int</type>, and
+<type>double</type>, respectively.</para>
+
+<para>
+<programlisting language="C">
+    SilikoValue forty_two = SilikoValueCreateFromInteger(42);
+    SilikoValue pi = SilikoValueCreateFromReal(3.14);
+</programlisting>
+</para>
+
+<para>You can use the <function>SilikoValueGetStatus</function> function
+to determine what type of value a <type>SilikoValue</type> holds. Then,
+based on which type it has, you can use one of
+<function>SilikoValueGetError</function>,
+<function>SilikoValueGetInteger</function>, or
+<function>SilikoValueGetReal</function> to retrieve the value.
+</para>
+
+<para>In the tutorial program, the <type>SilikoValue</type> object
+returned by the parser was simply printed. In a more complex scenario,
+one might imagine using programming logic based on the value of a
+<type>SilikoValue</type>.</para>
+
+<programlisting language="C">
+    SilikoValue result = get_result(); // assume a value from 1 to 20.
+    if (SilikoValueGetStatus(result) == SilikoValueInteger)
+    {
+        if (SilikoValueGetInteger(result) &gt;= 15)
+        {
+            printf(&quot;You find a secret door behind the bookcase.\n&quot;);
+        }
+        else
+        {
+            printf(&quot;There appears to be nothing of note in the library.\n&quot;);
+        }
+    }
+    else
+    {
+        fprintf(stderr, &quot;Something went wrong.\n&quot;);
+    }
+    SilikoValueDestroy(result);
+</programlisting>
+
+<para>And finally, as we see in this example, when you are done with a
+<type>SilikoValue</type> you must call
+<function>SilikoFunctionDestroy</function> on the
+<type>SilikoValue</type> to avoid memory leaks.</para>
+</section>
+
+<section>
+<info>
+<title>Inputs</title>
+</info>
+
+<para>To provide input to a parser, you must build a
+<type>SilikoInput</type> object that Siliko Core’s lexical analyzer (or
+tokenizer) can use to read input text. To keep the input as versitle as
+possible, Siliko Core allows you to construct your own
+<type>SilikoInput</type> behavior to allow for various and disparate
+sources, such as custom string types, network connections, files, or
+anything else that might be developed.</para>
+
+<section>
+<info>
+<title>String Inputs</title>
+</info>
+
+<para>Siliko Core provides a <type>StringInput</type> implementation
+that takes a C string as its source.</para>
+
+<programlisting language="C">
+    SilikoInput *src = SilikoStringInputCreate(&quot;2 + 2&quot;);
+</programlisting>
+
+<para>The <function>SilikoStringInputCreate</function> function will
+copy the string passed to it, and build a new <type>SilikoInput</type>
+object that will read characters from the copied string.</para>
+</section>
+
+<section>
+<info>
+<title>Building a Custom Input</title>
+</info>
+
+<para>A <type>SilikoInput</type> has five importantant pieces. First, it
+has a state object. This is what you use to keep track of what position
+you are in, which resources you are using, and so on. This should be a
+custom structure that you arrange however you need to fit your custom
+input. The other parts are three function that act on the state object,
+and a <type>SilikoInputVTable</type> structure that that has pointers to
+those three functions.</para>
+
+<programlisting language="C">
+struct SilikoInputVTable
+{
+    bool (*advance)(void *state);
+    char (*getCharacter)(void *state);
+    void (*destroy)(void *state);
+};
+</programlisting>
+
+<para>The <varname>advance</varname> pointer points to a function that
+is used to advance the input stream by one character. The
+<varname>getCharacter</varname> pointer points to a function that
+returns the current character from the input stream, and
+the <varname>destroy</varname> pointer points to a function that cleans
+up and deletes the <varname>state</varname> object when the input is no
+longer needed.</para>
+
+<programlisting language="C">
+struct CustomInputState
+{
+    struct MyCustomType *data; // The custom input
+    size_t cursor; // A value to keep track of the position.
+};
+
+static bool CustomAdvance(void *state)
+{
+    struct CustomSourceState *typed_state;
+    /* ... */
+}
+
+static char CustomGetCharacter(void *state)
+{
+    struct CustomSourceState *typed_state;
+    /* ... */
+}
+
+static void CustomDestroy(void *state)
+{
+    struct CustomSourceState *typed_state;
+    CustomTypeDestroy(typed_state-&gt;data);
+    free(state);
+}
+
+static const struct SilikoInputVTable vTable = {
+	.advance = CustomAdvance,
+	.getCharacter = CustomGetCharacter,
+	.destroy = CustomDestroy
+};
+
+
+
+SilikoDataSource *CustomSourceNew(struct MyCustomType *data)
+{
+	CustomSourceState *state = NULL;
+	SilikoDataSource *source = NULL;
+
+	if (!(state = malloc(sizeof(CustomSourceState))))
+		return NULL;
+
+    state-&gt;data = data;
+    state-&gt;cursor = 0;
+
+    if (!(source = SilikoDataSourceNew(
+		state,
+		CustomSourceAdvance,
+		CustomSourceGet,
+		CustomSourceDelete)))
+	{
+		free(state);
+		return NULL;
+	}
+
+	return source;
+}
+</programlisting>
+
+</section>
+<section>
+<info>
+<title>Expected Behaviors of input functions</title>
+</info>
+
+<para>Siliko Core’s lexer expects data sources to provide a sequence of
+characters. Since it occasionally needs to read the current character
+multiple times, it uses separate `Advance` and `Get` functions to move
+forward in the sequence, and read the current character respectively.</para>
+
+<para>The `Advance` function should move to the next character in the input
+source, if possible, and return a true value (internally Siliko Core
+uses `-1`), if there are more characters to read, and return a false
+value (`0`) if the input has been exhausted.</para>
+
+<para>The `Get` function returns the current character in the sequence. Once
+the `Advance` function returns false, indicating the end of input,
+the `Get` function’s return value should be the null character, `\0`.</para>
+
+<para>The `Delete` function must free up any resources used by the `State`
+object including deallocating the `State` object itself. So, if the
+`State` object was allocated with `malloc`, the `State` object should
+be passed to the `free` function.</para>
+</section>
+</section>
+
+<section>
+<info>
+<title>The Lexer</title>
+</info>
+
+<para>Siliko Core’s built-in lexer reads characters from a data source,
+groups them into *lexemes* and produces a series of *tokens* from those
+lexemes. A *lexeme* is a sequence of one or more characters that the
+lexer recognises as having some meaning, such as the single characters
+`+` and `/` used to represent addition and division operations, and
+multicharacter lexemes such as integer values like `42` and floating
+point values like `125.0625`, and names like `abs` and `floor`. A
+*token* is a representation of what that lexeme represents. For example,
+if the lexeme `42` is input, that would produce a token such as
+“Integer with value 42”.</para>
+
+<section>
+<info>
+<title>How the Lexer Processes Input</title>
+</info>
+
+<para>The lexer recognizes the following as single-character lexemes:
+`+`, `-`, `/`, `*`, `^`, `,`, `(`, `)`. When the lexer encounters any
+one of these characters, it stops processing and yeilds a
+single-character token matching the lexeme. The build-in lexer also
+recognizes <literal>d</literal> as a single-character operator, but will look at the
+next character to make sure it’s not part of a name before yielding a
+token.</para>
+
+<para>The tokenizer will recognize the lexemes `e` and `pi` as floating-point
+values, and yield floating-point tokens representing their values. The
+parser using the built-in lexer will not see any difference between
+these lexemes, and their same values entered manually. That is,
+`e` will yield a token of “floating-point value: 2.71828183” and `pi`
+will yield a token of “floating-point value: 3.14159265”.</para>
+
+<para>Beyond these, the tokenizer recognizes a sequence of chatacters,
+starting with a letter as an ID, a sequence of numeric digits without
+a decimal point as an integer, and a sequence of numeric digits,
+including a single decimal point, as a floating-point number.</para>
+
+</section>
+<section>
+<info>
+<title>Using the Lexer</title>
+</info>
+
+<para>The first step to using Siliko Core’s lexer is to set one up with
+the `SilikoLexerNew` function. It takes a pointer to a previously
+constructed `SilikoDataSource` object as its sole argument.</para>
+
+<programlisting language="C">
+    SilikoInputSource *src = SilikoStringSourceNew(&quot;3d6&quot;);
+    SilikoLexer *lexer = SilikoLexerNew(src);
+</programlisting>
+
+<para>After that point, you can use the `SilikoLexerGetToken` to get the
+next token. The Lexer will hold on to this token until
+`SilikoLexerNext` is called to advance to the next token.</para>
+
+<programlisting language="C">
+    SilikoToken first = SilikoLexerGetToken(lexer); // Integer:3
+    SilikoLexerNext(lexer);
+    SilikoToken second = SilikoLexerGetToken(lexer); // Character:d
+    SilikoLexerNext(lexer);
+    SilikoToken third = SilikoLexerGetToken(lexer); // Integer:6
+    SilikoLexerNext(lexer);
+    SilikoToken end = SilikoLexerGetToken(lexer); // End of Input
+</programlisting>
+
+<para>If you write a parser using `SilikoLexer`, you can build it using any
+techniques requiring one token of look ahead.</para>
+</section>
+</section>
+<section>
+<info>
+<title>Function Callers</title>
+</info>
+
+<para>Siliko Core uses its own hash table to look up functions such as `sin`
+and `abs`. This function lookup mechanism is also how arithmetic
+operations such as addition (`+`) and exponentiation (`^`) are
+handled. Because of this, before Siliko can evaluate anything, a program
+must first initialize a lookup table. Siliko uses the
+`SilikoFunctionCaller` type for this. To create a new
+`SilikoFunctionCaller` object, use the `SilikoFunctionCallerNew`
+function.</para>
+
+<para>A new function caller has no functions in its lookup table. Siliko
+Core provides two built-in sets of functions, one set implements the
+basic operators used by the built-in infix parser, and the other is a
+set of typical math functions included in C’s `math.h` header.</para>
+
+<para>Use the function `SilikoFunctionCallerInstallOperators` to install the
+functions required for the infix parser’s operator handling. This
+installs these functions:</para>
+
+<itemizedlist>
+<listitem><para><function>add</function> (for the `+` operator)</para></listitem>
+<listitem><para><function>subtract</function> (for the `-` operator)</para></listitem>
+<listitem><para><function>multiply</function> (for the `*` operator)</para></listitem>
+<listitem><para><function>divide</function> (for the `/` operator)</para></listitem>
+<listitem><para><function>power</function> (for the `^` operator)</para></listitem>
+<listitem><para><function>dice</function> (for the `d` operator)</para></listitem>
+</itemizedlist>
+
+<para>Use the function `SilikoFunctionCallerInstallFunctions` to install
+the functions that provide access to functions from C’s `math.h` header.
+Siliko provides support for these functions:</para>
+
+<itemizedlist>
+<listitem><para><function>abs</function></para></listitem>
+<listitem><para><function>acos</function></para></listitem>
+<listitem><para><function>asin</function></para></listitem>
+<listitem><para><function>atan</function></para></listitem>
+<listitem><para><function>ceil</function></para></listitem>
+<listitem><para><function>cos</function></para></listitem>
+<listitem><para><function>cosh</function></para></listitem>
+<listitem><para><function>exp</function></para></listitem>
+<listitem><para><function>floor</function></para></listitem>
+<listitem><para><function>log</function></para></listitem>
+<listitem><para><function>log10</function></para></listitem>
+<listitem><para><function>sin</function></para></listitem>
+<listitem><para><function>sinh</function></para></listitem>
+<listitem><para><function>sqrt</function></para></listitem>
+<listitem><para><function>tan</function></para></listitem>
+<listitem><para><function>tanh</function></para></listitem>
+</itemizedlist>
+
+<para>Both of these functions take a pointer to a `SilikoFunctionCaller`
+object, and return an `int` indicating whether it was able to install
+all of the functions it’s supposed to install or not. A false value
+indicates that a memory error occured. When this happens, the list of
+available functions in the function caller is unspecified.</para>
+
+<para>If you wish to implement your own function, it needs to be installed to
+the function caller with the `SilikoFunctionCallerInstall` function.
+The function takes a string representing the name of the function used
+within the Siliko language, and a `SilikoFunctionPointer` pointing to a
+function implementing the the function. Such a function has to have this
+signature:</para>
+
+<programlisting language="C">
+SilikoValue FunctionName(int ArgC, SilikoValue *ArgV)
+</programlisting>
+
+<para>For example:</para>
+
+<programlisting language="C">
+SilikoValue CustomFunctionAddTwo(int ArgC, SilikoValue *ArgV)
+{
+    SilikoValue ReturnValue;
+    if (ArgC != 1)
+    {
+        ReturnValue.Status = SILIKO_VAL_BAD_ARGUMENTS;
+        ReturnValue.Integer = 0;
+        return ReturnValue;
+    }
+
+    ReturnValue.Status = ArgV[0].Status;
+    switch (ArgV[0].Status)
+    {
+    case SILIKO_VAL_INTEGER:
+        ReturnValue.Integer = ArgV[0].Integer + 2;
+        break;
+    case SILIKO_VAL_FLOAT:
+        ReturnValue.Float = Argv[0].Float + 2.0;
+        break;
+    default: // This is an error. Propagate it.
+        ReturnValue.Integer = ArgV[0].Integer;
+    }
+    return ReturnValue;
+}
+</programlisting>
+
+<para>The function `SilikoFunctionCallerCall` takes a function caller, a
+function name as a C-style string, an argument count, and a pointer to
+the first element in an array of `SilikoValue` objects. The function
+caller finds the implementation for the function, then passes the
+argument count and argument array to the implementation, and returns the
+result returned by the implementation.</para>
+
+<para>If you need to clean up the function caller, pass it to the
+`SilikoFunctionCallerDelete` function.</para>
+
+<para>An example of using a function without parsing anything would look like
+this:</para>
+
+<programlisting language="C">
+#include &lt;stdio.h&gt;
+
+#include &lt;SilikoCore/FunctionCaller.h&gt;
+#include &lt;SilikoCore/Value.h&gt;
+
+SilikoValue CustomFunctionAddTwo(int ArgC, SilikoValue *ArgV);
+
+int main(int argc, char *argv[])
+{
+    SilikoFunctionCallerNew *caller();
+    SilikoFunctionCallerInstall(caller, &quot;addtwo&quot;, CustomFunctionAddTwo);
+    SilikoValue inputs[1];
+    inputs[0].Status = SILIKO_VAL_INTEGER;
+    inputs[0].Integer = 5;
+    SilikoValue result = SilikoFunctionCallerCall(caller, &quot;addtwo&quot;, 1, inputs);
+    char *resultString = SilikoValueToString(result);
+    printf(&quot;The result is: %s\n&quot;, resultString);
+    SilikoValueDeleteString(resultString);
+    SilikoFunctionCallerDelete();
+}
+</programlisting>
+</section>
+
+<section>
+<info>
+<title>Syntax Trees</title>
+</info>
+
+<para>Siliko implements syntax trees with a single type,
+`SilikoSyntaxTreeNode`. A node can hold one of two kinds of data, a
+branch, or a leaf. A leaf has a single `SilikoValue` object, and a
+branch has a function call, and an array of child
+`SilikoSyntaxTreeNode` objects representing the arguments to the
+operation or function the branch represents. Each node can be evaluated,
+to yield a `SiikoValue` object with the results.</para>
+
+<para>There are five functions that will create a syntax tree node:</para>
+
+<itemizedlist>
+<listitem><para><function>SilikoSyntaxTreeNewInteger</function> generates a leaf node with an integer
+    value.</para></listitem>
+<listitem><para><function>SilikoSyntaxTreeNewFloat</function> generates a leaf node with a
+    floating-point value.</para></listitem>
+<listitem><para><function>SilikoSyntaxTreeNewError</function> generates a leaf node representing a
+    syntax error.</para></listitem>
+<listitem><para><function>SilikoSyntaxTreeNewBranch</function> generates a branch node, taking the
+    function name as its argument.</para></listitem>
+<listitem><para><function>SilikoSyntaxTreeNewNothing</function> generates a null node. This is used to
+    represent when a parser component reports that is has no more
+    to process or that it didn’t receive any tokens representing
+    the rule that it handles.</para></listitem>
+</itemizedlist>
+
+<para>Each of these functions returns a pointer to a `SilikoSyntaxTree` that
+will subsequently need to be passed to `SilikoSyntaxTreeDelete` to
+release resources. If you pass a branch node to
+`SilikoSyntaxTreeDelete`, it will also call itself on any nodes in the
+branch’s array of child nodes.</para>
+
+<para>To combine syntax tree nodes into a tree, you will need to use the
+*Push* functions with a branch node and another node to be added as a
+child node to the branch node.</para>
+
+<para>For example, let’s say you wish to construct a syntax tree representing
+the expression `2 + 3`. You would first construct a branch node, and two
+leaf nodes to represent the operands.</para>
+
+<programlisting language="C">
+    SilikoSyntaxTreeNode *Operator = SilikoSyntaxTreeNewBranch(&quot;add&quot;);
+    SilikoSyntaxTreeNode *LeftOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *RightOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreePushRight(Operator, LeftOperand);
+    SilikoSyntaxTreePushRight(Operator, RightOperand);
+</programlisting>
+
+<para>You can create nodes in any order, so it doesn’t mater if you start with
+the leaves or the branch. There are two functions that add new children
+to a branch node, `SilikoSyntaxTreePushLeft`, and
+`SilikoSyntaxTreePushRight`. `SilikoSyntaxTreePushLeft` will add the
+new child node to the left side of the operands list, while 
+`SilikoSyntaxTreePushRight` adds the new child to the right side.
+If the branch node has no children yet, both functions are effectively
+equivalent. Thus, the above code sample could also have been written as
+the following:</para>
+
+<programlisting language="C">
+    SilikoSyntaxTreeNode *Operator = SilikoSyntaxTreeNewBranch(&quot;add&quot;);
+    SilikoSyntaxTreeNode *LeftOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *RightOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreePushLeft(Operator, RightOperand);
+    SilikoSyntaxTreePushLeft(Operator, LeftOperand);
+</programlisting>
+
+<para>Notice that the order in which the operands were added was reversed
+since the new function inserts the child operands into the other side
+of the array of children.</para>
+
+<section>
+<info>
+<title>Evaluating</title>
+</info>
+
+<para>Once a syntax tree is fully assembled, it can be evaluated with the
+`SilikoSyntaxTreeEvaluate` function. The function takes two arguments:
+a `SilikoSyntaxTreeNode` pointer, and a `SilikoFunctionCaller` pointer.
+The syntax tree should have no remaining `NULL` nodes, and the function
+caller will need to have any functions referenced by the syntax tree.
+If syntax tree contains any `NULL` nodes, it will evaluate to a
+`SILIKO_VAL_SYNTAX_ERR` indicating a syntax error, and if the function
+caller fails to find a function name used, it will yield a
+`SILIKO_VAL_BAD_FUNCTION` status indicating that it failed to find a
+function.</para>
+
+<programlisting language="C">
+    SilikoFunctionCaller *Caller = SilikoFunctionCallerNew();
+    SilikoFunctionCallerInstallOperators(Caller);
+    SilikoValue Result = SilikoSyntaxTreeEvaluate(RootNode, Caller);
+</programlisting>
+
+<para>If you used the above example, `Result` should have a `Status` of
+`SILIKO_VAL_INTEGER` and `Result.Integer` would have a value of `56`
+which is the result of `2 * 3 + 10 * (35 / 7)`.</para>
+</section>
+</section>
+
+<section>
+<info>
+<title>The Infix Parser</title>
+</info>
+
+<para>To put it all together, Siliko includes an infix parser. It exposes a
+single function, `SilikoParseInfix`. It takes a pointer to a
+`SilikoDataSource` object, and returns a pointer to a
+`SilikoSyntaxTreeNode` object representing the root node of the syntax
+tree parsed out by the infix parser.</para>
+
+<para>Like any other `SilikoSyntaxTreeNode`, you may call
+`SilikoSyntaxTreeEvaluate` to evaluate the tree and get the resulting
+value.</para>
+</section>
+</article>

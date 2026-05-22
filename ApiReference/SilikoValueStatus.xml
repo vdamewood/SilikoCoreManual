@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoValueStatus</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname>SilikoValueStatus</refname>
+  <refpurpose>something</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
+
+<programlisting language="C">enum SilikoValueStatus
+{
+    SilikoValueError = 0,
+    SilikoValueInteger,
+    SilikoValueReal
+};</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <type>SilikoValueStatus</type> enumeration is used by the
+<type>SilikoValue</type>
+structure to indicate whether it is an integer value, a real
+value, or an error.</para>
+
+
+<itemizedlist>
+<listitem><para>SilikoValueError: The value is an error.</para></listitem>
+<listitem><para>SilikoValueInteger: The value is an integer.</para></listitem>
+<listitem><para>SilikoValueReal: The value is a real number.</para></listitem>
+</itemizedlist>
+</refsection>
+</refentry>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>Siliko Core Tutorial</title>
+</info>
+
+<para>Siliko Core is a library that takes in math expressions, like
+<userinput>2 + 5 * 4</userinput> and calculates the result,
+<computeroutput>22</computeroutput>. This tutorial will walk you through
+writing a simple program to translate an expression passed to the
+program on the command line to a value, and display it to the user. Such
+as this:
+
+<screen>
+./tutorial &quot;2 + 3 * 5&quot;
+> 17
+</screen>
+
+This tutorial assumes you can build with a library and write C code. If
+you need help building with the Siliko Core library, see Linking with
+Siliko Core.</para>
+<!--XREF: Linking.md -->
+
+<para>To simplify things, Siliko Core includes a single header to
+include all of its public headers. So, to access Siliko Cores types and
+functions, you should <code>#include</code> this header.</para>
+
+<programlisting language="C">
+#include &lt;SilikoCore/SilikoCore.h&gt;
+</programlisting>
+
+<para>The first thing you will need to do when using the Siliko Core
+library in your code is to create a <type>SilikoEngine</type> object. A
+<type>SilikoEngine</type> provides the function lookup table that
+Siliko Core uses to find the internal implementation of an operator,
+like <literal>+</literal>, or a function like <function>sin</function>.
+The <function>SilikoEngineCreate</function> function is responsible for
+making a <type>SilikoEngine</type> object, and it returns a pointer to
+the object.</para>
+
+<para>Since <type>SilikoEngine</type> is designed to be customizable, a
+new <type>SilikoEngine</type> doesn’t include any in-language functions
+on its own. After you create a new <type>SilikoEngine</type>, you can
+use the function <function>SilikoInstallOperations</function> to add the
+in-language functions used to support Siliko Core’s built-in operators,
+such as <literal>+</literal>, <literal>-</literal> and
+<literal>d</literal>. You can use the
+<function>SilikoInstallMathFunctions</function> function to install
+Siliko Core’s built-in functions that provide access to functions from
+the C standard library’s <filename>math.h</filename> header, such as
+<function>sin</function> or <function>abs</function>.</para>
+
+<programlisting language="C">
+#include &lt;SilikoCore/SilikoCore.h&gt;
+
+
+int main(int argc, char *argv[])
+{
+    // Setup the engine
+    SilikoEngine *engine = SilikoEngineCreate();
+    SilikoInstallOperations(engine);
+    SilikoInstallMathFunctions(engine);
+}
+</programlisting>
+
+<para>This setup gets Siliko Core’s internal functions to work, but when
+you are done with it, you should clean up its resources to avoid a
+memory leak. To do this, call the
+<function>SilikoEngineDestroy</function> function on the
+<type>SilikoEngine</type> pointer.</para>
+
+<programlisting language="C">
+#include &lt;SilikoCore/SilikoCore.h&gt;
+
+int main(int argc, char *argv[])
+{
+    // Setup the engine
+    SilikoEngine *engine = SilikoEngineCreate();
+    SilikoInstallOperations(engine);
+    SilikoInstallMathFunctions(engine);
+
+    // Cleanup
+    SilikoEngineDestroy(engine);
+}
+</programlisting>
+
+<para>With these bits of house-keeping taken care of, you can proceed to
+the more meaty use of the library. Siliko Core needs a source of input
+characters to parse. This is done with the <type>SilikoInput</type>
+type. Siliko Core includes a function,
+<function>SilikoStringInputCreate</function> that will make a new
+<type>SilikoInput</type> object using a simple C string as its input.
+Since <varname>argv[1]</varname> is a normal C string, it can be passed
+to <function>SilikoStringInputCreate</function>.</para>
+
+<programlisting language="C">
+#include &lt;stdio.h&gt;
+#include &lt;SilikoCore/SilikoCore.h&gt;
+
+
+int main(int argc, char *argv[])
+{
+    // Make sure there is an argument to process:
+    if (argc != 2)
+    {
+        fprintf(stderr, &quot;usage: %s &lt;expression&gt;\n&quot;, argv[0]);
+        return 1;
+    }
+
+    // Setup the engine
+    SilikoEngine *engine = SilikoEngineCreate();
+    SilikoInstallOperations(engine);
+    SilikoInstallMathFunctions(engine);
+
+    // Code to use the Siliko Core library
+    SilikoInput *source = SilikoStringInputCreate(argv[1]);
+
+    // Cleanup
+    SilikoEngineDestroy(engine);
+}
+</programlisting>
+
+<para>After you have your string input setup, you can pass it on to the
+infix parser with the <function>SilikoParseInfix</function> function.
+The infix parser will generate a syntax tree representing the expression
+you passed to it, and return a pointer to the root node of that
+tree.</para>
+
+<programlisting language="C">
+    // Code to use the Siliko Core library
+    SilikoInput *source = SilikoStringInputCreate(argv[1]);
+    SilikoNode *tree = SilikoParseInfix(source);    
+</programlisting>
+
+<para>You can then evaluate the syntax tree to get a result from
+it.</para>
+
+<programlisting language="C">
+    // Code to use the Siliko Core library
+    SilikoInput *source = SilikoStringInputCreate(argv[1]);
+    SilikoNode *tree = SilikoParseInfix(source);   
+    SilikoValue *result = SilikoEvaluate(engine, tree);
+</programlisting>
+
+<para>A <type>SilikoValue</type> represents a simple number produced by
+or passed to the Siliko Core library. It holds either an integer, a real
+number, or an error code. Because matters of user interface are left to
+the application, Siliko Core doesn’t include a facility to display the
+value. So, for this example, we will <code>switch</code> over the
+status, and print the resulting value, or an error message if the value
+is an error.</para>
+
+<programlisting language="C">
+    // Print the result
+    switch (SilikoValueGetStatus(result))
+    {
+    case (SilikoValueInteger):
+        printf(&quot;> %lli\n&quot;, SilikoValueGetInteger(result));
+        break;
+    case (SilikoValueReal):
+        printf(&quot;> %f\n&quot;, SilikoValueGetReal(result));
+        break;
+    case (SilikoValueError):
+        switch (SilikoValueGetError(result))
+        {
+        case(SilikoErrorNone):
+            // This shouldn&apos;t be a result, but we check here
+            // just in case.
+            puts(&quot;Unexpected error&quot;);
+            break;
+        case(SilikoErrorNullObject):
+            puts(&quot;Out of memory&quot;);
+            break;
+        case SilikoErrorSyntax:
+            puts(&quot;Syntax error&quot;);
+            break;
+        case SilikoErrorZeroDivision:
+            puts(&quot;Division by zero&quot;);
+            break;
+        case SilikoErrorFunctionName:
+            puts(&quot;Function not found&quot;);
+            break;
+        case SilikoErrorFunctionArguments:
+            puts(&quot;Bad argument count&quot;);
+            break;
+        case SilikoErrorDomain:
+            puts(&quot;Domain error&quot;);
+            break;
+        case SilikoErrorRange:
+            puts(&quot;Range error&quot;);
+            break;
+        }
+        break;
+    }
+</programlisting>
+
+<para>Some cleanup is needed for these objects, too. Because the infix
+parser consumes the <type>SilikoInput</type>, the parser also takes care
+of cleaning up the <type>SilikoInput</type>, so you do not need to clean
+up the <type>SilikoInput</type>, nor should you. The
+<type>SilikoNode</type> returned by
+<function>SilikoParseInfix</function> and the <type>SilikoValue</type>
+returned by <function>SilikoEvaluate</function> do need to be cleaned
+up. Siliko Core provides functions,
+<function>SilikoNodeDestroy</function> to clean up a
+<type>SilikoNode</type> and its branches, and
+<function>SilikoValueDestroy</function> to clean up a
+<type>SilikoValue</type>. Add these along with
+<function>SilikoEngineDestroy</function>.</para>
+
+<programlisting language="C">
+    // Cleanup
+    SilikoValueDestroy(result);
+    SilikoNodeDestroy(tree);
+    SilikoEngineDestroy(engine);
+</programlisting>
+
+<para>Once you have everything entered, your program should look like
+the following.</para>
+
+<programlisting language="C">
+#include &lt;stdio.h&gt;
+#include &lt;SilikoCore/SilikoCore.h&gt;
+
+
+int main(int argc, char *argv[])
+{
+    // Make sure there is an argument to process:
+    if (argc != 2)
+    {
+        fprintf(stderr, &quot;usage: %s &lt;expression&gt;&quot;, argv[0]);
+        return 1;
+    }
+
+    // Setup the engine
+    SilikoEngine *engine = SilikoEngineCreate();
+    SilikoInstallOperations(engine);
+    SilikoInstallMathFunctions(engine);
+
+    // Code to use the Siliko Core library
+    SilikoInput *source = SilikoStringInputCreate(argv[1]);
+    SilikoNode *tree = SilikoParseInfix(source);   
+    SilikoValue *result = SilikoEvaluate(engine, tree);
+
+    // Print the result
+    switch (SilikoValueGetStatus(result))
+    {
+    case (SilikoValueInteger):
+        printf(&quot;> %lli\n&quot;, SilikoValueGetInteger(result));
+        break;
+    case (SilikoValueReal):
+        printf(&quot;> %f\n&quot;, SilikoValueGetReal(result));
+        break;
+    case (SilikoValueError):
+        switch (SilikoValueGetError(result))
+        {
+        case(SilikoErrorNone):
+            // This shouldn&apos;t be a result, but we check here
+            // just in case.
+            puts(&quot;Unexpected error&quot;);
+            break;
+        case(SilikoErrorNullObject):
+            puts(&quot;Out of memory&quot;);
+            break;
+        case SilikoErrorSyntax:
+            puts(&quot;Syntax error&quot;);
+            break;
+        case SilikoErrorZeroDivision:
+            puts(&quot;Division by zero&quot;);
+            break;
+        case SilikoErrorFunctionName:
+            puts(&quot;Function not found&quot;);
+            break;
+        case SilikoErrorFunctionArguments:
+            puts(&quot;Bad argument count&quot;);
+            break;
+        case SilikoErrorDomain:
+            puts(&quot;Domain error&quot;);
+            break;
+        case SilikoErrorRange:
+            puts(&quot;Range error&quot;);
+            break;
+        }
+        break;
+    }
+
+    // Cleanup
+    SilikoValueDestroy(result);
+    SilikoNodeDestroy(tree);
+    SilikoEngineDestroy(engine);
+}
+</programlisting>
+
+<para>And there you have it. A program that uses the Siliko Core library
+as a simple infix parser. For a complete guide to using Siliko Core, see
+Integrating Siliko Core into Your Program.</para>
+<!-- XREF: Integrating.md -->
+</article>

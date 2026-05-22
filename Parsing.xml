@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>On Parsing</title>
+</info>
+
+<para>Computers deal with text in several formats: programming-language
+code like C or C++, file formats like HTML, XML, JSON, and even user
+input such as with a shell. These formats have some structure to them,
+but this structure doesn’t always reflect the way the computer handles
+the data itself. For example, a JSON object might list a 7-digit number,
+like 5749175 as the series of digits <literal>5749175</literal>, but the
+computer processing the data might represent that number internally as
+four bytes with the values 0, 87, 185, and 183.</para>
+
+<para><firstterm>Parsing</firstterm> is the process of taking the
+structure of a file format, and converting it to a form the computer can
+more easily work with. A JSON parser might convert JSON objects to a
+programming language’s internal structure types, or convert an XML
+document to a tree structure that represents the structure of the
+document. Siliko includes a parser that converts a mathemetical
+notation, closer to one used by people than what a computer might use,
+into a tree structure that’s easier to process with a computer.</para>
+
+<section>
+<title>Lexical Analysis</title>
+
+<para>When parsing, there are two major steps. The first step is lexical
+analysis. This step involves the conversion of strings of arbitrary
+characters to usable units. For example, the string
+<literal>42</literal> could represent a number, but to the computer,
+it’s two bytes, with the values 52 and 50. In order for it to be useful
+as the value 42, a tool called the
+<firstterm>lexical analyzer</firstterm> determines where the number
+begins and where it ends, then converts the series of bytes to the
+useful value 42. Strictly speaking, the series of bytes to be converted
+is called a <firstterm>lexeme</firstterm>, and the data structure that
+represents that it’s an integer with a certain value is called a
+<firstterm>token</firstterm>. However, many programmers will also refer
+to lexemes as tokens. Because this process converts lexemes to tokens,
+the process of lexical analysis is also called
+<firstterm>tokenization</firstterm>, and a lexical analyzer can also be
+called a <firstterm>tokenizer</firstterm> or a
+<firstterm>lexer</firstterm>.</para>
+
+<para>A lexical analyzer works by reading input one character at a time,
+whitling down the possible results as it reads each character until,
+by its internal rules, it has reached the end of input and narrowed down
+the possible type of the input to one type. This is done with a tool
+called a <firstterm>finite-state machine</firstterm>.</para>
+
+<para>A finite-state machine has a set of states representing the
+possibilities and how far into the process it is. In the Siliko language
+integers and real numbers both start out with a series of digits, but
+real numbers also have a decimal point. So, when the lexical analyzer
+starts processing a new number, for example <literal>12.5</literal> it
+starts out in a ‘blank’ start state. It then reads the first character,
+<literal>1</literal>. This puts the tokenizer into a state representing
+“maybe an integer”. It will then read the <literal>2</literal>, and
+continue in the same state. When the analyzer reaches the decimal point,
+however, it knows that this isn’t an integer but rather a real number.
+So, it changes state to “real number”. Reading the next character,
+<literal>5</literal>, the lexical analyzer continues in the
+“real number” state. It then reads the next character, which, presumably
+is an operator or a space character, and determines that the lexeme is
+done, and changes to a termination state. Once it has reached a
+termination state, the lexical analyzer does the final conversion to a
+useful form, a token representing the type of the data the lexeme
+represents in the language, in this case a real number, and the value
+itself in a more convenient form, such as the machine’s internal
+floating-point representation. The Lexical analyzer then passes this
+token on to the syntactic analyzer.</para>
+</section>
+
+<section>
+<title>Syntactic Analysis</title>
+
+<para><firstterm>Syntactic analysis</firstterm> is the process of
+reading a series of tokens, provided by the lexical analyser, and
+converting them to a usable structure, most often a
+<firstterm>syntax tree</firstterm>. The tool that does this could be
+called a <firstterm>syntactic analyzer</firstterm> but is often simply
+called the parser.</para>
+
+<para>This section of the parser takes care of making sense of what the
+arrangement of the tokens means. For example, an infix parser would
+look at a sequence of tokens such as “integer with value 2”,
+“operator +”, and “integer with value 3”, and concludes that such a
+sequence is an addition operation with operands “integer with value 2”
+and “integer with value 3”. It will then generate a syntax tree
+representing the operation such as in
+<xref linkend="SimpleAddition"/>.</para>
+
+<figure xml:id="SimpleAddition">
+<title>Simple Addition</title>
+<literallayout class="monospaced">
+    +
+  2   3
+</literallayout>
+</figure>
+
+<para>A syntactic analyzer can read a complex series of tokens
+and break them down into
+<firstterm baseform="production">productions</firstterm> representing
+these rules. For example, a production for an addition operation might
+look like <xref linkend="Parsing.Simple"/>.</para>
+
+<example xml:id="Parsing.Simple">
+<title>An example of Productions</title>
+<productionset>
+<production xml:id="Parsing.SimpleExample.Expression">
+  <lhs>expression</lhs>
+  <rhs>
+    <nonterminal def="Parsing.Simple.Number">number</nonterminal>
+    '+'
+    <nonterminal def="Parsing.Simple.Number">number</nonterminal>
+    |
+    <nonterminal def="Parsing.Simple.Number">number</nonterminal>
+  </rhs>
+</production>
+<production xml:id="Parsing.Simple.Number">
+  <lhs>number</lhs>
+  <rhs>[0-9]+</rhs>
+</production>
+</productionset>
+</example>
+
+<para>This reads that an expression is one of two things, either the
+sequence of a number, followed by a plus sign, followed by another
+number, or just a number. A number is a sequence of one or more digits.
+This means that, by these rule, <code>2 + 3</code> is an expression, and
+so is just <code>2</code>. These rules can be stacked to create a
+complex <firstterm>grammar</firstterm> indicating the rules and
+organization of a <firstterm>language</firstterm>. The way these
+productions are stacked can be used to specify precedence
+and associativity. For example, if you want to mix addition and
+multiplication, while making sure that the multiplication takes
+precedence, you could stack the rules like this.</para>
+
+<example xml:id="Parsing.Precedence">
+<title>An example with Precedence</title>
+<productionset>
+<production xml:id="Parsing.Precedence.Expression">
+  <lhs>expression</lhs>
+  <rhs>
+    <nonterminal def="Parsing.Precedence.Expression">expression</nonterminal>
+    '+'
+    <nonterminal def="Parsing.Precedence.Term">term</nonterminal>
+    |
+    <nonterminal def="Parsing.Precedence.Term">term</nonterminal>
+  </rhs>
+</production>
+<production xml:id="Parsing.Precedence.Term">
+  <lhs>term</lhs>
+  <rhs>
+    <nonterminal def="Parsing.Precedence.Term">term</nonterminal>
+    '*'
+    <nonterminal def="Parsing.Precedence.Number">number</nonterminal>
+    |
+    <nonterminal def="Parsing.Precedence.Number">number</nonterminal>
+  </rhs>
+</production>
+<production xml:id="Parsing.Precedence.Number">
+  <lhs>number</lhs>
+  <rhs>[0-9]+</rhs>
+</production>
+</productionset>
+</example>
+
+<para>One will notice each of these productions can have itself as a
+component. An expression can have another expression as a portion of
+itself. So, given the expression <code>2 + 3 + 5</code> the first
+expression <code>2 + 3</code> is a component of a second expression
+which has (<code>2 + 3</code>), <literal>+</literal>, and
+<literal>5</literal> as its component.</para>
+
+<para>Since, each production can simply be the next rule in the list, A
+term, on its own can be an expression, and a number can be a term. This,
+combined with the above rule allowing for productions within themselves,
+allows trees to be built respecting the order of operations.</para>
+
+<para>For example, <code>2 + 3 * 5</code> would first be read as a
+number <literal>2</literal>, an addition operation, followed by a
+number, however, as the next operator is multiplication, this is
+interpreted as a term, and so the <literal>3</literal>,
+<literal>*</literal>, and <literal>5</literal> will be handled as a
+term, then passed down to the production for the expression, which takes
+an expression, which can be a term, which can be a number, which is
+<literal>2</literal>, followed by an addition operator,
+followed by the term (<code>3 * 5</code>), resulting in a parse tree
+such as:
+
+<figure xml:id="Complex">
+<title>A More Complex Parse Tree</title>
+<literallayout class="monospaced">
+    +
+  2   *
+     3 5
+</literallayout>
+</figure>
+
+As can be seen in this parse tree, the <code>3 * 5</code> operation is
+handled separately, and the <literal>+</literal> operaton can’t be
+processed before the multiplication operation is handled.</para>
+
+<para>For the complete grammar of the Siliko infix parser, see the
+Siliko Infix Language Reference.</para>
+<!-- XREF: InfixLanguageReference -->
+</section>
+
+<section>
+<title>Further Reading</title>
+
+<bibliolist>
+<bibliomixed>
+  <author><personname>
+    <firstname>Alfred</firstname>
+    <othername>V.</othername>
+    <surname>Aho</surname>
+  </personname></author> et al.
+  <title>Compilers: Principles, Techniques, and Tools</title> <edition>2nd ed.</edition>
+  <publisher><publishername>Pearson Education</publishername></publisher>
+  2007
+</bibliomixed>
+</bibliolist>
+
+</section>
+</article>

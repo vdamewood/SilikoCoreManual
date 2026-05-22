@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book version="5.1"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns="http://docbook.org/ns/docbook">
+<info>
+  <title>Siliko Core Manual</title>
+  <author>
+    <personname>
+      <firstname>Vincent</firstname>
+      <surname>Damewood</surname>
+    </personname>
+  </author>
+  <copyright><year>2026</year>
+    <holder>Vincent Damewood</holder>
+  </copyright>
+</info>
+
+<part>
+<info>
+    <title>Tutorial</title>
+</info>
+<xi:include href="Tutorial.xml"/>
+</part>
+
+<part>
+<info>
+    <title>How-To Guides</title>
+</info>
+<xi:include href="Build.xml"/>
+<xi:include href="Integrating.xml"/>
+<xi:include href="Linking.xml"/>
+</part>
+
+<part>
+<info>
+    <title>Explanations</title>
+</info>
+<xi:include href="Parsing.xml"/>
+</part>
+
+<part>
+<info>
+    <title>References</title>
+</info>
+<xi:include href="ApiReference.xml"/>
+<xi:include href="LanguageReference.xml"/>
+</part>
+</book>

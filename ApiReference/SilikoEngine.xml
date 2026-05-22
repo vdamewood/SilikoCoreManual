@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<refentry version="5.1"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoEngine</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><type>SilikoEngine</type></refname>
+  <refpurpose>manages function lookup</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
+<programlisting language="C">typedef struct SilikoEngine SilikoEngine;</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>A <type>SilikoEngine</type> holds a function lookup table used
+during evaluation of a <type>SilikoNode</type> used to resolve branch
+nodes and function lookups.</para>
+</refsection>
+</refentry>

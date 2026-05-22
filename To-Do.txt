@@ -1,0 +1,8 @@
+* Convert Markdown to DocBook.
+
+* EBNF productions resume from previous production lists. Change
+customization layer to reset each time.
+
+* Replace bibliography template with one that conforms to Chicago
+
+* Fixup xrefs
