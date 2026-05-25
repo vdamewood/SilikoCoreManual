@@ -2,21 +2,33 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoParseInfix</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><function>SilikoParseInfix</function></refname>
+  <refpurpose>function to parse infix-notation expressions</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">#include &lt;SilikoCore/ParseInfix.h&gt;</programlisting>
+<programlisting language="C">SilikoNode *SilikoParseInfix(SilikoInput *input);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoParseInfix</function> function parses
+the Siliko infix language from a series of characters provided by
+<varname>input</varname> and generates a syntax tree of
+<type>SilikoNode</type> objects representing the parsed input. The
+parser will take ownership of <varname>input</varname>, and call
+<function>SilikoInputDestroy</function> on it when finished.</para>
+</refsection>
+
+<refsection>
+<title>Return Value</title>
+<para><function>SilikoParseInfix</function> returns the root node of the
+syntax tree generated from parsing the input from the input source or
+<literal>NULL</literal> if it is unable to allocate memory.</para>
 </refsection>
 </refentry>

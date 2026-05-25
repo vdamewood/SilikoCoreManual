@@ -11,12 +11,28 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoFunctionCallerInstall` installs a single function into a
+`SilikoFunctionCaller` object.
+
+
+* `Caller` is the `SilikoFunctionCaller` object to install the function
+  into.
+* `FunctionName` is a string that will be used as the identifier for
+  the installed function.
+* `Function` is a pointer to a C function implementing the Siliko
+  function being installed.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>Returns true if the installation succeeded, false
+otherwise.</para>
 </refsection>
 </refentry>

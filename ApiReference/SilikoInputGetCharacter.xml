@@ -11,12 +11,30 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoDataSourceGet` function gets the current character from a
+`SilikoDataSource` object by calling the get function of the object.
+`Source` is the input source to advance. `Source` must be a value
+returned by `SiolikoDataSourceNew`.
+</para>
+</refsection>
+
+
+
+
+
+
+<refsection>
+<title>Return Values</title>
+
+<para>`SilikoDataSourceGet` returns return value of the
+call to the get function of the `SilikoDataSource` object (the current
+character if the object has characters to read, or `\0` if the source is
+exhausted).</para>
 </refsection>
 </refentry>

@@ -2,21 +2,35 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputAdvance</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoInputAdvance</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
+<programlisting language="C">bool SilikoInputAdvance(SilikoInput *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoInputAdvance</function> function advances 
+<varname>object</varname> to the next character of input by
+calling the <varname>advance</varname> function of
+<varname>object</varname>’s <type>SilikoInputVTable</type>.
+<varname>object</varname> must be a value returned by
+<function>SilikoInputCreate</function>.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+<para><function>SiikoInputAdvance</function> returns the return value of
+the call to the advance function of the passed
+<type>SilikoDataSource</type> object: <literal>true</literal> if the
+object has more characters to read, or <literal>false</literal> if the
+object is exhausted.</para>
 </refsection>
 </refentry>

@@ -11,12 +11,32 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>Gets the child of the specified `SilikoSyntaxTreeNode` at the specified
+position, removing the child from the parent.
+
+* `Parent` is a node to get a child node from.
+* `Position` is the position of the requested child. If the value is
+  non-negative, the `Position` is interpreted as an index counting from
+  the left. If the value is negative, `Position` is interpreted as a
+  n index counting from the right, with `-1` as the left element, and
+  so on. If the value passed would count past the end of the list of
+  child nodes, the value is considered out of range, otherwise the value
+  is considered in range.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>If `parent` is a branch node, and `position` is in
+range, this function returns a pointer to the child. Otherwise, this
+function returns `NULL`. This pointer is no longer managed by the parent
+and must be passed to `SilikoSyntaxTreeDelete` or added as a child
+to another branch node to avoid a memory leak.</para>
 </refsection>
 </refentry>

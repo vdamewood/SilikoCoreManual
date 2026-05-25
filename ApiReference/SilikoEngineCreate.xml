@@ -11,12 +11,23 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoFunctionCallerNew` function creates a new
+`SilikoFunctionCaller` object.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>Unless there is a memory error,
+`SilikoFunctionCallerNew` returns a pointer to the new object. If there
+is a memory error, `SilikoFunctionCallerNew` returns `NULL`. If
+`SilikoFunctionCallerNew` returns a pointer to an object, it must be
+deleted with `SilikoFunctionCallerDelete`.</para>
 </refsection>
 </refentry>

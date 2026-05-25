@@ -2,21 +2,23 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInput</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><type>SilikoInput</type></refname>
+  <refpurpose>type representing a source of input characters</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <type>SilikoInput</type> type represents a user-provided
+source characters to be used by a <type>SilikoLexer</type>
+object.</para>
 </refsection>
 </refentry>

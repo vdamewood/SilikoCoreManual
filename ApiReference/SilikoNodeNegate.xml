@@ -11,12 +11,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoSyntaxTreeNegate` function negates the value of a syntax
+tree node.
+
+* `SyntaxTree` is the syntax tree to negate.
+</para>
 </refsection>
 </refentry>

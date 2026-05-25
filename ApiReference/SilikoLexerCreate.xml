@@ -11,12 +11,26 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoLexerNew` function creates a new `SilikoLexer` object.
+
+
+* `InputSource` is the data source that will be used for input. The
+  lexer will take ownership of the `SilikoDataSource` and call
+  `SilikoDataSourceDeleve` on the object when the lexer is finished
+  with the data source.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>`SilikoLexerNew` returns a pointer to a new
+`SiikoLexer` object if there was no memory error. `SilikoLexerNew`
+returns `NULL` if there was a memory error.</para>
 </refsection>
 </refentry>

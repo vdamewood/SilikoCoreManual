@@ -11,12 +11,25 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
+<para>The `SilikoLexerNext` function advances the `SilikoLexer` object to its
+next token.
+
+
+* `Lexer` is the lexer to advance. If `Lexer` has reached the end of its
+  input, further calls to `SilikoLexerNext` on `Lexer` will have no
+  effect, and `SilikoLexerGetToken` will return a token indicating the
+  end of input has been reached.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
 <para></para>
 </refsection>
 </refentry>

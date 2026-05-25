@@ -11,12 +11,25 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoSyntaxTreeNodeType` represents whether a syntax tree node
+is a branch, leaf, or a simple placeholder.
+
+* `SILIKO_AST_NOTHING` represents a syntax tree node that was generated
+  by a parser to indicate that a rule was not able to process further
+  input, but is not in an error condition. This is used, for example,
+  to indicate that the end of a list has been reached by a function that
+  does not process the end of list indicator or the next operator being
+  processed.
+* `SILIKO_AST_BRANCH` represents a syntax tree that is a branch. A
+  branch node will have an operator name, and an array of child
+  `SyntaxTreeNode` objects.
+* `SILIKO_AST_LEAF` represents a syntax tree that is a leaf. The node
+  has no child nodes, and is either a value or an error.</para>
 </refsection>
 </refentry>

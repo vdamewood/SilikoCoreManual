@@ -11,12 +11,28 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoLexerGetToken` function gets the current token from the
+lexer.
+
+* `Lexer` is the `SilikoLexer` object from which to retrieve the token.
+</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>A SilikoToken object representing the curent token.
+If the `Type` property of the return value is `SILIKO_TOK_ID`, the
+`Id` will be a pointer to a string that is owned by the `Lexer`, and
+will only be available until the next time `SilikoTokenNext` is called 
+on `Lexer`. If the `Type` property of the return value is
+`SILIKO_TOK_EOL`, then further calls to `SilikoLexerNext` will have no
+effect on `Lexer`.</para>
 </refsection>
 </refentry>

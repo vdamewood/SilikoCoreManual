@@ -11,12 +11,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoSyntaxTreeDelete` function deletes a syntax tree node,
+and if the `SilikoSyntaxTreeNode` object is a branch node, deletes its
+child nodes and any other descendant nodes.
+
+* `SyntaxTree` is the `SilikoSyntaxTreeNode` object to delete. </para>
 </refsection>
 </refentry>

@@ -11,12 +11,23 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoSyntaxTreeNewNothing` function creates a new
+`SilikoSyntaxTreeNode` object representing that the end of input for
+a particular rule has been reached, and that further parsing should be
+done by another rule, such as a parent rule.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>`SilikoSyntaxTreeNewError` returns a pointer to a
+new empty `SilikoSyntaxTreeNode` object on success, or `NULL` if there
+was a memory error.</para>
 </refsection>
 </refentry>

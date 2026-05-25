@@ -11,12 +11,21 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoSyntaxTreeNewError` function creates new
+`SilikoSyntaxTreeNode` object representing a syntax error.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>`SilikoSyntaxTreeNewError` returns a pointer to a
+new error `SilikoSyntaxTreeNode` object on success, or `NULL` if there
+was a memory error.</para>
 </refsection>
 </refentry>

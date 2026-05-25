@@ -1,7 +1,7 @@
-FOPCONF := ${HOME}/.config/fop/fop.conf
-RNGFILE     := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbook.rng
-RNGXIFILE   := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbookxi.rng
-MDINSTDIR   := ~/tmp/SilikoDocs/
+FOPCONF   := ${HOME}/.config/fop/fop.conf
+RNGFILE   := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbook.rng
+RNGXIFILE := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbookxi.rng
+MDINSTDIR := ~/tmp/SilikoDocs/
 
 MONODBFILES := \
 	Build.xml \
@@ -136,9 +136,9 @@ APIREFFILES := \
 	ApiReference/SilikoValueDestroy.xml \
 	ApiReference/SilikoValueGetError.xml \
 	ApiReference/SilikoValueGetInteger.xml \
-	ApiReference/SilikoValueGetNegate.xml \
 	ApiReference/SilikoValueGetReal.xml \
 	ApiReference/SilikoValueGetStatus.xml \
+	ApiReference/SilikoValueNegate.xml \
 	ApiReference/SilikoValueStatus.xml
 
 PDFFILES  := $(DBFILES:.xml=.pdf)

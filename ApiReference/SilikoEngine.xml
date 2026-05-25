@@ -7,7 +7,7 @@
 
 <refnamediv>
   <refname><type>SilikoEngine</type></refname>
-  <refpurpose>manages function lookup</refpurpose>
+  <refpurpose>type that manages function lookup</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -18,7 +18,7 @@
 <refsection>
 <title>Description</title>
 <para>A <type>SilikoEngine</type> holds a function lookup table used
-during evaluation of a <type>SilikoNode</type> used to resolve branch
+during evaluation of a <type>SilikoNode</type> to resolve branch
 nodes and function lookups.</para>
 </refsection>
 </refentry>

@@ -11,12 +11,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoDataSourceDelete` function calls the delete function of a
+`SiikoDataSource` object and then deletes the object.
+
+
+* `Source` is the input source to advance. `Source` must be a value
+  returned by `SiolikoDataSourceNew`.</para>
 </refsection>
 </refentry>

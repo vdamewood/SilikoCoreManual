@@ -11,12 +11,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>A `SilikoLexer` is a tool used to lexically analize input from a
+`SilikoInputSource` and convert the input to a sequence of meaningful
+tokens.</para>
 </refsection>
 </refentry>

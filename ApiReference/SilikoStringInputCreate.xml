@@ -11,12 +11,25 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SiikoStringSourceNew` calls `SiikoInputSourceNew` to create a
+`SiikoInputSource` that reads from a string.
+
+* `InputString` is a string to read input characters from.
+  `SiikoStringSourceNew` copies the string, so the InputString passed
+  is still managed by the caller.</para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
+<para>If successful, `SiikoStringSourceNew` returns pointer
+to a new `SilikoInputSource` object returned by `SilikoInputSourceNew`.
+On failure, `SiikoStringSourceNew` retruns `NULL`. </para>
 </refsection>
 </refentry>

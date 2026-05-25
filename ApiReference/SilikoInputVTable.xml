@@ -2,21 +2,51 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputVTable</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><type>SilikoInputVTable</type></refname>
+  <refpurpose>Virtual function table for <type>SilikoInput</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
+<programlisting language="C">struct SilikoInputVTable
+{
+    bool (*advance)(void *state);
+    char (*getCharacter)(void *state);
+    void (*destroy)(void *state);
+};</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>A <type>SilikoInputVTable</type> is one of two components used to
+construct a <type>SilikoInput</type>. The <type>SilikoInputVTable</type>
+is a table of functions used to interact with the other component,
+a <type>void</type> pointer to a user-defined state object for the
+source.</para>
+
+<para>The <varname>advance</varname> pointer points to a function
+that accepts the state object (as a <type>void</type> pointer) and
+advances the state object to the next character if there are further
+characters to read from the input. The function must return
+<literal>true</literal> if there are further characters to read, and
+must return <literal>false</literal> if the input source is
+exhausted.</para>
+
+<para>The <varname>getCharacter</varname> pointer points to a function
+that takes the state object (as a <type>void</type> pointer) and returns
+the current character from the source if the source is not exhausted,
+and returns <literal>&apos;\0&apos;</literal> if the source is
+exhausted. The function must be idempotent until the
+<varname>advance</varname> function is called on the state
+object.</para>
+
+<para>The <varname>destroy</varname> pointer points to a function that
+takes the state object (as a <type>void</type> pointer), and frees up
+any resources used by the state object. The function must also take care
+of dealocating the state object itself if applicable.</para>
 </refsection>
 </refentry>

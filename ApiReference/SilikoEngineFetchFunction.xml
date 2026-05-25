@@ -11,12 +11,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
+<para></para>
+</refsection>
+
+<refsection>
+<title>Return Values</title>
+
 <para></para>
 </refsection>
 </refentry>

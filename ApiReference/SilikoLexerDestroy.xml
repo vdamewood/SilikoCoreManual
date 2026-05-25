@@ -11,12 +11,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<programlisting language="C">#include &lt;SilikoCore/&gt;</programlisting>
+<programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
 <programlisting language="C"></programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The `SilikoLexerDelete` function deletes a `SilikoLexer` object.
+* `Lexer` is the lexer to delete.</para>
 </refsection>
 </refentry>

@@ -8,668 +8,130 @@
 
 <para>This is the reference for the Siliko Core C API.</para>
 
-<!--
-<literallayout>
-## Data Source
-
-```C
-#include &lt;SilikoCore/DataSource.h&gt;
-```
-
-### `SilikoDataSource` — Opaque Type
-
-The `SilikoDataSource` type represents a user-provided source of input
-characters.
-
-```C
-struct SilikoDataSource;
-typedef struct SilikoDataSource SilikoDataSource;
-```
-
-### `SilikoDataSourceNew` — Function
-
-The `SilikoDataSourceNew` function creates a new `SilikoDataSource`
-object.
-
-```C
-SilikoDataSource *SilikoDataSourceNew(
-	void *NewState,
-	int (*NewAdvanceFunction)(void *),
-	char (*NewGetFunction)(void *),
-	void (*NewDeleteFunction)(void *)
-);
-```
-
-* `NewState` is a pointer to an object representing the state of the
-  data source (the *state object*). `NewState` should be fully
-  initialized and ready to use before being passed to
-  `SilikoDataSourceNew`.
-* `NewAdvanceFunction` is a pointer to a function (the *advance
-  function*) that accepts the state object (as a `void` pointer) and
-  advance the state object to the next character if there are further
-  characters to read from the input. The function must return true if
-  there are further characters to read, and must return false if the
-  input source is exhausted.
-* `NewGetFunction` is a pointer to a function (the *get function*) that
-  takes the state object (as a `void` pointer) and returns the current
-  character of the source if the source is not exhausted, and returns
-  `\0` if the source is exhausted. The function must be idempotent until
-  the advance function is called on the state object.
-* `NewDeleteFunction` is a pointer to a function (the *delete function*)
-  that takes the state object (as a `void` pointer), and frees up any
-  resources used by the state object. The function must also take care
-  of dealocating the state object itself if applicable.
-
-**Return Value:** If successful, `SilikoDataSourceNew` returns a newly
-allocated `SilikoDataSource` object using the provided state object and
-function pointers. If there was an error, `SilikoDataSourceNew` returns
-`NULL`. If `SilikoDataSourceNew` returns `NULL`, The state object is
-*not* deleted.
-
-### `SilikoDataSourceAdvance` — Function
-
-The `SilikoDataSourceAdvance` function advances a `SilikoDataSource`
-object to the Next character of input by calling the advance function
-of the object.
-
-```C
-int SilikoDataSourceAdvance(SilikoDataSource *Source);
-```
-
-* `Source` is the input source to advance. `Source` must be a value
-  returned by `SiolikoDataSourceNew`.
-
-**Return value:** `SiikoDataSourceAdvance` returns the return value of
-the call to the advance function of the passed `SilikoDataSource` object
-(true if the object has more characters to read, or false if the object
-is exhausted).
-
-### `SilikoDataSourceGet` — Function
-
-The `SilikoDataSourceGet` function gets the current character from a
-`SilikoDataSource` object by calling the get function of the object.
-
-```C
-char SilikoDataSourceGet(SilikoDataSource *Source);
-```
-
-* `Source` is the input source to advance. `Source` must be a value
-  returned by `SiolikoDataSourceNew`.
-
-**Return value:** `SilikoDataSourceGet` returns return value of the
-call to the get function of the `SilikoDataSource` object (the current
-character if the object has characters to read, or `\0` if the source is
-exhausted).
-
-### `SilikoDataSourceDelete` — Function
-
-The `SilikoDataSourceDelete` function calls the delete function of a
-`SiikoDataSource` object and then deletes the object.
-
-```C
-void SilikoDataSourceDelete(SilikoDataSource *Source);
-```
-
-* `Source` is the input source to advance. `Source` must be a value
-  returned by `SiolikoDataSourceNew`.
-
-
-## Function Caller
-
-```C
-#include &lt;SilikoCore/FunctionCaller.h&gt;
-```
-
-### `SilikoFunctionCaller` — Opaque Type
-
-A `SilikoFunctionCaller` is a lookup table for functions.
-
-```C
-struct SilikoFunctionCaller;
-typedef struct SilikoFunctionCaller SilikoFunctionCaller;
-```
-
-### SilikoFunctionPointer — Alias for a Function Pointer
-
-A `SilikoFunctionPointer` points to a function used by Siliko Core to
-implement functions and operators.
-
-```C
-typedef SilikoValue (*SilikoFunctionPointer)(
-    int /* ArgC */,
-    SilikoValue * /* ArgV */);
-```
-* `ArgC` is the number of arguments being passed to the implementation.
-* `ArgV` is a pointer to the first element in an array of `SilikoValue`
-  objects being passed to the function as arguments.
-
-**Return Value:** The function pointed to returns the result of the
-function or operator it implements, or an error if it encounters one.
-
-### `SilikoFunctionCallerNew` — Function
-
-The `SilikoFunctionCallerNew` function creates a new
-`SilikoFunctionCaller` object.
-
-```C
-SilikoFunctionCaller *SilikoFunctionCallerNew();
-```
-
-**ReturnValue:** Unless there is a memory error,
-`SilikoFunctionCallerNew` returns a pointer to the new object. If there
-is a memory error, `SilikoFunctionCallerNew` returns `NULL`. If
-`SilikoFunctionCallerNew` returns a pointer to an object, it must be
-deleted with `SilikoFunctionCallerDelete`.
-
-### `SilikoFunctionCallerDelete` — Function
-
-The `SilikoFunctionCallerDelete` function deletes a
-`SilikoFunctionCaller` object.
-
-```C
-void SilikoFunctionCallerDelete(SilikoFunctionCaller *Caller);
-```
-
-* `Caller` is the `SilikoFunctionCaller` object to destroy.
-
-### `SilikoFunctionCallerInstallOpertors` — Function
-
-The `SilikoFunctionCallerInstallOperators` function installs the
-operators used by the infix parser to handle operators.
-
-```C
-int SilikoFunctionCallerInstallOperators(SilikoFunctionCaller *Caller);
-```
-
-* `Caller` is the `SilikoFunctionCaller` object to install the functions
-  into.
-
-**Return Value:** `SilikoFunctionCallerInstallOperators` returns true
-if all functions were installed successfully, `NULL` otherwise. If
-`NULL` was returned, then the selection of functions installed in the
-`SilikoFunctionCaller` object is unspecified.
-
-### `SilikoFunctionCallerInstallFunctions` — Function
-
-The `SilikoFunctionCallerInstallFunctions` function Installs the
-functions supporting the C `math.h` functions.
-
-```C
-int SilikoFunctionCallerInstallFunctions(SilikoFunctionCaller *Caller);
-```
-
-* `Caller` is the `SilikoFunctionCaller` object to install the functions
-  into.
-
-**Return Value:** `SilikoFunctionCallerInstallFunctionss` returns true
-if all functions were installed successfully, `NULL` otherwise. If
-`NULL` was returned, then the selection of functions installed in the
-`SilikoFunctionCaller` object is unspecified.
-
-### `SilikoFunctionCallerInstall` — Function
-
-The `SilikoFunctionCallerInstall` installs a single function into a
-`SilikoFunctionCaller` object.
-
-```C
-int SilikoFunctionCallerInstall(
-    SilikoFunctionCaller *Caller,
-    const char *FunctionName,
-    SilikoFunctionPointer Function
-);
-```
-
-* `Caller` is the `SilikoFunctionCaller` object to install the function
-  into.
-* `FunctionName` is a string that will be used as the identifier for
-  the installed function.
-* `Function` is a pointer to a C function implementing the Siliko
-  function being installed.
-
-**ReturnValue:** Returns true if the installation succeeded, false
-otherwise.
-
-### `SilikoFunctionCallerCall` — Function
-
-Call a function installed in the function caller.
-
-```C
-SilikoValue SilikoFunctionCallerCall(
-    SilikoFunctionCaller *Caller,
-    const char *FunctionName,
-    int ArgumentCount,
-    SilikoValue *Arguments
-);
-```
-
-* `Caller` is the function caller in which to look up the function.
-* `FunctionName` is the identifier of the function to call.
-*` ArgumentCount` is the number of arguments being passed to the
-  function.
-* `Arguments` is a pointer to the first element in an array of
-  `SilikoValue` objects being passed to the function. It must contain
-  at least as many elements as are specified by `ArgumentCount`.
-
-## Infix Parser
-
-```C
-#include &lt;SilikoCore/InfixParser.h&gt;
-```
-
-### `SilikoParseInfix` — Function
-
-The `SilikoParseInfix` function parses the input from a
-`SilikoDataSourcce` and generates a syntax tree representing the parsed
-input.
-
-```C
-SilikoSyntaxTreeNode *SilikoParseInfix(SilikoDataSource *input);
-```
-
-* `input` is the data source from which the parser will get its input.
-  The parser will take ownership of the data source, and call
-  `SilikoDataSourceDelete` on it when the parser is finished with its
-  input.
-
-**Return Value:** `SilikoParseInfix` returns the root node of the
-syntax tree generated from parsing the input from the input source.
-
-## Lexer
-
-```C
-#include &lt;SilikoCore/Lexer.h&gt;
-```
-
-### `SilikoLexer` — Opaque Type
-
-A `SilikoLexer` is a tool used to lexically analize input from a
-`SilikoInputSource` and convert the input to a sequence of meaningful
-tokens.
-
-```C
-struct SilikoLexer;
-typedef struct SilikoLexer SilikoLexer;
-```
-
-### `SilikoLexerNew` — Function
-
-The `SilikoLexerNew` function creates a new `SilikoLexer` object.
-
-```C
-SilikoLexer *SilikoLexerNew(SilikoDataSource *InputSource);
-```
-
-* `InputSource` is the data source that will be used for input. The
-  lexer will take ownership of the `SilikoDataSource` and call
-  `SilikoDataSourceDeleve` on the object when the lexer is finished
-  with the data source.
-
-**Return Value:** `SilikoLexerNew` returns a pointer to a new
-`SiikoLexer` object if there was no memory error. `SilikoLexerNew`
-returns `NULL` if there was a memory error.
-
-### `SilikoLexerDelete` — Function
-
-The `SilikoLexerDelete` function deletes a `SilikoLexer` object.
-
-```C
-void SilikoLexerDelete(SilikoLexer *Lexer);
-```
-
-* `Lexer` is the lexer to delete.
-
-### `SilikoLexerNext` — Function
-
-The `SilikoLexerNext` function advances the `SilikoLexer` object to its
-next token.
-
-```C
-void SilikoLexerNext(SilikoLexer *Lexer);
-```
-
-* `Lexer` is the lexer to advance. If `Lexer` has reached the end of its
-  input, further calls to `SilikoLexerNext` on `Lexer` will have no
-  effect, and `SilikoLexerGetToken` will return a token indicating the
-  end of input has been reached.
-
-### `SilikoLexerGetToken` — Function
-
-The `SilikoLexerGetToken` function gets the current token from the
-lexer.
-
-```C
-SilikoToken SilikoLexerGetToken(SilikoLexer *Lexer);
-```
-
-* `Lexer` is the `SilikoLexer` object from which to retrieve the token.
-
-**Return Value:** A SilikoToken object representing the curent token.
-If the `Type` property of the return value is `SILIKO_TOK_ID`, the
-`Id` will be a pointer to a string that is owned by the `Lexer`, and
-will only be available until the next time `SilikoTokenNext` is called 
-on `Lexer`. If the `Type` property of the return value is
-`SILIKO_TOK_EOL`, then further calls to `SilikoLexerNext` will have no
-effect on `Lexer`.
-
-## String Source
-
-```C
-#include &lt;SilikoCore/StringSource.h&gt;
-```
-
-### `SiikoStringSourceNew` — Function
-
-The `SiikoStringSourceNew` calls `SiikoInputSourceNew` to create a
-`SiikoInputSource` that reads from a string.
-
-```C
-SilikoDataSource *SilikoStringSourceNew(const char *InputString);
-```
-
-* `InputString` is a string to read input characters from.
-  `SiikoStringSourceNew` copies the string, so the InputString passed
-  is still managed by the caller.
-
-**Return Value:** If successful, `SiikoStringSourceNew` returns pointer
-to a new `SilikoInputSource` object returned by `SilikoInputSourceNew`.
-On failure, `SiikoStringSourceNew` retruns `NULL`. 
-
-## Syntax Tree
-
-```C
-#include &lt;SilikoCore/SyntaxTree.h&gt;
-```
-
-### `SilikoSyntaxTreeNodeType` — Enumeration
-
-The `SilikoSyntaxTreeNodeType` represents whether a syntax tree node
-is a branch, leaf, or a simple placeholder.
-
-```C
-enum SilikoSyntaxTreeNodeType
-{
-	SILIKO_AST_NOTHING = 0,
-	SILIKO_AST_BRANCH,
-	SILIKO_AST_LEAF
-};
-```
-
-* `SILIKO_AST_NOTHING` represents a syntax tree node that was generated
-  by a parser to indicate that a rule was not able to process further
-  input, but is not in an error condition. This is used, for example,
-  to indicate that the end of a list has been reached by a function that
-  does not process the end of list indicator or the next operator being
-  processed.
-* `SILIKO_AST_BRANCH` represents a syntax tree that is a branch. A
-  branch node will have an operator name, and an array of child
-  `SyntaxTreeNode` objects.
-* `SILIKO_AST_LEAF` represents a syntax tree that is a leaf. The node
-  has no child nodes, and is either a value or an error.
-
-### `SilikoSyntaxTreeNode` — Opaque Type
-
-A `SilikoSyntaxTreeNode` object is a node in a syntax tree generated
-by a parser.
-
-```C
-struct SilikoSyntaxTreeNode;
-typedef struct SilikoSyntaxTreeNode SilikoSyntaxTreeNode;
-```
-
-### `SilikoSyntaxTreeNewLeaf` — Function
-
-The `SilikoSyntaxTreeNewLeaf` function generates a new leaf node from
-a `SilikoValue` object.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewLeaf(SilikoValue Value);
-```
-
-* `Value` is the value to be stored in the leaf node.
-
-**Return Value:** `SilikoSyntaxTreeNewLeaf` returns a pointer to a new
-leaf `SilikoSyntaxTreeNode` object with the value passed on success,
-or `NULL` if there was a memory error.
-
-### `SilikoSyntaxTreeNewFromInteger` — Function
-
-The `SilikoSyntaxTreeNewFromInteger` function generates a new leaf node
-from an integer value.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewFromInteger(long long int IntegerValue);
-```
-
-* `IntegerValue` is the value to be stored in the leaf node.
-
-**Return Value:** `SilikoSyntaxTreeNewFromInteger` returns a pointer to
-a new leaf `SilikoSyntaxTreeNode` object with the value passed on success, or
-`NULL` if there was a memory error.
-
-### `SilikoSyntaxTreeNewFromFloat` — Function
-
-The `SilikoSyntaxTreeNewFromFloat` function generates a new leaf node
-from a floating-point value.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewFromFloat(double FloatValue);
-```
-
-**Return Value:** `SilikoSyntaxTreeNewFromFloat` returns a pointer to a
-new leaf `SilikoSyntaxTreeNode` object with the value passed on
-success, or `NULL` if there was a memory error.
-
-### `SilikoSyntaxTreeNewBranch` — Function
-
-The `SilikoSyntaxTreeNewBranch` function creates a new branch
-`SilikoSyntaxTreeNode` object.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewBranch(char *Id);
-```
-
-* `Id` is the function identifier used by this branch node.
-
-**Return Value:** `SilikoSyntaxTreeNewBranch` returns a pointer to a
-new branch `SilikoSyntaxTreeNode` object with the function identifier
-passed on success, or `NULL` if there was a memory error.
-
-### `SilikoSyntaxTreeNewError` — Function
-
-The `SilikoSyntaxTreeNewError` function creates new
-`SilikoSyntaxTreeNode` object representing a syntax error.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewError(void);
-```
-
-**Return Value:** `SilikoSyntaxTreeNewError` returns a pointer to a
-new error `SilikoSyntaxTreeNode` object on success, or `NULL` if there
-was a memory error.
-
-### `SilikoSyntaxTreeNewNothing` — Function
-
-The `SilikoSyntaxTreeNewNothing` function creates a new
-`SilikoSyntaxTreeNode` object representing that the end of input for
-a particular rule has been reached, and that further parsing should be
-done by another rule, such as a parent rule.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeNewNothing(void);
-```
-
-**Return Value:** `SilikoSyntaxTreeNewError` returns a pointer to a
-new empty `SilikoSyntaxTreeNode` object on success, or `NULL` if there
-was a memory error.
-
-### `SilikoSyntaxTreeDelete` — Function
-
-The `SilikoSyntaxTreeDelete` function deletes a syntax tree node,
-and if the `SilikoSyntaxTreeNode` object is a branch node, deletes its
-child nodes and any other descendant nodes.
-
-```C
-void SilikoSyntaxTreeDelete(SilikoSyntaxTreeNode *SyntaxTree);
-```
-
-* `SyntaxTree` is the `SilikoSyntaxTreeNode` object to delete. 
-
-### `SilikoSyntaxTreeGetType` — Function
-
-The `SilikoSyntaxTreeGetType` function gets the type of the
-`SyntaxTreeNodeObject`.
-
-```C
-enum SilikoSyntaxTreeNodeType SilikoSyntaxTreeGetType(SilikoSyntaxTreeNode *SyntaxTree);
-```
-
-* `SyntaxTree` is the syntax tree node to prove for its type.
-
-**Return Value:** `SilikoSyntaxTreeGetType` returns a value indicating
-whether the syntax tree node is a leaf, branch, error, or nothing.
-
-### `SilikoSyntaxTreeIsError` — Function
-
-The `SilikoSyntaxTreeIsError` probes a syntax tree node for whether it
-is an error node or not.
-
-```C
-int SilikoSyntaxTreeIsError(SilikoSyntaxTreeNode *SyntaxTree);
-```
-
-* `SyntaxTree` is the syntax tree node to probe.
-
-**Return Value:** `SilikoSyntaxTreeIsError` returns true if the node
-represents a syntax error.
-
-### `SilikoSyntaxTreeNegate` — Function
-
-The `SilikoSyntaxTreeNegate` function negates the value of a syntax
-tree node.
-
-```C
-int SilikoSyntaxTreeNegate(SilikoSyntaxTreeNode *SyntaxTree);
-```
-
-* `SyntaxTree` is the syntax tree to negate.
-
-**ReturnValue:** `SilikoSyntaxTreeNegate` returns true if the node was
-a valid branch or leaf node that could be negated, false otherwise.
-
-### `SilikoSyntaxTreePushLeft` — Function
-
-The `SilikoSyntaxTreePushLeft` function adds a child to a branch
-node, to the left of any existing child nodes.
-
-```C
-int SilikoSyntaxTreePushLeft(
-    SilikoSyntaxTreeNode *BaseTree,
-    SilikoSyntaxTreeNode *NewBranch
-);
-```
-
-* `BaseTree` is the tree to which the new node is added.
-* `NewBranch` is the new child node to add.
-
-**Return Value:** `SilikoSyntaxTreePushLeft` returns true if the
-operation was successful, or false if the insertion failed.
-
-### `SilikoSyntaxTreePushRight` — Function
-
-The `SilikoSyntaxTreePushRight` function adds a child to a branch
-node, to the right of any existing child nodes.
-
-```C
-int SilikoSyntaxTreePushRight(
-    SilikoSyntaxTreeNode *BaseTree,
-    SilikoSyntaxTreeNode *NewBranch
-);
-```
-
-* `BaseTree` is the tree to which the new node is added.
-* `NewBranch` is the new child node to add.
-
-**Return Value:** `SilikoSyntaxTreePushRight` returns true if the
-operation was successful, or false if the insertion failed.
-
-### `SilikoSyntaxTreeGetCount` — Function
-
-Gets the number of children branch node has.
-
-```C
-int SilikoSyntaxTreeGetCount(
-    SilikoSyntaxTreeNode *Parent,
-);
-```
-
-* `Parent` is the node from which to retrieve the number of children.
-
-**Return value:** If `Parent` is a branch node, the return value is the
-number of child nodes the `Parent` has. Otherwise, the return value is
--1 to indicate that `Parent` is not a branch.
-
-### `SilikoSyntaxTreeGetChild` — Function
-
-Gets the child of the specified `SilikoSyntaxTreeNode` at the specified
-position, leaving the child in its place.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreeGetChild(
-    SilikoSyntaxTreeNode *Parent,
-    int Position
-);
-```
-
-* `Parent` is a node to get a child node from.
-* `Position` is the position of the requested child. If the value is
-  non-negative, the `Position` is interpreted as an index counting from
-  the left. If the value is negative, `Position` is interpreted as a
-  n index counting from the right, with `-1` as the left element, and
-  so on. If the value passed would count past the end of the list of
-  child nodes, the value is considered out of range, otherwise the value
-  is considered in range.
-
-**Return value:** If `parent` is a branch node, and `position` is in
-range, this function returns a pointer to the child. Otherwise, this
-function returns `NULL`. This pointer is still managed by the parent
-and should not be passed to `SilikoSyntaxTreeDelete` or added as a child
-to another branch node.
-
-### `SilikoSyntaxTreePruneChild` — Function
-
-Gets the child of the specified `SilikoSyntaxTreeNode` at the specified
-position, removing the child from the parent.
-
-```C
-SilikoSyntaxTreeNode *SilikoSyntaxTreePruneChild(
-    SilikoSyntaxTreeNode *Parent,
-    int Position
-);
-```
-
-* `Parent` is a node to get a child node from.
-* `Position` is the position of the requested child. If the value is
-  non-negative, the `Position` is interpreted as an index counting from
-  the left. If the value is negative, `Position` is interpreted as a
-  n index counting from the right, with `-1` as the left element, and
-  so on. If the value passed would count past the end of the list of
-  child nodes, the value is considered out of range, otherwise the value
-  is considered in range.
-
-**Return value:** If `parent` is a branch node, and `position` is in
-range, this function returns a pointer to the child. Otherwise, this
-function returns `NULL`. This pointer is no longer managed by the parent
-and must be passed to `SilikoSyntaxTreeDelete` or added as a child
-to another branch node to avoid a memory leak.
-</literallayout>-->
-
-
 <xi:include href="ApiReference/SilikoEngine.xml"/>
-<xi:include href="ApiReference/SilikoEvaluate.xml"/>
+<xi:include href="ApiReference/SilikoEngineCallFunction.xml"/>
+<xi:include href="ApiReference/SilikoEngineCreate.xml"/>
+<xi:include href="ApiReference/SilikoEngineDestroy.xml"/>
+<xi:include href="ApiReference/SilikoEngineFetchFunction.xml"/>
+<xi:include href="ApiReference/SilikoEngineInstallFunction.xml"/>
 <xi:include href="ApiReference/SilikoError.xml"/>
+<xi:include href="ApiReference/SilikoEvaluate.xml"/>
+<xi:include href="ApiReference/SilikoFunction.xml"/>
+<xi:include href="ApiReference/SilikoFunctionCall.xml"/>
+<xi:include href="ApiReference/SilikoFunctionCreate.xml"/>
+<xi:include href="ApiReference/SilikoFunctionDestroy.xml"/>
+<xi:include href="ApiReference/SilikoFunctionVTable.xml"/>
+<xi:include href="ApiReference/SilikoInput.xml"/>
+<xi:include href="ApiReference/SilikoInputAdvance.xml"/>
+<xi:include href="ApiReference/SilikoInputCreate.xml"/>
+<xi:include href="ApiReference/SilikoInputDestroy.xml"/>
+<xi:include href="ApiReference/SilikoInputGetCharacter.xml"/>
+<xi:include href="ApiReference/SilikoInputVTable.xml"/>
+<xi:include href="ApiReference/SilikoInstallMathFunctions.xml"/>
+<xi:include href="ApiReference/SilikoInstallOperations.xml"/>
+<xi:include href="ApiReference/SilikoLexer.xml"/>
+<xi:include href="ApiReference/SilikoLexerAdvance.xml"/>
+<xi:include href="ApiReference/SilikoLexerCreate.xml"/>
+<xi:include href="ApiReference/SilikoLexerDestroy.xml"/>
+<xi:include href="ApiReference/SilikoLexerGetToken.xml"/>
+<xi:include href="ApiReference/SilikoMathAbs.xml"/>
+<xi:include href="ApiReference/SilikoMathAcos.xml"/>
+<xi:include href="ApiReference/SilikoMathAsin.xml"/>
+<xi:include href="ApiReference/SilikoMathAtan.xml"/>
+<xi:include href="ApiReference/SilikoMathCbrt.xml"/>
+<xi:include href="ApiReference/SilikoMathCeil.xml"/>
+<xi:include href="ApiReference/SilikoMathCos.xml"/>
+<xi:include href="ApiReference/SilikoMathCosh.xml"/>
+<xi:include href="ApiReference/SilikoMathExp.xml"/>
+<xi:include href="ApiReference/SilikoMathFloor.xml"/>
+<xi:include href="ApiReference/SilikoMathHypot.xml"/>
+<xi:include href="ApiReference/SilikoMathLog.xml"/>
+<xi:include href="ApiReference/SilikoMathLog10.xml"/>
+<xi:include href="ApiReference/SilikoMathLog2.xml"/>
+<xi:include href="ApiReference/SilikoMathRound.xml"/>
+<xi:include href="ApiReference/SilikoMathSin.xml"/>
+<xi:include href="ApiReference/SilikoMathSinh.xml"/>
+<xi:include href="ApiReference/SilikoMathSqrt.xml"/>
+<xi:include href="ApiReference/SilikoMathTan.xml"/>
+<xi:include href="ApiReference/SilikoMathTanh.xml"/>
+<xi:include href="ApiReference/SilikoMathTrunc.xml"/>
+<xi:include href="ApiReference/SilikoNode.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssign.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssignBranch.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssignFromError.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssignFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssignFromReal.xml"/>
+<xi:include href="ApiReference/SilikoNodeAssignFromValue.xml"/>
+<xi:include href="ApiReference/SilikoNodeCopy.xml"/>
+<xi:include href="ApiReference/SilikoNodeCountChildren.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateBranch.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateFromError.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateFromReal.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateFromValue.xml"/>
+<xi:include href="ApiReference/SilikoNodeCreateNothing.xml"/>
+<xi:include href="ApiReference/SilikoNodeDestroy.xml"/>
+<xi:include href="ApiReference/SilikoNodeFetchChild.xml"/>
+<xi:include href="ApiReference/SilikoNodeGetId.xml"/>
+<xi:include href="ApiReference/SilikoNodeGetStatus.xml"/>
+<xi:include href="ApiReference/SilikoNodeGetValue.xml"/>
+<xi:include href="ApiReference/SilikoNodeInsert.xml"/>
+<xi:include href="ApiReference/SilikoNodeInsertCopy.xml"/>
+<xi:include href="ApiReference/SilikoNodeIsNegated.xml"/>
+<xi:include href="ApiReference/SilikoNodeNegate.xml"/>
+<xi:include href="ApiReference/SilikoNodePruneChild.xml"/>
+<xi:include href="ApiReference/SilikoNodePushCopyLeft.xml"/>
+<xi:include href="ApiReference/SilikoNodePushCopyRight.xml"/>
+<xi:include href="ApiReference/SilikoNodePushLeft.xml"/>
+<xi:include href="ApiReference/SilikoNodePushRight.xml"/>
+<xi:include href="ApiReference/SilikoNodeStatus.xml"/>
+<xi:include href="ApiReference/SilikoOperationAdd.xml"/>
+<xi:include href="ApiReference/SilikoOperationDiceCreate.xml"/>
+<xi:include href="ApiReference/SilikoOperationDivide.xml"/>
+<xi:include href="ApiReference/SilikoOperationMultiply.xml"/>
+<xi:include href="ApiReference/SilikoOperationPower.xml"/>
+<xi:include href="ApiReference/SilikoOperationSubtract.xml"/>
+<xi:include href="ApiReference/SilikoParseInfix.xml"/>
+<xi:include href="ApiReference/SilikoPureFunctionCreate.xml"/>
+<xi:include href="ApiReference/SilikoStringInputCreate.xml"/>
 <xi:include href="ApiReference/SilikoToken.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssign.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssignEndOfInput.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssignFromCharacter.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssignFromId.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssignFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoTokenAssignFromReal.xml"/>
+<xi:include href="ApiReference/SilikoTokenCopy.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreate.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreateEndOfInput.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreateFromCharacter.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreateFromId.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreateFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoTokenCreateFromReal.xml"/>
+<xi:include href="ApiReference/SilikoTokenDestroy.xml"/>
+<xi:include href="ApiReference/SilikoTokenGetCharacter.xml"/>
+<xi:include href="ApiReference/SilikoTokenGetId.xml"/>
+<xi:include href="ApiReference/SilikoTokenGetInteger.xml"/>
+<xi:include href="ApiReference/SilikoTokenGetReal.xml"/>
+<xi:include href="ApiReference/SilikoTokenGetStatus.xml"/>
 <xi:include href="ApiReference/SilikoTokenStatus.xml"/>
 <xi:include href="ApiReference/SilikoValue.xml"/>
+<xi:include href="ApiReference/SilikoValueAssign.xml"/>
+<xi:include href="ApiReference/SilikoValueAssignFromError.xml"/>
+<xi:include href="ApiReference/SilikoValueAssignFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoValueAssignFromReal.xml"/>
+<xi:include href="ApiReference/SilikoValueCopy.xml"/>
+<xi:include href="ApiReference/SilikoValueCreate.xml"/>
+<xi:include href="ApiReference/SilikoValueCreateFromError.xml"/>
+<xi:include href="ApiReference/SilikoValueCreateFromInteger.xml"/>
+<xi:include href="ApiReference/SilikoValueCreateFromReal.xml"/>
+<xi:include href="ApiReference/SilikoValueDestroy.xml"/>
+<xi:include href="ApiReference/SilikoValueGetError.xml"/>
+<xi:include href="ApiReference/SilikoValueGetInteger.xml"/>
+<xi:include href="ApiReference/SilikoValueGetReal.xml"/>
+<xi:include href="ApiReference/SilikoValueGetStatus.xml"/>
+<xi:include href="ApiReference/SilikoValueNegate.xml"/>
 <xi:include href="ApiReference/SilikoValueStatus.xml"/>
+
 
 </article>
