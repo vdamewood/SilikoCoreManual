@@ -7,31 +7,41 @@
 
 <refnamediv>
   <refname><function>SilikoEngineCallFunction</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to call in-language function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoValue *SilikoEngineCallFunction(
+    SilikoEngine* object,
+    const char *function_name,
+    int argc,
+    SilikoValue **argv);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para>
-Call a function installed in the function caller.
-
-* `Caller` is the function caller in which to look up the function.
-* `FunctionName` is the identifier of the function to call.
-*` ArgumentCount` is the number of arguments being passed to the
-  function.
-* `Arguments` is a pointer to the first element in an array of
-  `SilikoValue` objects being passed to the function. It must contain
-  at least as many elements as are specified by `ArgumentCount`.</para>
+<para>The <function>SilikoEngineCallFunction</function> function
+calls an in-language function identified by
+<varname>function_name</varname> installed in <varname>object</varname>
+with argumentsa <varname>argc</varname>, which signifies the number of
+in-language arguments passed to the function, and
+<varname>argv</varname> which points to the first element of an array of
+pointers to the in-language arguments passed. <varname>argv</varname>
+<emphasis>must</emphasis> have at least as many elements as
+<varname>argc</varname> indicates.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para>The <function>SilikoEngineCallFunction</function> function
+returns the result of the called function, or a
+<type>SilikoValue</type> object with status
+<literal>SilikoValueError</literal> and value
+<literal>SilikoErrorFunctionName</literal>, if <varname>object</varname>
+does not have a matching function installed. The return value must
+be passed to <function>SilikoValueDestroy</function> to avoid a
+memory leak.</para>
 </refsection>
 </refentry>

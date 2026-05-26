@@ -2,27 +2,36 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoEngineFetchFunction</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><function>SilikoEngineFetchFunction</function></refname>
+  <refpurpose>Function to fetch an installed in-language function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoFunction *SilikoEngineFetchFunction(
+    SilikoEngine *object,
+    const char *function_name);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+
+<para>Fetch the function identified by <varname>function_name</varname>
+from <varname>object</varname>. This function exists mainly for unit
+testing.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoEngineFetchFunction</function> returns a pointer
+to the function, or <literal>NULL</literal> no matching function is
+installed or there is a memory error. The object pointed to is still
+owned by <varname>object</varname> and must not be passed to
+<function>SilikoFunctionDestroy</function>.</para>
 </refsection>
 </refentry>

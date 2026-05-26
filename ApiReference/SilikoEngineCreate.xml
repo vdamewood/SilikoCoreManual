@@ -2,32 +2,34 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoEngineCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><function>SilikoEngineCreate</function></refname>
+  <refpurpose>Function to create a new <type>SilikoEngine</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoEngine *SilikoEngineCreate(void);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoFunctionCallerNew` function creates a new
-`SilikoFunctionCaller` object.</para>
+<para>The <function>SilikoEngineCreate</function> function creates a new
+<type>SilikoEngine</type>. The newly created <type>SilikoEngine</type>
+has no functions installed.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>Unless there is a memory error,
-`SilikoFunctionCallerNew` returns a pointer to the new object. If there
-is a memory error, `SilikoFunctionCallerNew` returns `NULL`. If
-`SilikoFunctionCallerNew` returns a pointer to an object, it must be
-deleted with `SilikoFunctionCallerDelete`.</para>
+<para><function>SilikoEngineCreate</function> returns a pointer to the
+newly created <type>SilikoEngine</type>. The newly created
+<type>SilikoEngine</type> must be passed to
+<function>SilikoEngineDestroy</function> to avoid a memory leak.
+If there is a memory error, <function>SilikoEngineCreate</function>
+returns <literal>NULL</literal>.</para>
 </refsection>
 </refentry>

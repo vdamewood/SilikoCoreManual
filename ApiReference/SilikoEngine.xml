@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<refentry version="5.1"
+<refentry version="5.1" xml:id="Api.SilikoEngine"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
   <refentrytitle>SilikoEngine</refentrytitle>
@@ -7,16 +7,17 @@
 
 <refnamediv>
   <refname><type>SilikoEngine</type></refname>
-  <refpurpose>type that manages function lookup</refpurpose>
+  <refpurpose>Type to hold function lookup table</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C">typedef struct SilikoEngine SilikoEngine;</programlisting>
+<programlisting language="C">typedef /* ... */ SilikoEngine;</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
+
 <para>A <type>SilikoEngine</type> holds a function lookup table used
 during evaluation of a <type>SilikoNode</type> to resolve branch
 nodes and function lookups.</para>

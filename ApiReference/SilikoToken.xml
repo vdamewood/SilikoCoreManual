@@ -6,7 +6,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname>SilikoToken</refname>
+  <refname><type>SilikoToken</type></refname>
   <refpurpose>Token yielded by <type>SilikoLexer</type></refpurpose>
 </refnamediv>
 

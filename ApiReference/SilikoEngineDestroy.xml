@@ -2,23 +2,24 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoEngineDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><function>SilikoEngineDestroy</function></refname>
+  <refpurpose>Function to clean-up a <type>SilikoEngine</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoEngineDestroy(SilikoEngine *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoFunctionCallerDelete` function deletes a
-`SilikoFunctionCaller` object.* `Caller` is the `SilikoFunctionCaller` object to destroy.
-</para>
+<para>The <function>SilikoEngineDestroy</function> function deletes
+<varname>object</varname>. Any functions installed in
+<varname>object</varname> will be passed to
+<function>SilikoFunctionDestroy</function>.</para>
 </refsection>
 </refentry>

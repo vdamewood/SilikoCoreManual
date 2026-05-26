@@ -6,7 +6,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname>SilikoError</refname>
+  <refname><type>SilikoError</type></refname>
   <refpurpose>error code</refpurpose>
 </refnamediv>
 

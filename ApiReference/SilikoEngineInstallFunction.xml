@@ -2,37 +2,41 @@
 <refentry version="5.1"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoEngineInstallFunction</refentrytitle>
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
-  <refpurpose></refpurpose>
+  <refname><function>SilikoEngineInstallFunction</function></refname>
+  <refpurpose>Function to install an in-language function into a
+  <type>SilikoEngine</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Engine.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">bool SilikoEngineInstallFunction(
+    SilikoEngine *object,
+    const char *function_name,
+    SilikoFunction *new_function);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoFunctionCallerInstall` installs a single function into a
-`SilikoFunctionCaller` object.
-
-
-* `Caller` is the `SilikoFunctionCaller` object to install the function
-  into.
-* `FunctionName` is a string that will be used as the identifier for
-  the installed function.
-* `Function` is a pointer to a C function implementing the Siliko
-  function being installed.</para>
+<para>The <function>SilikoEngineInstallFunction</function> installs
+the function implementation <varname>new_function</varname> into
+<varname>object</varname> with the in-language name
+<varname>function_name</varname>. If the engine is passed to
+<function>SilikoEvaluate</function> the function can be called by the
+name <varname>function_name</varname>, and the function can be retrieved
+by <varname>function_name</varname> with
+<function>SilikoEngineCallFunction</function> and
+<function>SilikoEngineFetchFunction</function>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>Returns true if the installation succeeded, false
-otherwise.</para>
+<para><function>SilikoEngineInstallFunction</function> returns
+<literal>true</literal> if the installation succeeded,
+<literal>false</literal> otherwise.</para>
 </refsection>
 </refentry>
