@@ -7,7 +7,7 @@
 
 <refnamediv>
   <refname><type>SilikoError</type></refname>
-  <refpurpose>error code</refpurpose>
+  <refpurpose>Enumeration of error codes</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -37,25 +37,26 @@ or evaluation.</para>
 <title>Enumeration Values</title>
 
 <itemizedlist>
-  <listitem><para>SilikoErrorNone: An error state was checked,
-    but no error condition exists.</para></listitem>
-  <listitem><para>SilikoErrorNullObject: A
+  <listitem><para><literal>SilikoErrorNone</literal>: An error state was
+    checked, but no error condition exists.</para></listitem>
+  <listitem><para><literal>SilikoErrorNullObject</literal>: A
     <literal>NULL</literal> value was passed to one of Siliko Core's
     API functions.</para></listitem>
-  <listitem><para>SilikoErrorSyntax: A syntax error was
-    encountered while parsing.</para></listitem>
-  <listitem><para>SilikoErrorZeroDivision: An attempt to divide
-    by zero was encountered while evaluating.</para></listitem>
-  <listitem><para>SilikoErrorFunctionName: A
+  <listitem><para><literal>SilikoErrorSyntax</literal>: A syntax error
+    was encountered while parsing.</para></listitem>
+  <listitem><para><literal>SilikoErrorZeroDivision</literal>: An attempt
+    to divide by zero was encountered while
+    evaluating.</para></listitem>
+  <listitem><para><literal>SilikoErrorFunctionName</literal>: A
     <type>SilikoEngine</type> was unable to locate a function used in
     an expression during evaluation.</para></listitem>
-  <listitem><para>SilikoErrorFunctionArguments: A function
-    reported that the wrong number of arguments was passed to
+  <listitem><para><literal>SilikoErrorFunctionArguments</literal>: A
+    function reported that the wrong number of arguments was passed to
     it.</para></listitem>
-  <listitem><para>SilikoErrorDomain: A function encountered a
-    domain error.</para></listitem>
-  <listitem><para>SilikoErrorRange: A function encountered a
-    range error.</para></listitem>
+  <listitem><para><literal>SilikoErrorDomain</literal>: A function
+    encountered a domain error.</para></listitem>
+  <listitem><para><literal>SilikoErrorRange</literal>: A function
+    encountered a range error.</para></listitem>
 </itemizedlist>
 </refsection>
 </refentry>
