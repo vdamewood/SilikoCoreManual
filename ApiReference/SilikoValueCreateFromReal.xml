@@ -7,7 +7,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoValueCreateFromReal</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 

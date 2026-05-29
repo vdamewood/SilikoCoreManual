@@ -7,7 +7,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoNodeGetId</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 

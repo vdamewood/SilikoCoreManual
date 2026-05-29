@@ -7,7 +7,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoValueDestroy</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 

@@ -7,7 +7,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoTokenGetStatus</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 

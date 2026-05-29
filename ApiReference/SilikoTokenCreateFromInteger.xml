@@ -7,7 +7,7 @@
 </refmeta>
 
 <refnamediv>
-  <refname></refname>
+  <refname><function>SilikoTokenCreateFromInteger</function></refname>
   <refpurpose></refpurpose>
 </refnamediv>
 
