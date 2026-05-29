@@ -25,7 +25,7 @@
 <para>The <function>SilikoEngineCallFunction</function> function
 calls an in-language function identified by
 <varname>function_name</varname> installed in <varname>object</varname>
-with argumentsa <varname>argc</varname>, which signifies the number of
+with arguments <varname>argc</varname>, which signifies the number of
 in-language arguments passed to the function, and
 <varname>argv</varname> which points to the first element of an array of
 pointers to the in-language arguments passed. <varname>argv</varname>
