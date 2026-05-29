@@ -1,4 +1,4 @@
-FOPCONF   := ${HOME}/.config/fop/fop.conf
+FOPCONF   := ~/.config/fop/fop.conf
 RNGFILE   := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbook.rng
 RNGXIFILE := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbookxi.rng
 MDINSTDIR := ~/tmp/SilikoDocs/
@@ -12,8 +12,6 @@ MONODBFILES := \
 	Tutorial.xml
 
 XIDBFILES := ApiReference.xml
-
-DBFILES := $(MONODBFILES) $(XIDBFILES)
 
 APIREFFILES := \
 	ApiReference/SilikoEngine.xml \
@@ -141,6 +139,7 @@ APIREFFILES := \
 	ApiReference/SilikoValueNegate.xml \
 	ApiReference/SilikoValueStatus.xml
 
+DBFILES   := $(MONODBFILES) $(XIDBFILES)
 PDFFILES  := $(DBFILES:.xml=.pdf)
 FOFILES   := $(DBFILES:.xml=.fo)
 MDFILES   := $(DBFILES:.xml=.md)
@@ -163,7 +162,7 @@ SilikoCoreManual.fo: SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) fo-book.xsl 
 	saxon -xi -o:$@ -s:$< -xsl:fo-book.xsl
 
 ApiReference.fo: ApiReference.xml $(APIREFFILES) fo-article.xsl fo-common.xsl
-	saxon -o:$@ -s:$< -xsl:fo-article.xsl
+	saxon -xi -o:$@ -s:$< -xsl:fo-article.xsl
 
 %.fo: %.xml fo-article.xsl fo-common.xsl
 	saxon -o:$@ -s:$< -xsl:fo-article.xsl
@@ -172,10 +171,8 @@ ApiReference.fo: ApiReference.xml $(APIREFFILES) fo-article.xsl fo-common.xsl
 	pandoc -f docbook -t gfm --standalone -o $@ $<
 
 validate:
-	for FILE in $(MONODBFILES); do jing $(RNGFILE) $$FILE; done
-	for FILE in $(APIREFFILES); do jing $(RNGFILE) $$FILE; done
-	for FILE in $(XIDBFILES); do jing $(RNGXIFILE) $$FILE; done
-	jing $(RNGXIFILE) SilikoCoreManual.xml
+	for FILE in $(MONODBFILES) $(APIREFFILES); do jing $(RNGFILE) $$FILE; done
+	for FILE in $(XIDBFILES) SilikoCoreManual.xml; do jing $(RNGXIFILE) $$FILE; done
 
 clean:
 	rm -f $(FOFILES) SilikoCoreManual.fo
