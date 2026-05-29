@@ -12,7 +12,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Token.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">enum SilikoTokenStatus SilikoTokenGetStatus(
+    const SilikoToken *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

@@ -7,18 +7,19 @@
 
 <refnamediv>
   <refname><type>SilikoLexer</type></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Type represzenting a lexical analyzer</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">typedef /* ... */ SilikoLexer;</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para>A `SilikoLexer` is a tool used to lexically analize input from a
-`SilikoInputSource` and convert the input to a sequence of meaningful
-tokens.</para>
+<para>A <type>SilikoLexer</type> is a tool used to lexically analize
+input from a <type>SilikoInput</type>, and converts the input to a
+sequence of meaningful tokens as <type>SilikoToken</type>
+objects.</para>
 </refsection>
 </refentry>

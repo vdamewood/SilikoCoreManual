@@ -12,7 +12,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Function.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoFunctionDestroy(
+	SilikoFunction *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

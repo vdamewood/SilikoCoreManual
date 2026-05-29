@@ -18,8 +18,9 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoParseInfix</function> function parses
-the Siliko infix language from a series of characters provided by
-<varname>input</varname> and generates a syntax tree of
+the Siliko infix language from a <type>SilikoLexer</type> which reads
+a series of characters from <varname>input</varname>. The
+<function>SilikoParseInfix</function> then generates a syntax tree of
 <type>SilikoNode</type> objects representing the parsed input. The
 parser will take ownership of <varname>input</varname>, and call
 <function>SilikoInputDestroy</function> on it when finished.</para>
@@ -27,8 +28,9 @@ parser will take ownership of <varname>input</varname>, and call
 
 <refsection>
 <title>Return Value</title>
-<para><function>SilikoParseInfix</function> returns the root node of the
-syntax tree generated from parsing the input from the input source or
-<literal>NULL</literal> if it is unable to allocate memory.</para>
+<para><function>SilikoParseInfix</function> returns a pointer to the
+root node of the syntax tree generated from parsing the input from the
+input source or <literal>NULL</literal> if it is unable to allocate
+memory.</para>
 </refsection>
 </refentry>

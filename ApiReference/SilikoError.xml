@@ -38,7 +38,10 @@ or evaluation.</para>
 
 <itemizedlist>
   <listitem><para><literal>SilikoErrorNone</literal>: An error state was
-    checked, but no error condition exists.</para></listitem>
+    checked, but no error condition exists. This value is retturned by
+    <function>SilikoValueGetError</function> when the
+    <type>SilikoValue</type> passed to it is not an
+    error.</para></listitem>
   <listitem><para><literal>SilikoErrorNullObject</literal>: A
     <literal>NULL</literal> value was passed to one of Siliko Core's
     API functions.</para></listitem>

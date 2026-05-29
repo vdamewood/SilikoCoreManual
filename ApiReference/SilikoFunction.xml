@@ -7,16 +7,22 @@
 
 <refnamediv>
   <refname><type>SilikoFunction</type></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Type providing an interface for an in-language
+    function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Function.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">typedef /* ... */ SilikoFunction;</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <type>SilikoFunction</type> type encapsulates an in-language
+function for the Siliko language. Functions requiring a state object
+can be built using a <type>SilikoFunctionVTable</type> with
+<function>SilikoFunctionCreate</function> or a wrapper for a pure
+function can be created with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

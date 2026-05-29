@@ -12,7 +12,10 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Lexer.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoLexer *SilikoLexerCreate(
+    SilikoInput *source,
+    bool support_dice,
+    bool support_constants);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

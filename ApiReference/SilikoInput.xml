@@ -7,18 +7,18 @@
 
 <refnamediv>
   <refname><type>SilikoInput</type></refname>
-  <refpurpose>type representing a source of input characters</refpurpose>
+  <refpurpose>Type representing a source of input characters</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">typedef /* ... */ SilikoInput;</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
 <para>The <type>SilikoInput</type> type represents a user-provided
-source characters to be used by a <type>SilikoLexer</type>
-object.</para>
+source characters to be used by a lexical analyzr to convert to
+tokens.</para>
 </refsection>
 </refentry>

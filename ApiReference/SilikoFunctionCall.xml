@@ -12,7 +12,10 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Function.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoValue *SilikoFunctionCall(
+    SilikoFunction *object,
+    int argc,
+    SilikoValue **argv);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

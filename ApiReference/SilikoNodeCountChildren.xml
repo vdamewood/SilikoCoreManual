@@ -12,7 +12,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">size_t SilikoNodeCountChildren(
+    const SilikoNode *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

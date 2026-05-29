@@ -12,7 +12,9 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Token.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoTokenAssignFromReal(
+    SilikoToken *object,
+    double right_side);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

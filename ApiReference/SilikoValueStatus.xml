@@ -7,7 +7,8 @@
 
 <refnamediv>
   <refname><type>SilikoValueStatus</type></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Enumeration representing the status of a
+    <type>SilikoValue</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,16 +24,18 @@
 
 <refsection>
 <title>Description</title>
-<para>The <type>SilikoValueStatus</type> enumeration is used by the
-<type>SilikoValue</type>
-structure to indicate whether it is an integer value, a real
-value, or an error.</para>
+<para>The <type>SilikoValueStatus</type> enumeration is used
+to indicate whether an <type>SilikoValue</type> object is an integer
+value, a real value, or an error.</para>
+</refsection>
 
+<refsection>
+<title>Enumeration Values</title>
 
 <itemizedlist>
-<listitem><para>SilikoValueError: The value is an error.</para></listitem>
-<listitem><para>SilikoValueInteger: The value is an integer.</para></listitem>
-<listitem><para>SilikoValueReal: The value is a real number.</para></listitem>
+<listitem><para><literal>SilikoValueError</literal>: The value is an error.</para></listitem>
+<listitem><para><literal>SilikoValueInteger</literal>: The value is an integer.</para></listitem>
+<listitem><para><literal>SilikoValueReal</literal>: The value is a real number.</para></listitem>
 </itemizedlist>
 </refsection>
 </refentry>

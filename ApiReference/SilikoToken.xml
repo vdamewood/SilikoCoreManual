@@ -7,16 +7,19 @@
 
 <refnamediv>
   <refname><type>SilikoToken</type></refname>
-  <refpurpose>Token yielded by <type>SilikoLexer</type></refpurpose>
+  <refpurpose>Type representing a lexical token</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Token.h&gt;</programlisting>
-<programlisting language="C">typedef struct SilikoToken SilikoToken;</programlisting>
+<programlisting language="C">typedef /* ... */ SilikoToken;</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <type>SiloikoToken</type> represents a token yielded by a
+lexical analyser. it can represent an integer value, a real number,
+a single-character token, a function identifier, the end of an input,
+or nothing as a default value.</para>
 </refsection>
 </refentry>

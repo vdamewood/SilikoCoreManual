@@ -12,7 +12,10 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">bool SilikoNodeInsertCopy(
+    SilikoNode *object,
+    size_t position,
+    const SilikoNode *new_child);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

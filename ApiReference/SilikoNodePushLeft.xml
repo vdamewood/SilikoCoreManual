@@ -12,7 +12,9 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">bool SilikoNodePushLeft(
+    SilikoNode *object,
+    SilikoNode *new_child);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

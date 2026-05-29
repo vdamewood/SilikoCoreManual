@@ -12,7 +12,7 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Token.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoToken *SilikoTokenCopy(const SilikoToken *source);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

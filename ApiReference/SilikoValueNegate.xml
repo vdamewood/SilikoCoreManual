@@ -12,7 +12,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoValueNegate(
+    SilikoValue *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

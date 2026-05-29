@@ -12,7 +12,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">enum SilikoValueStatus SilikoValueGetStatus(
+    const SilikoValue *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

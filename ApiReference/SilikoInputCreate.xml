@@ -12,7 +12,9 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Input.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoInput *SilikoInputCreate(
+	const struct SilikoInputVTable *source_table,
+	void *source_state);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

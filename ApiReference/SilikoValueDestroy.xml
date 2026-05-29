@@ -12,7 +12,7 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoValueDestroy(SilikoValue *object);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

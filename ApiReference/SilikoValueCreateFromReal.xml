@@ -12,7 +12,7 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoValue *SilikoValueCreateFromReal(double source);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

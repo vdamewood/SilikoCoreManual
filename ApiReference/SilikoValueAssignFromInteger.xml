@@ -12,7 +12,9 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Value.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">void SilikoValueAssignFromInteger(
+    SilikoValue *object,
+    long long int right_side);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

@@ -12,7 +12,9 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Function.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoFunction *SilikoFunctionCreate(
+    const struct SilikoFunctionVTable *source_table,
+    void *source_state);</programlisting>
 </refsynopsisdiv>
 
 <refsection>

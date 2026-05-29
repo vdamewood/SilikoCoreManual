@@ -6,8 +6,9 @@
 </refmeta>
 
 <refnamediv>
-  <refname>SilikoTokenStatus</refname>
-  <refpurpose></refpurpose>
+  <refname><type>SilikoTokenStatus</type></refname>
+  <refpurpose>Enumeration representing the status of a
+    <type>SilikoToken</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,8 +26,27 @@
 
 <refsection>
 <title>Description</title>
-<para>The <type>SilikoTokenStatus</type> enumeration represents the type
-of a <type>SilikoToken</type>, such as a single-character token, an
-integer, a real number, or a function identifier.</para>
+<para>The <type>SilikoTokenStatus</type> enumeration represents what
+kind of token a <type>SilikoToken</type> holds, such as a
+single-character token, an integer, a real number, or a function
+identifier.</para>
+</refsection>
+
+<refsection>
+<title>Enumeration Values</title>
+<itemizedlist>
+<listitem><para><literal>SilikoTokenUnset</literal>: The token is
+  not set and holds no usable value.</para></listitem>
+<listitem><para><literal>SilikoTokenInteger</literal>: The token is an
+  integer.</para></listitem>
+<listitem><para><literal>SilikoTokenReal</literal>: The token is a rea;
+  number.</para></listitem>
+<listitem><para><literal>SilikoTokenCharacter</literal>: The token is a
+  character, such as an operator or parenthesis.</para></listitem>
+<listitem><para><literal>SilikoTokenId</literal>: The token is a
+  function identifier</para></listitem>
+<listitem><para><literal>SilikoTokenEndOfInput</literal>: The token
+  represents the end of input for the lexer.</para></listitem>
+</itemizedlist>
 </refsection>
 </refentry>

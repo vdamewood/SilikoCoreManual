@@ -7,7 +7,8 @@
 
 <refnamediv>
   <refname><type>SilikoInputVTable</type></refname>
-  <refpurpose>Virtual function table for <type>SilikoInput</type></refpurpose>
+  <refpurpose>Structure of function pointers for a
+    <type>SilikoInput</type> objecct</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -45,8 +46,8 @@ exhausted. The function must be idempotent until the
 object.</para>
 
 <para>The <varname>destroy</varname> pointer points to a function that
-takes the state object (as a <type>void</type> pointer), and frees up
-any resources used by the state object. The function must also take care
-of dealocating the state object itself if applicable.</para>
+takes the state object, and frees up any resources used by the state
+object. The function must also take care of dealocating the state object
+itself if applicable.</para>
 </refsection>
 </refentry>

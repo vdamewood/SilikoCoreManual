@@ -7,16 +7,37 @@
 
 <refnamediv>
   <refname><type>SilikoFunctionVTable</type></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Structure of function pointers for a
+    <type>SilikoFunction</type> objecct</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Function.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">struct SilikoFunctionVTable
+{
+	void (*destroy)(void *state);
+	SilikoValue *(*call)(void *state, int argc, SilikoValue **argv);
+};</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>A <type>SilikoFunctionVTable</type> is one of two components used
+to construct a <type>SilikoFunction</type>. The
+<type>SilikoFunctionVTable</type> is a table of functions used to
+interact with the other component, a <type>void</type> pointer to a
+user-defined state object for the function. If a function is a
+<emphasis>pure</emphasis> function, its implementation can be passed to
+<function>SilikoPureFunctionCreate</function> to construct a
+<type>SilikoFunction</type> object without using a bespoke
+<type>SilikoFunctionVTable.</type></para>
+
+<para>The <varname>call</varname> pointer points to a function that
+invokes the function’s implementation and returns the result.</para>
+
+<para>The <varname>destroy</varname> pointer points to a function that
+takes the state object, and frees up any resources used by the state
+object. The function must also take care of dealocating the state object
+itself if applicable.</para>
 </refsection>
 </refentry>

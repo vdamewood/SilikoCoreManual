@@ -12,7 +12,7 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Math.h&gt;</programlisting>
-<programlisting language="C"></programlisting>
+<programlisting language="C">SilikoValue *SilikoMathCos(int argc, SilikoValue **argv);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
