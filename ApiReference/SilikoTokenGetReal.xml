@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <refentry version="5.1"
+  xml:id="Api.SilikoTokenGetReal"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
   <refentrytitle></refentrytitle>

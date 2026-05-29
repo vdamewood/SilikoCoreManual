@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<refentry version="5.1"
+<refentry version="5.1"  xml:id="Api.SilikoEngineCallFunction"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
   <refentrytitle>SilikoEngineCallFunction</refentrytitle>
