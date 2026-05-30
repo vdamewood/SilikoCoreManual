@@ -3,7 +3,7 @@
       xmlns:db="http://docbook.org/ns/docbook"
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
       xmlns:fo="http://www.w3.org/1999/XSL/Format">
-    <xsl:import href="fo-common.xsl"/>
+    <xsl:import href="fo.common.xsl"/>
 
     <xsl:param name="double.sided" select="'0'"/>
 </xsl:stylesheet>

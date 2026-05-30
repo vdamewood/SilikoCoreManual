@@ -158,14 +158,14 @@ book: pdf/SilikoCoreManual.pdf
 pdf/%.pdf: fo/%.fo
 	fop -c $(FOPCONF) $< $@
 
-fo/SilikoCoreManual.fo: docbook/SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) fo-book.xsl fo-common.xsl
-	saxon -xi -o:$@ -s:$< -xsl:fo-book.xsl
+fo/SilikoCoreManual.fo: docbook/SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) xsl/fo.book.xsl xsl/fo.common.xsl
+	saxon -xi -o:$@ -s:$< -xsl:xsl/fo.book.xsl
 
-fo/ApiReference.fo: docbook/ApiReference.xml $(APIREFFILES) fo-article.xsl fo-common.xsl
-	saxon -xi -o:$@ -s:$< -xsl:fo-article.xsl
+fo/ApiReference.fo: docbook/ApiReference.xml $(APIREFFILES) xsl/fo.article.xsl xsl/fo.common.xsl
+	saxon -xi -o:$@ -s:$< -xsl:xsl/fo.article.xsl
 
-fo/%.fo: docbook/%.xml fo-article.xsl fo-common.xsl
-	saxon -o:$@ -s:$< -xsl:fo-article.xsl
+fo/%.fo: docbook/%.xml xsl/fo.article.xsl xsl/fo.common.xsl
+	saxon -o:$@ -s:$< -xsl:xsl/fo.article.xsl
 
 md/%.md: docbook/%.xml
 	pandoc -f docbook -t gfm --standalone -o $@ $<
