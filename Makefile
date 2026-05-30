@@ -4,145 +4,145 @@ RNGXIFILE := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbookxi.rng
 MDINSTDIR := ~/tmp/SilikoDocs/
 
 MONODBFILES := \
-	Build.xml \
-	Integrating.xml \
-	LanguageReference.xml \
-	Linking.xml \
-	Parsing.xml \
-	Tutorial.xml
+	docbook/Build.xml \
+	docbook/Integrating.xml \
+	docbook/LanguageReference.xml \
+	docbook/Linking.xml \
+	docbook/Parsing.xml \
+	docbook/Tutorial.xml
 
-XIDBFILES := ApiReference.xml
+XIDBFILES := docbook/ApiReference.xml
 
 APIREFFILES := \
-	ApiReference/SilikoEngine.xml \
-	ApiReference/SilikoEngineCallFunction.xml \
-	ApiReference/SilikoEngineCreate.xml \
-	ApiReference/SilikoEngineDestroy.xml \
-	ApiReference/SilikoEngineFetchFunction.xml \
-	ApiReference/SilikoEngineInstallFunction.xml \
-	ApiReference/SilikoError.xml \
-	ApiReference/SilikoEvaluate.xml \
-	ApiReference/SilikoFunction.xml \
-	ApiReference/SilikoFunctionCall.xml \
-	ApiReference/SilikoFunctionCreate.xml \
-	ApiReference/SilikoFunctionDestroy.xml \
-	ApiReference/SilikoFunctionVTable.xml \
-	ApiReference/SilikoInput.xml \
-	ApiReference/SilikoInputAdvance.xml \
-	ApiReference/SilikoInputCreate.xml \
-	ApiReference/SilikoInputDestroy.xml \
-	ApiReference/SilikoInputGetCharacter.xml \
-	ApiReference/SilikoInputVTable.xml \
-	ApiReference/SilikoInstallMathFunctions.xml \
-	ApiReference/SilikoInstallOperations.xml \
-	ApiReference/SilikoLexer.xml \
-	ApiReference/SilikoLexerAdvance.xml \
-	ApiReference/SilikoLexerCreate.xml \
-	ApiReference/SilikoLexerDestroy.xml \
-	ApiReference/SilikoLexerGetToken.xml \
-	ApiReference/SilikoMathAbs.xml \
-	ApiReference/SilikoMathAcos.xml \
-	ApiReference/SilikoMathAsin.xml \
-	ApiReference/SilikoMathAtan.xml \
-	ApiReference/SilikoMathCbrt.xml \
-	ApiReference/SilikoMathCeil.xml \
-	ApiReference/SilikoMathCos.xml \
-	ApiReference/SilikoMathCosh.xml \
-	ApiReference/SilikoMathExp.xml \
-	ApiReference/SilikoMathFloor.xml \
-	ApiReference/SilikoMathHypot.xml \
-	ApiReference/SilikoMathLog.xml \
-	ApiReference/SilikoMathLog10.xml \
-	ApiReference/SilikoMathLog2.xml \
-	ApiReference/SilikoMathRound.xml \
-	ApiReference/SilikoMathSin.xml \
-	ApiReference/SilikoMathSinh.xml \
-	ApiReference/SilikoMathSqrt.xml \
-	ApiReference/SilikoMathTan.xml \
-	ApiReference/SilikoMathTanh.xml \
-	ApiReference/SilikoMathTrunc.xml \
-	ApiReference/SilikoNode.xml \
-	ApiReference/SilikoNodeAssign.xml \
-	ApiReference/SilikoNodeAssignBranch.xml \
-	ApiReference/SilikoNodeAssignFromError.xml \
-	ApiReference/SilikoNodeAssignFromInteger.xml \
-	ApiReference/SilikoNodeAssignFromReal.xml \
-	ApiReference/SilikoNodeAssignFromValue.xml \
-	ApiReference/SilikoNodeCopy.xml \
-	ApiReference/SilikoNodeCountChildren.xml \
-	ApiReference/SilikoNodeCreateBranch.xml \
-	ApiReference/SilikoNodeCreateFromError.xml \
-	ApiReference/SilikoNodeCreateFromInteger.xml \
-	ApiReference/SilikoNodeCreateFromReal.xml \
-	ApiReference/SilikoNodeCreateFromValue.xml \
-	ApiReference/SilikoNodeCreateNothing.xml \
-	ApiReference/SilikoNodeDestroy.xml \
-	ApiReference/SilikoNodeFetchChild.xml \
-	ApiReference/SilikoNodeGetId.xml \
-	ApiReference/SilikoNodeGetStatus.xml \
-	ApiReference/SilikoNodeGetValue.xml \
-	ApiReference/SilikoNodeInsert.xml \
-	ApiReference/SilikoNodeInsertCopy.xml \
-	ApiReference/SilikoNodeIsNegated.xml \
-	ApiReference/SilikoNodeNegate.xml \
-	ApiReference/SilikoNodePruneChild.xml \
-	ApiReference/SilikoNodePushCopyLeft.xml \
-	ApiReference/SilikoNodePushCopyRight.xml \
-	ApiReference/SilikoNodePushLeft.xml \
-	ApiReference/SilikoNodePushRight.xml \
-	ApiReference/SilikoNodeStatus.xml \
-	ApiReference/SilikoOperationAdd.xml \
-	ApiReference/SilikoOperationDiceCreate.xml \
-	ApiReference/SilikoOperationDivide.xml \
-	ApiReference/SilikoOperationMultiply.xml \
-	ApiReference/SilikoOperationPower.xml \
-	ApiReference/SilikoOperationSubtract.xml \
-	ApiReference/SilikoParseInfix.xml \
-	ApiReference/SilikoPureFunctionCreate.xml \
-	ApiReference/SilikoStringInputCreate.xml \
-	ApiReference/SilikoToken.xml \
-	ApiReference/SilikoTokenAssign.xml \
-	ApiReference/SilikoTokenAssignEndOfInput.xml \
-	ApiReference/SilikoTokenAssignFromCharacter.xml \
-	ApiReference/SilikoTokenAssignFromId.xml \
-	ApiReference/SilikoTokenAssignFromInteger.xml \
-	ApiReference/SilikoTokenAssignFromReal.xml \
-	ApiReference/SilikoTokenCopy.xml \
-	ApiReference/SilikoTokenCreate.xml \
-	ApiReference/SilikoTokenCreateEndOfInput.xml \
-	ApiReference/SilikoTokenCreateFromCharacter.xml \
-	ApiReference/SilikoTokenCreateFromId.xml \
-	ApiReference/SilikoTokenCreateFromInteger.xml \
-	ApiReference/SilikoTokenCreateFromReal.xml \
-	ApiReference/SilikoTokenDestroy.xml \
-	ApiReference/SilikoTokenGetCharacter.xml \
-	ApiReference/SilikoTokenGetId.xml \
-	ApiReference/SilikoTokenGetInteger.xml \
-	ApiReference/SilikoTokenGetReal.xml \
-	ApiReference/SilikoTokenGetStatus.xml \
-	ApiReference/SilikoTokenStatus.xml \
-	ApiReference/SilikoValue.xml \
-	ApiReference/SilikoValueAssign.xml \
-	ApiReference/SilikoValueAssignFromError.xml \
-	ApiReference/SilikoValueAssignFromInteger.xml \
-	ApiReference/SilikoValueAssignFromReal.xml \
-	ApiReference/SilikoValueCopy.xml \
-	ApiReference/SilikoValueCreate.xml \
-	ApiReference/SilikoValueCreateFromError.xml \
-	ApiReference/SilikoValueCreateFromInteger.xml \
-	ApiReference/SilikoValueCreateFromReal.xml \
-	ApiReference/SilikoValueDestroy.xml \
-	ApiReference/SilikoValueGetError.xml \
-	ApiReference/SilikoValueGetInteger.xml \
-	ApiReference/SilikoValueGetReal.xml \
-	ApiReference/SilikoValueGetStatus.xml \
-	ApiReference/SilikoValueNegate.xml \
-	ApiReference/SilikoValueStatus.xml
+	docbook/ApiReference.SilikoEngine.xml \
+	docbook/ApiReference.SilikoEngineCallFunction.xml \
+	docbook/ApiReference.SilikoEngineCreate.xml \
+	docbook/ApiReference.SilikoEngineDestroy.xml \
+	docbook/ApiReference.SilikoEngineFetchFunction.xml \
+	docbook/ApiReference.SilikoEngineInstallFunction.xml \
+	docbook/ApiReference.SilikoError.xml \
+	docbook/ApiReference.SilikoEvaluate.xml \
+	docbook/ApiReference.SilikoFunction.xml \
+	docbook/ApiReference.SilikoFunctionCall.xml \
+	docbook/ApiReference.SilikoFunctionCreate.xml \
+	docbook/ApiReference.SilikoFunctionDestroy.xml \
+	docbook/ApiReference.SilikoFunctionVTable.xml \
+	docbook/ApiReference.SilikoInput.xml \
+	docbook/ApiReference.SilikoInputAdvance.xml \
+	docbook/ApiReference.SilikoInputCreate.xml \
+	docbook/ApiReference.SilikoInputDestroy.xml \
+	docbook/ApiReference.SilikoInputGetCharacter.xml \
+	docbook/ApiReference.SilikoInputVTable.xml \
+	docbook/ApiReference.SilikoInstallMathFunctions.xml \
+	docbook/ApiReference.SilikoInstallOperations.xml \
+	docbook/ApiReference.SilikoLexer.xml \
+	docbook/ApiReference.SilikoLexerAdvance.xml \
+	docbook/ApiReference.SilikoLexerCreate.xml \
+	docbook/ApiReference.SilikoLexerDestroy.xml \
+	docbook/ApiReference.SilikoLexerGetToken.xml \
+	docbook/ApiReference.SilikoMathAbs.xml \
+	docbook/ApiReference.SilikoMathAcos.xml \
+	docbook/ApiReference.SilikoMathAsin.xml \
+	docbook/ApiReference.SilikoMathAtan.xml \
+	docbook/ApiReference.SilikoMathCbrt.xml \
+	docbook/ApiReference.SilikoMathCeil.xml \
+	docbook/ApiReference.SilikoMathCos.xml \
+	docbook/ApiReference.SilikoMathCosh.xml \
+	docbook/ApiReference.SilikoMathExp.xml \
+	docbook/ApiReference.SilikoMathFloor.xml \
+	docbook/ApiReference.SilikoMathHypot.xml \
+	docbook/ApiReference.SilikoMathLog.xml \
+	docbook/ApiReference.SilikoMathLog10.xml \
+	docbook/ApiReference.SilikoMathLog2.xml \
+	docbook/ApiReference.SilikoMathRound.xml \
+	docbook/ApiReference.SilikoMathSin.xml \
+	docbook/ApiReference.SilikoMathSinh.xml \
+	docbook/ApiReference.SilikoMathSqrt.xml \
+	docbook/ApiReference.SilikoMathTan.xml \
+	docbook/ApiReference.SilikoMathTanh.xml \
+	docbook/ApiReference.SilikoMathTrunc.xml \
+	docbook/ApiReference.SilikoNode.xml \
+	docbook/ApiReference.SilikoNodeAssign.xml \
+	docbook/ApiReference.SilikoNodeAssignBranch.xml \
+	docbook/ApiReference.SilikoNodeAssignFromError.xml \
+	docbook/ApiReference.SilikoNodeAssignFromInteger.xml \
+	docbook/ApiReference.SilikoNodeAssignFromReal.xml \
+	docbook/ApiReference.SilikoNodeAssignFromValue.xml \
+	docbook/ApiReference.SilikoNodeCopy.xml \
+	docbook/ApiReference.SilikoNodeCountChildren.xml \
+	docbook/ApiReference.SilikoNodeCreateBranch.xml \
+	docbook/ApiReference.SilikoNodeCreateFromError.xml \
+	docbook/ApiReference.SilikoNodeCreateFromInteger.xml \
+	docbook/ApiReference.SilikoNodeCreateFromReal.xml \
+	docbook/ApiReference.SilikoNodeCreateFromValue.xml \
+	docbook/ApiReference.SilikoNodeCreateNothing.xml \
+	docbook/ApiReference.SilikoNodeDestroy.xml \
+	docbook/ApiReference.SilikoNodeFetchChild.xml \
+	docbook/ApiReference.SilikoNodeGetId.xml \
+	docbook/ApiReference.SilikoNodeGetStatus.xml \
+	docbook/ApiReference.SilikoNodeGetValue.xml \
+	docbook/ApiReference.SilikoNodeInsert.xml \
+	docbook/ApiReference.SilikoNodeInsertCopy.xml \
+	docbook/ApiReference.SilikoNodeIsNegated.xml \
+	docbook/ApiReference.SilikoNodeNegate.xml \
+	docbook/ApiReference.SilikoNodePruneChild.xml \
+	docbook/ApiReference.SilikoNodePushCopyLeft.xml \
+	docbook/ApiReference.SilikoNodePushCopyRight.xml \
+	docbook/ApiReference.SilikoNodePushLeft.xml \
+	docbook/ApiReference.SilikoNodePushRight.xml \
+	docbook/ApiReference.SilikoNodeStatus.xml \
+	docbook/ApiReference.SilikoOperationAdd.xml \
+	docbook/ApiReference.SilikoOperationDiceCreate.xml \
+	docbook/ApiReference.SilikoOperationDivide.xml \
+	docbook/ApiReference.SilikoOperationMultiply.xml \
+	docbook/ApiReference.SilikoOperationPower.xml \
+	docbook/ApiReference.SilikoOperationSubtract.xml \
+	docbook/ApiReference.SilikoParseInfix.xml \
+	docbook/ApiReference.SilikoPureFunctionCreate.xml \
+	docbook/ApiReference.SilikoStringInputCreate.xml \
+	docbook/ApiReference.SilikoToken.xml \
+	docbook/ApiReference.SilikoTokenAssign.xml \
+	docbook/ApiReference.SilikoTokenAssignEndOfInput.xml \
+	docbook/ApiReference.SilikoTokenAssignFromCharacter.xml \
+	docbook/ApiReference.SilikoTokenAssignFromId.xml \
+	docbook/ApiReference.SilikoTokenAssignFromInteger.xml \
+	docbook/ApiReference.SilikoTokenAssignFromReal.xml \
+	docbook/ApiReference.SilikoTokenCopy.xml \
+	docbook/ApiReference.SilikoTokenCreate.xml \
+	docbook/ApiReference.SilikoTokenCreateEndOfInput.xml \
+	docbook/ApiReference.SilikoTokenCreateFromCharacter.xml \
+	docbook/ApiReference.SilikoTokenCreateFromId.xml \
+	docbook/ApiReference.SilikoTokenCreateFromInteger.xml \
+	docbook/ApiReference.SilikoTokenCreateFromReal.xml \
+	docbook/ApiReference.SilikoTokenDestroy.xml \
+	docbook/ApiReference.SilikoTokenGetCharacter.xml \
+	docbook/ApiReference.SilikoTokenGetId.xml \
+	docbook/ApiReference.SilikoTokenGetInteger.xml \
+	docbook/ApiReference.SilikoTokenGetReal.xml \
+	docbook/ApiReference.SilikoTokenGetStatus.xml \
+	docbook/ApiReference.SilikoTokenStatus.xml \
+	docbook/ApiReference.SilikoValue.xml \
+	docbook/ApiReference.SilikoValueAssign.xml \
+	docbook/ApiReference.SilikoValueAssignFromError.xml \
+	docbook/ApiReference.SilikoValueAssignFromInteger.xml \
+	docbook/ApiReference.SilikoValueAssignFromReal.xml \
+	docbook/ApiReference.SilikoValueCopy.xml \
+	docbook/ApiReference.SilikoValueCreate.xml \
+	docbook/ApiReference.SilikoValueCreateFromError.xml \
+	docbook/ApiReference.SilikoValueCreateFromInteger.xml \
+	docbook/ApiReference.SilikoValueCreateFromReal.xml \
+	docbook/ApiReference.SilikoValueDestroy.xml \
+	docbook/ApiReference.SilikoValueGetError.xml \
+	docbook/ApiReference.SilikoValueGetInteger.xml \
+	docbook/ApiReference.SilikoValueGetReal.xml \
+	docbook/ApiReference.SilikoValueGetStatus.xml \
+	docbook/ApiReference.SilikoValueNegate.xml \
+	docbook/ApiReference.SilikoValueStatus.xml
 
 DBFILES   := $(MONODBFILES) $(XIDBFILES)
-PDFFILES  := $(DBFILES:.xml=.pdf)
-FOFILES   := $(DBFILES:.xml=.fo)
-MDFILES   := $(DBFILES:.xml=.md)
+PDFFILES  := $(subst docbook/,pdf/,$(DBFILES:.xml=.pdf))
+FOFILES   := $(subst docbook/,fo/,$(DBFILES:.xml=.fo))
+MDFILES   := $(subst docbook/,md/,$(DBFILES:.xml=.md))
 
 all: all-article-pdf all-article-md book
 
@@ -153,32 +153,32 @@ all-article-md: $(MDFILES)
 install: all-article-md
 	cp $(MDFILES) $(MDINSTDIR)
 
-book: SilikoCoreManual.pdf
+book: pdf/SilikoCoreManual.pdf
 
-%.pdf: %.fo
+pdf/%.pdf: fo/%.fo
 	fop -c $(FOPCONF) $< $@
 
-SilikoCoreManual.fo: SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) fo-book.xsl fo-common.xsl
+fo/SilikoCoreManual.fo: docbook/SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) fo-book.xsl fo-common.xsl
 	saxon -xi -o:$@ -s:$< -xsl:fo-book.xsl
 
-ApiReference.fo: ApiReference.xml $(APIREFFILES) fo-article.xsl fo-common.xsl
+fo/ApiReference.fo: docbook/ApiReference.xml $(APIREFFILES) fo-article.xsl fo-common.xsl
 	saxon -xi -o:$@ -s:$< -xsl:fo-article.xsl
 
-%.fo: %.xml fo-article.xsl fo-common.xsl
+fo/%.fo: docbook/%.xml fo-article.xsl fo-common.xsl
 	saxon -o:$@ -s:$< -xsl:fo-article.xsl
 
-%.md: %.xml
+md/%.md: docbook/%.xml
 	pandoc -f docbook -t gfm --standalone -o $@ $<
 
 validate:
 	for FILE in $(MONODBFILES) $(APIREFFILES); do jing $(RNGFILE) $$FILE; done
-	for FILE in $(XIDBFILES) SilikoCoreManual.xml; do jing $(RNGXIFILE) $$FILE; done
+	for FILE in $(XIDBFILES) docbook/SilikoCoreManual.xml; do jing $(RNGXIFILE) $$FILE; done
 
 clean:
-	rm -f $(FOFILES) SilikoCoreManual.fo
+	rm -f $(FOFILES) fo/SilikoCoreManual.fo
 
 distclean: clean
-	rm -f $(PDFFILES) SilikoCoreManual.pdf $(MDFILES)
+	rm -f $(PDFFILES) pdf/SilikoCoreManual.pdf $(MDFILES)
 
 .PHONY: all all-article-pdf all-article-md book clean distclean validate
 
