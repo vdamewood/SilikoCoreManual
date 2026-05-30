@@ -3,7 +3,13 @@ RNGFILE   := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbook.rng
 RNGXIFILE := ~/.local/share/xml/docbook/schema/5.1/schemas/rng/docbookxi.rng
 MDINSTDIR := ~/tmp/SilikoDocs/
 
-MONODBFILES := \
+BOOK_XIFILES := \
+	docbook/SilikoCoreManual.xml
+
+ARTICLE_XIFILES := \
+	docbook/ApiReference.xml
+
+ARTICLE_NXFILES := \
 	docbook/Build.xml \
 	docbook/Integrating.xml \
 	docbook/LanguageReference.xml \
@@ -11,9 +17,7 @@ MONODBFILES := \
 	docbook/Parsing.xml \
 	docbook/Tutorial.xml
 
-XIDBFILES := docbook/ApiReference.xml
-
-APIREFFILES := \
+REFENTRY_NXFILES := \
 	docbook/ApiReference.SilikoEngine.xml \
 	docbook/ApiReference.SilikoEngineCallFunction.xml \
 	docbook/ApiReference.SilikoEngineCreate.xml \
@@ -139,29 +143,36 @@ APIREFFILES := \
 	docbook/ApiReference.SilikoValueNegate.xml \
 	docbook/ApiReference.SilikoValueStatus.xml
 
-DBFILES   := $(MONODBFILES) $(XIDBFILES)
-PDFFILES  := $(subst docbook/,pdf/,$(DBFILES:.xml=.pdf))
-FOFILES   := $(subst docbook/,fo/,$(DBFILES:.xml=.fo))
-MDFILES   := $(subst docbook/,md/,$(DBFILES:.xml=.md))
+BOOK_DBFILES      := $(BOOK_XIFILES)
+BOOK_PDFFILES     := $(subst docbook/,pdf/,$(BOOK_DBFILES:.xml=.pdf))
+BOOK_FOFILES      := $(subst docbook/,fo/,$(BOOK_DBFILES:.xml=.fo))
+BOOK_MDFILES      := $(subst docbook/,md/,$(BOOK_DBFILES:.xml=.md))
 
-all: all-article-pdf all-article-md book
+ARTICLE_DBFILES   := $(ARTICLE_NXFILES) $(ARTICLE_XIFILES)
+ARTICLE_PDFFILES  := $(subst docbook/,pdf/,$(ARTICLE_DBFILES:.xml=.pdf))
+ARTICLE_FOFILES   := $(subst docbook/,fo/,$(ARTICLE_DBFILES:.xml=.fo))
+ARTICLE_MDFILES   := $(subst docbook/,md/,$(ARTICLE_DBFILES:.xml=.md))
 
-all-article-pdf: $(PDFFILES)
+REFENTRY_DBFILES  := $(REFENTRY_NXFILES)
+REFENTRY_PDFFILES := $(subst docbook/,pdf/,$(REFENTRY_DBFILES:.xml=.pdf))
+REFENTRY_FOFILES   := $(subst docbook/,fo/,$(REFENTRY_DBFILES:.xml=.fo))
+REFENTRY_MDFILES   := $(subst docbook/,md/,$(REFENTRY_DBFILES:.xml=.md))
 
-all-article-md: $(MDFILES)
+all: book-pdfs article-pdfs article-mds
 
-install: all-article-md
-	cp $(MDFILES) $(MDINSTDIR)
+book-pdfs: $(BOOK_PDFFILES)
 
-book: pdf/SilikoCoreManual.pdf
+article-pdfs: $(ARTICLE_PDFFILES)
+
+article-mds: $(ARTICLE_MDFILES)
 
 pdf/%.pdf: fo/%.fo
 	fop -c $(FOPCONF) $< $@
 
-fo/SilikoCoreManual.fo: docbook/SilikoCoreManual.xml $(DBFILES) $(APIREFFILES) xsl/fo.book.xsl xsl/fo.common.xsl
+fo/SilikoCoreManual.fo: docbook/SilikoCoreManual.xml $(ARTICLE_DBFILES) $(REFENTRY_DBFILES) xsl/fo.book.xsl xsl/fo.common.xsl
 	saxon -xi -o:$@ -s:$< -xsl:xsl/fo.book.xsl
 
-fo/ApiReference.fo: docbook/ApiReference.xml $(APIREFFILES) xsl/fo.article.xsl xsl/fo.common.xsl
+fo/ApiReference.fo: docbook/ApiReference.xml $(REFENTRY_DBFILES) xsl/fo.article.xsl xsl/fo.common.xsl
 	saxon -xi -o:$@ -s:$< -xsl:xsl/fo.article.xsl
 
 fo/%.fo: docbook/%.xml xsl/fo.article.xsl xsl/fo.common.xsl
@@ -174,12 +185,15 @@ validate:
 	for FILE in $(MONODBFILES) $(APIREFFILES); do jing $(RNGFILE) $$FILE; done
 	for FILE in $(XIDBFILES) docbook/SilikoCoreManual.xml; do jing $(RNGXIFILE) $$FILE; done
 
+install: all-article-md
+	cp $(ARTICLE_MDFILES) $(MDINSTDIR)
+
 clean:
-	rm -f $(FOFILES) fo/SilikoCoreManual.fo
+	rm -f fo/SilikoCoreManual.fo $(ARTICLE_FOFILES)
 
 distclean: clean
-	rm -f $(PDFFILES) pdf/SilikoCoreManual.pdf $(MDFILES)
+	rm -f pdf/SilikoCoreManual.pdf $(ARTICLE_PDFFILES) $(ARTICLE_MDFILES)
 
-.PHONY: all all-article-pdf all-article-md book clean distclean validate
+.PHONY: all book-pdfs article-pdfs article-mds install clean distclean validate
 
 .NOTINTERMEDIATE:
