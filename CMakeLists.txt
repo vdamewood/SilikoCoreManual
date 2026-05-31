@@ -190,15 +190,12 @@ endforeach()
 
 
 
-add_custom_command(
-    OUTPUT
-        ${FO_DIR}
-        ${PDF_DIR}
-        ${MAN_DIR}
+execute_process(
     COMMAND cmake -E make_directory
         ${FO_DIR}
         ${PDF_DIR}
         ${MAN_DIR}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
 
 add_custom_command(
@@ -212,7 +209,6 @@ add_custom_command(
         ${SilikoCoreManual_DEPS}
         ${XSL_DIR}/fo.book.xsl
         ${XSL_DIR}/fo.common.xsl
-        ${FO_DIR}
 )
 list(APPEND FO_FILES ${FO_DIR}/SilikoCoreManual.fo)
 
@@ -227,7 +223,6 @@ add_custom_command(
         ${ApiReference_DEPS}
         ${XSL_DIR}/fo.article.xsl
         ${XSL_DIR}/fo.common.xsl
-        ${FO_DIR}
 )
 list(APPEND FO_FILES ${FO_DIR}/ApiReference.fo)
 
@@ -243,7 +238,6 @@ foreach(XML_FILE ${ARTICLE_NX_FILES})
             ${DB_DIR}/${XML_FILE}
             ${XSL_DIR}/fo.article.xsl
             ${XSL_DIR}/fo.common.xsl
-            ${FO_DIR}
     )
     list(APPEND FO_FILES ${FO_DIR}/${FO_FILE})
 endforeach()
@@ -261,7 +255,6 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
             ${DB_DIR}/${XML_FILE}
             ${XSL_DIR}/fo.refentry.xsl
             ${XSL_DIR}/fo.common.xsl
-            ${FO_DIR}
     )
     list(APPEND FO_FILES "${FO_DIR}/${FO_FILE}")
 
@@ -277,7 +270,6 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
             ${DB_DIR}/${XML_FILE}
             ${XSL_DIR}/man.refentry.xsl
             ${XSL_DIR}/man.common.xsl
-            ${MAN_DIR}
     )
     list(APPEND MAN_FILES ${MAN_DIR}/${MAN_FILE})
 endforeach()
@@ -293,7 +285,6 @@ foreach(FO_FILE ${FO_FILES})
             ${PDF_FILE}
         DEPENDS
             ${FO_FILE}
-            ${PDF_DIR}
     )
     list(APPEND PDF_FILES ${PDF_FILE})
 endforeach()
