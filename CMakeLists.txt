@@ -183,7 +183,7 @@ foreach(xML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
 endforeach()
 
 set(ApiReference_DEPS)
-foreach(xML_FILE ${REFENTRY_NX_FILES})
+foreach(XML_FILE ${REFENTRY_NX_FILES})
     list(APPEND SilikoCoreManual_DEPS "${DB_DIR}/${XML_FILE}")
     list(APPEND ApiReference_DEPS "${DB_DIR}/${XML_FILE}")
 endforeach()
@@ -265,7 +265,8 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
     )
     list(APPEND FO_FILES "${FO_DIR}/${FO_FILE}")
 
-    string(REPLACE ".xml" ".1" MAN_FILE ${XML_FILE})
+    string(REPLACE "ApiReference." "" MAN_FILE ${XML_FILE})
+    string(REPLACE ".xml" ".1" MAN_FILE ${MAN_FILE})
     add_custom_command(
         OUTPUT ${MAN_DIR}/${MAN_FILE}
         COMMAND ${SAXON6}
