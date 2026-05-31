@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
 
-project(SilikoCoreanual LANGUAGES NONE)
+project(SilikoCoreManual LANGUAGES NONE)
 
 set(FOP_CONFIG_FILE    "~/.config/fop/fop.conf"
     CACHE FILEPATH "")
