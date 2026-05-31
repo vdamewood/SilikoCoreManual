@@ -9,7 +9,7 @@
 <refnamediv>
   <refname><type>SilikoFunctionVTable</type></refname>
   <refpurpose>Structure of function pointers for a
-    <type>SilikoFunction</type> objecct</refpurpose>
+    <type>SilikoFunction</type> object</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

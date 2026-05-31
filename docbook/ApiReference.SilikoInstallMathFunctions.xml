@@ -3,7 +3,7 @@
   xml:id="Api.SilikoInstallMathFunctions"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInstallMathFunctions</refentrytitle>
 </refmeta>
 
 <refnamediv>
@@ -18,19 +18,19 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoFunctionCallerInstallFunctions` function Installs the
-functions supporting the C `math.h` functions.
 
-* `Caller` is the `SilikoFunctionCaller` object to install the functions
-  into.</para>
+<para>The <function>SilikoInstallMathFunctions</function> function
+installs the functions supporting the C <filename>math.h</filename>
+functions into <varname>destination</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoFunctionCallerInstallFunctionss` returns true
-if all functions were installed successfully, `NULL` otherwise. If
-`NULL` was returned, then the selection of functions installed in the
-`SilikoFunctionCaller` object is unspecified.</para>
+<para><function>SilikoInstallMathFunctions</function> returns
+<literal>true</literal> if all functions were installed successfully,
+<literal>false</literal> otherwise. If <literal>false</literal>  was
+returned, then the selection of functions installed in the
+<type>SilikoEngine</type> object is unspecified.</para>
 </refsection>
 </refentry>

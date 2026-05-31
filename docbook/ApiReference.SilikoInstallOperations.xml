@@ -3,7 +3,7 @@
   xml:id="Api.SilikoInstallOperations"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInstallOperations</refentrytitle>
 </refmeta>
 
 <refnamediv>
@@ -18,23 +18,19 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoFunctionCallerInstallOperators` function installs the
-operators used by the infix parser to handle operators.
 
-* `Caller` is the `SilikoFunctionCaller` object to install the functions
-  into.</para>
+<para>The <function>SilikoInstallOperations</function> function installs
+the operators used by the infix parser to handle operators into
+<varname>destination</varname>.</para>
 </refsection>
-
-
-
-
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoFunctionCallerInstallOperators` returns true
-if all functions were installed successfully, `NULL` otherwise. If
-`NULL` was returned, then the selection of functions installed in the
-`SilikoFunctionCaller` object is unspecified.</para>
+<para><function>SilikoInstallOperations</function> returns
+<literal>true</literal> if all functions were installed successfully,
+<literal>false</literal> otherwise. If <literal>false</literal>  was
+returned, then the selection of functions installed in the
+<type>SilikoEngine</type> object is unspecified.</para>
 </refsection>
 </refentry>

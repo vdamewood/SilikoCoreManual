@@ -30,7 +30,7 @@ testing.</para>
 <title>Return Values</title>
 
 <para><function>SilikoEngineFetchFunction</function> returns a pointer
-to the function, or <literal>NULL</literal> no matching function is
+to the function, or <literal>NULL</literal>if no matching function is
 installed or there is a memory error. The object pointed to is still
 owned by <varname>object</varname> and must not be passed to
 <function>SilikoFunctionDestroy</function>.</para>
