@@ -175,6 +175,7 @@ find_program(PANDOC  pandoc)
 
 set(FO_FILES)
 set(PDF_FILES)
+set(MD_FILES)
 set(MAN_FILES)
 
 set(SilikoCoreManual_DEPS)
@@ -194,6 +195,7 @@ execute_process(
     COMMAND cmake -E make_directory
         ${FO_DIR}
         ${PDF_DIR}
+        ${MD_DIR}
         ${MAN_DIR}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
@@ -242,6 +244,21 @@ foreach(XML_FILE ${ARTICLE_NX_FILES})
     list(APPEND FO_FILES ${FO_DIR}/${FO_FILE})
 endforeach()
 
+foreach(XML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
+    string(REPLACE ".xml" ".md" MD_FILE ${XML_FILE})
+    add_custom_command(
+        OUTPUT ${MD_DIR}/${MD_FILE}
+        COMMAND ${PANDOC}
+            -f docbook
+            -t gfm
+            --standalone
+            -o ${MD_DIR}/${MD_FILE}
+            ${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}/${XML_FILE}
+        DEPENDS
+            ${DB_DIR}/${XML_FILE}
+    )
+    list(APPEND MD_FILES ${MD_DIR}/${MD_FILE})
+endforeach()
 
 foreach(XML_FILE ${REFENTRY_NX_FILES})
     string(REPLACE ".xml" ".fo" FO_FILE ${XML_FILE})
@@ -293,5 +310,6 @@ add_custom_target(Documentation ALL
     DEPENDS
         ${FO_FILES}
         ${PDF_FILES}
+        ${MD_FILES}
         ${MAN_FILES}
 )
