@@ -29,6 +29,7 @@
         <xsl:call-template name="inline.monoseq"/>
     </xsl:template>
 
+    <xsl:param name="default.table.width" select="'100%'"/>
     <xsl:param name="use.extensions" select="'0'"/>
     <xsl:param name="admon.graphics" select="'1'"/>
     <xsl:param name="admon.graphics.extension" select="'.svg'"/>

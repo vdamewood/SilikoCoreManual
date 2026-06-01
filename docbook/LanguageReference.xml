@@ -5,18 +5,19 @@
   <title>Siliko Infix Language Reference</title>
 </info>
 
-<para>Siliko Core includes a built-in infix parser that handles traditional
-mathematical expressions. *Infix* refers to the fact that, in this
-notation, the operator is placed between the operands on which it
-operates, as opposed to prefix notation, such as Lisp-style
-S-expressions, where the operator comes first, or suffix notation, such
-as reverse Polish notation, where the operator comes last. The Siliko
-infix language also includes support for function calls, using a syntax
-where the function name comes first, and its arguments are passed as a
-comma-separated list between parentheses after the function name. The
-Siliko infix language supports single mathematical expression without
-variables or state. Whitespace characters can be used to separate
-tokens, but are otherwise ignored.</para>
+<para>Siliko Core includes a built-in infix parser that handles
+traditional mathematical expressions. <firstterm>Infix</firstterm>
+refers to the fact that, in this notation, the operator is placed
+between the operands on which it operates, as opposed to prefix
+notation, such as Lisp-style S-expressions, where the operator comes
+first, or suffix notation, such as reverse Polish notation, where the
+operator comes last. The Siliko infix language also includes support for
+function calls, using a syntax where the function name comes first, and
+its arguments are passed as a comma-separated list between parentheses
+after the function name. The Siliko infix language supports single
+mathematical expression without variables or state. Whitespace
+characters can be used to separate tokens, but are otherwise
+ignored.</para>
 
 <section>
 <info>
@@ -37,7 +38,8 @@ digit sequences with whitespace.</para>
 
 <para>An <type>integer</type> is a series of one or more decimal digits.
 The tokenizer passes the series of digits to the C standard-library
-<function>strtoll</function> function to get the integer value.</para>
+<function>strtoll</function> function to get the <type>integer</type>
+value.</para>
 </section>
 
 <section>
@@ -48,7 +50,8 @@ The tokenizer passes the series of digits to the C standard-library
 <para>A <type>real</type> is a series of one or more decimal digits, followed
 by a decimal point, optionally followed by one or more decimal digits.
 The tokenizer passes the series of characters to the C standard-library
-<function>strtof</function> function to get the float value.</para>
+<function>strtof</function> function to get the <type>real</type>
+value.</para>
 </section>
 </section>
 
@@ -66,14 +69,45 @@ when parsing sequences of these operators. These operators are also
 implemented as functions. The infix parser automatically generates
 function calls from these operations.</para>
 
-<literallayout>
-| Operations               | Operators | Associativity | Function             |
-| ------------------------ | --------- | ------------- | -------------------- |
-| die roll                 | `d`       | none          | `dice`               |
-| exponentiation           | `^`       | right         | `power`              |
-| multiplication, division | `*`, `/`  | left          | `multiply`, `divide` |
-| addition, subtraction    | `+`, `-`  | left          | `add`, `subtract`    |
-</literallayout>
+<table>
+  <title>Siliko Infix Operations</title>
+<tgroup cols="4">
+<thead>
+  <row>
+    <entry>Operations</entry>
+    <entry>Operators</entry>
+    <entry>Associativity</entry>
+    <entry>Function</entry>
+  </row>
+</thead>
+<tbody>
+  <row>
+    <entry>die roll</entry>
+    <entry>`d`</entry>
+    <entry>none</entry>
+    <entry>`dice`</entry>
+  </row>
+  <row>
+    <entry>exponentiation</entry>
+    <entry>`^`</entry>
+    <entry>right</entry>
+    <entry>`power`</entry>
+  </row>
+  <row>
+    <entry>multiplication, division</entry>
+    <entry>`*`, `/`</entry>
+    <entry>left</entry>
+    <entry>`multiply`, `divide`</entry>
+  </row>
+  <row>
+    <entry>addition, subtraction</entry>
+    <entry>`+`, `-`</entry>
+    <entry>left</entry>
+    <entry>`add`, `subtract`</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
 
 <para>Die rolls can only take a positive integer literal as the second
 operand, so die rolls can’t be chained like other operands. All other
