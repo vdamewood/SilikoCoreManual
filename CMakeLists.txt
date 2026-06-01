@@ -174,12 +174,14 @@ find_program(FOP     fop)
 find_program(PANDOC  pandoc)
 
 set(FO_FILES)
-set(PDF_FILES)
-set(MD_FILES)
-set(MAN_FILES)
+set(BOOK_PDF_FILES)
+set(ARTICLE_PDF_FILES)
+set(ARTICLE_MD_FILES)
+set(REFENTRY_PDF_FILES)
+set(REFENTRY_MAN_FILES)
 
 set(SilikoCoreManual_DEPS)
-foreach(xML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
+foreach(XML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
     list(APPEND SilikoCoreManual_DEPS "${DB_DIR}/${XML_FILE}")
 endforeach()
 
@@ -200,6 +202,8 @@ execute_process(
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+list(APPEND FO_FILES "${FO_DIR}/SilikoCoreManual.fo")
+list(APPEND BOOK_PDF_FILES "${PDF_DIR}/SilikoCoreManual.pdf")
 add_custom_command(
     OUTPUT ${FO_DIR}/SilikoCoreManual.fo
     COMMAND ${SAXON} -xi
@@ -212,8 +216,9 @@ add_custom_command(
         ${XSL_DIR}/fo.book.xsl
         ${XSL_DIR}/fo.common.xsl
 )
-list(APPEND FO_FILES ${FO_DIR}/SilikoCoreManual.fo)
 
+list(APPEND FO_FILES ${FO_DIR}/ApiReference.fo)
+list(APPEND ARTICLE_PDF_FILES "${PDF_DIR}/ApiReference.pdf")
 add_custom_command(
     OUTPUT ${FO_DIR}/ApiReference.fo
     COMMAND ${SAXON} -xi
@@ -226,10 +231,13 @@ add_custom_command(
         ${XSL_DIR}/fo.article.xsl
         ${XSL_DIR}/fo.common.xsl
 )
-list(APPEND FO_FILES ${FO_DIR}/ApiReference.fo)
 
 foreach(XML_FILE ${ARTICLE_NX_FILES})
     string(REPLACE ".xml" ".fo" FO_FILE ${XML_FILE})
+    list(APPEND FO_FILES ${FO_DIR}/${FO_FILE})
+    string(REPLACE  ".xml" ".pdf" PDF_FILE ${XML_FILE})
+    list(APPEND ARTICLE_PDF_FILES "${PDF_DIR}/${PDF_FILE}")
+
     add_custom_command(
         OUTPUT ${FO_DIR}/${FO_FILE}
         COMMAND ${SAXON}
@@ -241,11 +249,12 @@ foreach(XML_FILE ${ARTICLE_NX_FILES})
             ${XSL_DIR}/fo.article.xsl
             ${XSL_DIR}/fo.common.xsl
     )
-    list(APPEND FO_FILES ${FO_DIR}/${FO_FILE})
 endforeach()
 
 foreach(XML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
     string(REPLACE ".xml" ".md" MD_FILE ${XML_FILE})
+    list(APPEND ARTICLE_MD_FILES "${MD_DIR}/${MD_FILE}")
+
     add_custom_command(
         OUTPUT ${MD_DIR}/${MD_FILE}
         COMMAND ${PANDOC}
@@ -257,11 +266,17 @@ foreach(XML_FILE ${ARTICLE_XI_FILES} ${ARTICLE_NX_FILES})
         DEPENDS
             ${DB_DIR}/${XML_FILE}
     )
-    list(APPEND MD_FILES ${MD_DIR}/${MD_FILE})
 endforeach()
 
 foreach(XML_FILE ${REFENTRY_NX_FILES})
     string(REPLACE ".xml" ".fo" FO_FILE ${XML_FILE})
+    list(APPEND FO_FILES "${FO_DIR}/${FO_FILE}")
+    string(REPLACE  ".xml" ".pdf" PDF_FILE ${XML_FILE})
+    list(APPEND REFENTRY_PDF_FILES "${PDF_DIR}/${PDF_FILE}")
+    string(REPLACE  ".xml" ".1" MAN_FILE ${XML_FILE})
+    string(REPLACE  "ApiReference." "" MAN_FILE ${MAN_FILE})
+    list(APPEND REFENTRY_MAN_FILES "${MAN_DIR}/${MAN_FILE}")
+
     add_custom_command(
         OUTPUT ${FO_DIR}/${FO_FILE}
         COMMAND ${SAXON}
@@ -273,10 +288,7 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
             ${XSL_DIR}/fo.refentry.xsl
             ${XSL_DIR}/fo.common.xsl
     )
-    list(APPEND FO_FILES "${FO_DIR}/${FO_FILE}")
 
-    string(REPLACE "ApiReference." "" MAN_FILE ${XML_FILE})
-    string(REPLACE ".xml" ".1" MAN_FILE ${MAN_FILE})
     add_custom_command(
         OUTPUT ${MAN_DIR}/${MAN_FILE}
         COMMAND ${SAXON6}
@@ -288,7 +300,6 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
             ${XSL_DIR}/man.refentry.xsl
             ${XSL_DIR}/man.common.xsl
     )
-    list(APPEND MAN_FILES ${MAN_DIR}/${MAN_FILE})
 endforeach()
 
 foreach(FO_FILE ${FO_FILES})
@@ -303,13 +314,19 @@ foreach(FO_FILE ${FO_FILES})
         DEPENDS
             ${FO_FILE}
     )
-    list(APPEND PDF_FILES ${PDF_FILE})
 endforeach()
+
+add_custom_target(BookPdf     DEPENDS ${BOOK_PDF_FILES})
+add_custom_target(ArticlePdf  DEPENDS ${ARTICLE_PDF_FILES})
+add_custom_target(ArticleMd   DEPENDS ${ARTICLE_MD_FILES})
+add_custom_target(RefentryPdf DEPENDS ${REFENTRY_PDF_FILES})
+add_custom_target(RefentryMan DEPENDS ${REFENTRY_MAN_FILES})
 
 add_custom_target(Documentation ALL
     DEPENDS
-        ${FO_FILES}
-        ${PDF_FILES}
-        ${MD_FILES}
-        ${MAN_FILES}
+        ${BOOK_PDF_FILES}
+        ${ARTICLE_PDF_FILES}
+        ${ARTICLE_MD_FILES}
+        ${REFENTRY_PDF_FILES}
+        ${REFENTRY_MAN_FILES}
 )
