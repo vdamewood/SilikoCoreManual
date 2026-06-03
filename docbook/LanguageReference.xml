@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article version="5.1"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook">
 <info>
   <title>Siliko Infix Language Reference</title>
@@ -24,12 +25,8 @@ ignored.</para>
     <title>Numbers</title>
 </info>
 
-<para>A number, can be either an <type>integer</type>, represented as a
-series of decimal digits, or a <type>real</type>, represented as a
-series of decimal digits, followed by a decimal point
-(<token>.</token>), optionally followed by another series of decimal
-digits. In a real, the decimal point may not be separated from the
-digit sequences with whitespace.</para>
+<para>A number, can be either an <type>integer</type>, or a
+<type>real</type>.</para>
 
 <section>
 <info>
@@ -47,11 +44,13 @@ value.</para>
   <title>Real Numbers</title>
 </info>
 
-<para>A <type>real</type> is a series of one or more decimal digits, followed
-by a decimal point, optionally followed by one or more decimal digits.
-The tokenizer passes the series of characters to the C standard-library
-<function>strtof</function> function to get the <type>real</type>
-value.</para>
+<para>A <type>real</type> can take one of two forms. In the first form,
+it is is either the strings <literal>e</literal>, or
+<literal>pi</literal>. In the second form, it is a series of one or more
+decimal digits, followed by a decimal point, optionally followed by one
+or more decimal digits. The tokenizer passes the series of characters to
+the C standard-library <function>strtof</function> function to get the
+<type>real</type> value.</para>
 </section>
 </section>
 
@@ -61,11 +60,13 @@ value.</para>
 </info>
 
 <para>Operators are placed between the operands on which they function.
-Siliko’s infix language supports six operators: `+` for addition, `-`
-for subtraction, `*` for multiplication, `/` for division, and `d` for
-die rolls. Because addition, subtraction, multiplication, and division
-are left associative, the infix parser builds syntax trees in reverse
-when parsing sequences of these operators. These operators are also
+Siliko’s infix language supports six operators: <literal>+</literal> for
+addition, <literal>-</literal> for subtraction, <literal>*</literal> for
+multiplication, <literal>/</literal> for division, <literal>^</literal>
+for exponentiationand, and <literal>d</literal> for die rolls. Because
+addition, subtraction, multiplication, and division are left
+associative, the infix parser builds syntax trees in reverse when
+parsing sequences of these operators. These operators are also
 implemented as functions. The infix parser automatically generates
 function calls from these operations.</para>
 
@@ -83,27 +84,29 @@ function calls from these operations.</para>
 <tbody>
   <row>
     <entry>die roll</entry>
-    <entry>`d`</entry>
+    <entry><literal>d</literal></entry>
     <entry>none</entry>
-    <entry>`dice`</entry>
+    <entry><function>dice</function></entry>
   </row>
   <row>
     <entry>exponentiation</entry>
-    <entry>`^`</entry>
+    <entry><literal>^</literal></entry>
     <entry>right</entry>
-    <entry>`power`</entry>
+    <entry><function>power</function></entry>
   </row>
   <row>
     <entry>multiplication, division</entry>
-    <entry>`*`, `/`</entry>
+    <entry><literal>*</literal>, <literal>/</literal></entry>
     <entry>left</entry>
-    <entry>`multiply`, `divide`</entry>
+    <entry><function>multiply</function>,
+      <function>divide</function></entry>
   </row>
   <row>
     <entry>addition, subtraction</entry>
-    <entry>`+`, `-`</entry>
+    <entry><literal>+</literal>, <literal>-</literal></entry>
     <entry>left</entry>
-    <entry>`add`, `subtract`</entry>
+    <entry><function>add</function>,
+      <function>subtract</function></entry>
   </row>
 </tbody>
 </tgroup>
@@ -119,8 +122,8 @@ operators may take arbitrairy expressions as their operands.</para>
   <title>Parentheses</title>
 </info>
 
-<para>The Siliko infix language uses parentheses to isolate a portion of an
-expression from the order of operations. Anything inside a pair of
+<para>The Siliko infix language uses parentheses to isolate a portion of
+an expression from the order of operations. Anything inside a pair of
 parentheses will be evaluated independently of any surrounding values
 and operations.</para>
 </section>
@@ -130,125 +133,144 @@ and operations.</para>
   <title>Function Calls</title>
 </info>
 
-<para>Function calls take the form *function-name*`(`*arguments*...`)`
-`arguments` is a comma-separated list of expressions. How many
-parameters a function takes is defined by the function, but
-Siliko Core’s internal function-calling mechanism requires at least one
-argument for any function call.</para>
-
+<para>Function calls take the form
+<replaceable>function-name</replaceable><literal>(</literal><replaceable>arguments</replaceable><literal>)</literal>.
+<replaceable>arguments</replaceable> is a comma-separated list of
+expressions. How many parameters a function takes is defined by the
+function, but Siliko Core’s parser requires at least one argument for
+any function call.</para>
 </section>
 
 <section>
 <info>
-  <title>Formal Grammars</title>
+  <title>Formal Grammar</title>
 </info>
 
-<para>Below are two grammars for the Siliko infix language.</para>
+<para>This grammar for the Siliko infix language uses the notation
+described in
+<link xlink:href="https://www.w3.org/TR/xml/#sec-notation">the Notation
+section of the W3 XML Reccomendation</link>.</para>
 
-<section>
-<info>
-  <title>Dragon Grammar</title>
-</info>
-
-<para>This grammar uses the syntax described in Section 2.2 of the book
-*Compilers: Principles, Techniques, and Tools, Second Edition*, and
-should be easier to understand for those new to developing parsers.</para>
-
-<para>Grammar rules (*line* is the start symbol):</para>
-
-<literallayout>
-*line* → *expression* `\0`  
-*expression* → *expression* `+` *term* | *expression* `-` *term* | *term*  
-*term* → *term* `*` *exponent* | *term* `/` *exponent* | *exponent*  
-*exponent* → *roll* `^` *exponent* | *roll*  
-*roll* → *atom* `d` *integer* | *atom*  
-*atom* → *number* | `(` expression `)` | function-call  
-*number* → `-` *unsigned-number* | *unsigned-number*  
-*unsigned-number* → *integer* | *float*  
-*function-call* → *id* `(` *argument-list* `)`  
-*argument-list* → *expression* | *expression* `,` *argument-list*  
-</literallayout>
-
-<para>Complex Terminals:</para>
-
-<literallayout>
-*integer* → /[0-9]+/  
-*float* → **pi** | **e** | /[0-9]+.[0-9]*/  
-*id* → /[a-ce-zA-Z][a-zA-Z0-9]\*/ | /d[a-zA-Z][a-zA-Z0-9]\*/  
-</literallayout>
-
-<para>Whitespace characters, ` `, `\f`, `\n`, `\r`, `\t`, and `\v`, are
-ignored, except to separate terminals.</para>
-
-</section>
-
-<section>
-<info>
-  <title>Extended BNF Grammar</title>
-</info>
-
-<para>This grammar uses ISO/IEC 14977 Extended BNF Syntax and exhaustively
-describes the Siliko infix language.</para>
-
-<literallayout>
-(* Grammar rules, line is the start symbol. *)
-line = expression, end-of-line;
-expression = expression, plus, term | expression, minus, term | term;
-term = term, times, exponent | term, divided-by, exponent | exponent;
-exponent = roll, to-the, exponent | roll;
-roll = atom, dice, integer | atom;
-atom = number | open-parenthesis, expression, close-parenthesis | function-call;
-number = [minus], unsigned-number;
-unsigned-number = integer | float;
-function-call = id, open-parenthesis, argument-list, close-parenthesis;
-argument-list = expression, {separator, expression};
-
-(* Ignore whitespace between terminals. *)
-whitespace = &apos; &apos; | &apos;\f&apos; | &apos;\n&apos; | &apos;\r&apos; | &apos;\t&apos; | &apos;\v&apos;;
-plus = {whitespace}, plus-raw;
-minus = {whitespace}, minus-raw;
-times = {whitespace}, times-raw;
-divided-by = {whitespace}, divided-by-raw;
-to-the = {whitespace}, to-the-raw;
-dice = {whitespace}, dice-raw;
-open-parenthesis = {whitespace}, open-parenthesis-raw;
-close-parenthesis = {whitespace}, close-parenthesis-raw;
-separator = {whitespace}, seperator-raw;
-end-of-line = {whitespace}, end-of-line-raw;
-integer = {whitespace}, integer-raw;
-float = {whitespace}, float-raw;
-id = {whitespace}, id-raw;
-
-(* simple terminals *)
-plus-raw = &apos;+&apos;;
-minus-raw = &apos;-&apos;;
-times-raw= &apos;*&apos;;
-divided-by-raw = &apos;/&apos;;
-to-the-raw = &apos;^&apos;;
-dice-raw = &apos;d&apos;;
-open-parenthesis-raw = &apos;(&apos;;
-close-parenthesis-raw = &apos;)&apos;;
-seperator-raw = &apos;,&apos;;
-pi = &apos;pi&apos;;
-euler = &apos;e&apos;;
-end-of-line-raw = &apos;\0&apos;;
-
-(* complex terminals *)
-digit = &apos;0&apos; | &apos;1&apos; | &apos;2&apos; | &apos;3&apos; | &apos;4&apos; | &apos;5&apos; | &apos;6&apos; | &apos;7&apos; | &apos;8&apos; | &apos;9&apos;;
-digit-string = digit, {digits}
-integer-raw = digit-string;
-float-raw = euler | pi | digit-string, &apos;.&apos;, digit-string;
-
-letter = &apos;A&apos; | &apos;B&apos; | &apos;C&apos; | &apos;D&apos; | &apos;E&apos; | &apos;F&apos; | &apos;G&apos; | &apos;H&apos; | &apos;I&apos; | &apos;J&apos; |
-         &apos;K&apos; | &apos;L&apos; | &apos;M&apos; | &apos;N&apos; | &apos;O&apos; | &apos;P&apos; | &apos;Q&apos; | &apos;R&apos; | &apos;S&apos; | &apos;T&apos; |
-         &apos;U&apos; | &apos;V&apos; | &apos;W&apos; | &apos;X&apos; | &apos;Y&apos; | &apos;Z&apos; |
-         &apos;a&apos; | &apos;b&apos; | &apos;c&apos; | &apos;d&apos; | &apos;e&apos; | &apos;f&apos; | &apos;g&apos; | &apos;h&apos; | &apos;i&apos; | &apos;j&apos; | 
-         &apos;k&apos; | &apos;l&apos; | &apos;m&apos; | &apos;n&apos; | &apos;o&apos; | &apos;p&apos; | &apos;q&apos; | &apos;r&apos; | &apos;s&apos; | &apos;t&apos; |
-         &apos;u&apos; | &apos;v&apos; | &apos;w&apos; | &apos;x&apos; | &apos;y&apos; | &apos;z&apos;;
-character = letter | digit;
-id-raw = letter, {character}
-    - (dice, [digit, {character}] | euler | pi);
-</literallayout>
-</section>
+<para><productionset xml:id="LanguageReference.W3Grammar">
+<production xml:id="LanguageReference.W3Grammar.line">
+  <lhs>line</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    #x0</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.expression">
+  <lhs>expression</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;+&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;-&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal></rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.term">
+  <lhs>term</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;*&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;/&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal></rhs>
+</production><production xml:id="LanguageReference.W3Grammar.exponent">
+  <lhs>exponent</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.roll">roll</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;^&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.roll">roll</nonterminal></rhs>
+</production><production xml:id="LanguageReference.W3Grammar.roll">
+  <lhs>roll</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.atom">atom</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;d&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.integer">integer</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.atom">atom</nonterminal></rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.atom">
+  <lhs>atom</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.number">number</nonterminal>
+    |
+    &quot;(&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;)&quot;
+    |
+    <nonterminal def="LanguageReference.W3Grammar.function-call">function-call</nonterminal></rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.number">
+  <lhs>number</lhs>
+  <rhs>&quot;-&quot;?
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.unumber">unumber</nonterminal></rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.unumber">
+  <lhs>unumber</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.integer">integer</nonterminal>
+    |
+    <nonterminal def="LanguageReference.W3Grammar.real">real</nonterminal></rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.function-call">
+  <lhs>function-call</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.id">id</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;(&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.argument-list">argument-list</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;)&quot;</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.argument-list">
+  <lhs>argument-list</lhs>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    (
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    &quot;,&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
+    )*</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.S">
+  <lhs>S</lhs>
+  <rhs>[#x9-#xd#x20]* /* \t \n \v \f \r and ' ' */</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.integer">
+  <lhs>integer</lhs>
+  <rhs>[0-9]+</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.real">
+  <lhs>real</lhs>
+  <rhs>&quot;pi&quot; | &quot;e&quot; | [0-9]+ &quot;.&quot;
+    [0-9]*</rhs>
+</production>
+<production xml:id="LanguageReference.W3Grammar.id">
+  <lhs>id</lhs>
+  <rhs>([a-ce-zA-Z] [a-zA-Z0-9]* | d[a-zA-Z] [a-zA-Z0-9]*)
+    - (&quot;pi&quot; | &quot;e&quot;)</rhs>
+</production>
+</productionset></para>
 </section>
 </article>
