@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article version="5.1"
+<article version="5.1" xml:id="Linking"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook">
 <info>
@@ -17,11 +17,14 @@ methods.</para>
 <para>Your final Siliko Core installation should take one of two forms.
 On most systems, it will take a typical package layout, and on macOS
 it will default to being built as a macOS framework, but this can be
-changed when you build Siliko Core. See Building Siliko Core for more
+changed when you build Siliko Core. See
+<link linkend="Build">Building Siliko Core</link>
+<!-- <xref linkend="Build"/> will auto fill with the title of
+  <... xml:id="Build">. -->
+for more
 information on building Siliko Core itself, how to select between the
 typical layout, and the framework on macOS, and where the various files
 go in each layout.</para>
-<!-- XREF: Building -->
 </section>
 
 <section>

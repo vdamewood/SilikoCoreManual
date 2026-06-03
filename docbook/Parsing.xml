@@ -205,8 +205,8 @@ handled separately, and the <literal>+</literal> operaton can’t be
 processed before the multiplication operation is handled.</para>
 
 <para>For the complete grammar of the Siliko infix parser, see the
-Siliko Infix Language Reference.</para>
-<!-- XREF: InfixLanguageReference -->
+<link linkend="LanguageReference">Siliko Infix Language
+Reference</link>.</para>
 </section>
 
 <section>

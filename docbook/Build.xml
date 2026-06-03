@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article version="5.1"
+<article version="5.1" xml:id="Build"
   xmlns="http://docbook.org/ns/docbook">
 <info>
   <title>Building Siliko Core</title>

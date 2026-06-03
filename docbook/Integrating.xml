@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article version="5.1"
+<article version="5.1" xml:id="Integrating"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook">
 <info>
@@ -52,8 +52,7 @@ functions to the lnguage.</para>
 <para>Each header file is associated with a component of Siliko Core,
 such as in-language functions, the lexer, parser, and so on. For an
 exact listing of which types and functions are in each header, see the
-API Reference.</para>
-<!-- XREF ApiReference -->
+<link linkend="Api">API Reference</link>.</para>
 </section>
 <section>
 <info>
@@ -72,7 +71,9 @@ enumeration represents an error that Siliko Core
 can encounter while parsing or evaluating expressions, for example
 a syntax error (<literal>SilikoErrorSyntax</literal>) or a division
 by zero error (<literal>SilikoErrorZeroDivision</literal>). For a full
-list of error values, see the API Reference.</para>
+list of error values, see The
+<link linkend="Api.SilikoError">SilikoError</link>
+entry in the API Reference.</para>
 
 <para>To make a <type>SilikoValue</type> object, you can use the
 functions,
