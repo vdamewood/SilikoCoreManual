@@ -194,7 +194,7 @@ Siliko supports these values for all systems:</para>
 <itemizedlist>
 <listitem><para><varname>CMAKE_BUILD_TYPE</varname>
   (<type>STRING</type>): When building with a
-  single-configuration generator, such as `Unix Makefiles`, or `Ninja`,
+  single-configuration generator, such as Unix Makefiles, or Ninja,
   set to <literal>Release</literal> for a release build, or to
   <literal>Debug</literal> for a debug build. Leave this unset if you
   are using a Multi-Config build tool, including Xcode and Visual
