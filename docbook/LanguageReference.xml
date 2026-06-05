@@ -26,7 +26,8 @@ ignored.</para>
 </info>
 
 <para>A number, can be either an <type>integer</type>, or a
-<type>real</type>.</para>
+<type>real</type>. Numbers may optionally be proceeded by a minus
+sign (<literal>-</literal>).</para>
 
 <section>
 <info>
@@ -255,7 +256,7 @@ section of the W3 XML Reccomendation</link>.</para>
 </production>
 <production xml:id="LanguageReference.W3Grammar.S">
   <lhs>S</lhs>
-  <rhs>[#x9-#xd#x20]* /* \t \n \v \f \r and ' ' */</rhs>
+  <rhs>[#x9-#xD#x20]* /* \t \n \v \f \r and ' ' */</rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.integer">
   <lhs>integer</lhs>
