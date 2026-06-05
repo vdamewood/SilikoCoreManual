@@ -6,11 +6,11 @@
   <title>Integrating Siliko Core into Your Program</title>
 </info>
 
-<para>Siliko Core provides an interface to integrate parsing and mathematical
-evaluation into a program. A developer can use the simple infix parser
-with the built-in set of functions to provide basic functionality,
-or write their own parser for another syntax, or add additional, custom
-functions to the lnguage.</para>
+<para>Siliko Core provides an interface to integrate parsing and
+mathematical evaluation into a program. A developer can use the simple
+infix parser with the built-in set of functions to provide basic
+functionality, or write their own parser for another syntax, or add
+additional, custom functions to the lnguage.</para>
 
 <section>
 <info>
@@ -50,9 +50,9 @@ functions to the lnguage.</para>
 </itemizedlist>
 
 <para>Each header file is associated with a component of Siliko Core,
-such as in-language functions, the lexer, parser, and so on. For an
-exact listing of which types and functions are in each header, see the
-<link linkend="Api">API Reference</link>.</para>
+such as in-language functions, the lexer, parser, and so on. In the
+<link linkend="Api">API Reference</link> each type and function lists
+which header it requires.</para>
 </section>
 <section>
 <info>
@@ -60,27 +60,25 @@ exact listing of which types and functions are in each header, see the
 </info>
 
 <para>The <filename>SilikoCore/Value.h</filename> header contains three
-types. The <type>SilikoValue</type> type represents a value passed
-to and yielded by the Siliko Core library. The
-<type>SilikoValueStatus</type> enumeration represents which type of value a
-<type>SilikoValue</type> holds: an integer
+types. The <type>SilikoValue</type> type represents a value passed to
+and yielded by the Siliko Core library. The
+<type>SilikoValueStatus</type> enumeration represents which type of
+value a <type>SilikoValue</type> holds: an integer
 (<literal>SilikoValueInteger</literal>), a real number
 (<literal>SilikoValueReal</literal>), or an error
 (<literal>SilikoValueError</literal>). The <type>SilikoError</type>
-enumeration represents an error that Siliko Core
-can encounter while parsing or evaluating expressions, for example
-a syntax error (<literal>SilikoErrorSyntax</literal>) or a division
-by zero error (<literal>SilikoErrorZeroDivision</literal>). For a full
-list of error values, see The
-<link linkend="Api.SilikoError">SilikoError</link>
+enumeration represents an error that Siliko Core can encounter while
+parsing or evaluating expressions, for example a syntax error
+(<literal>SilikoErrorSyntax</literal>) or a division by zero error
+(<literal>SilikoErrorZeroDivision</literal>). For a full list of error
+values, see The <link linkend="Api.SilikoError">SilikoError</link>
 entry in the API Reference.</para>
 
 <para>To make a <type>SilikoValue</type> object, you can use the
-functions,
-<function>SilikoValueCreateFromInteger</function>, or
+functions, <function>SilikoValueCreateFromInteger</function>, or
 <function>SilikoValueCreateFromReal</function>. These functions take
-a <type>long long int</type>, and
-<type>double</type>, respectively.</para>
+a <type>long long int</type>, and <type>double</type>,
+respectively.</para>
 
 <para>
 <programlisting language="C">
@@ -108,11 +106,13 @@ one might imagine using programming logic based on the value of a
     {
         if (SilikoValueGetInteger(result) &gt;= 15)
         {
-            printf(&quot;You find a secret door behind the bookcase.\n&quot;);
+            printf(&quot;You find a secret door behind the&quot;
+                &quot; bookcase.\n&quot;);
         }
         else
         {
-            printf(&quot;There appears to be nothing of note in the library.\n&quot;);
+            printf(&quot;There appears to be nothing of note in&quot;
+                &quot; the library.\n&quot;);
         }
     }
     else
@@ -473,11 +473,13 @@ SilikoValue CustomFunctionAddTwo(int ArgC, SilikoValue *ArgV);
 int main(int argc, char *argv[])
 {
     SilikoFunctionCallerNew *caller();
-    SilikoFunctionCallerInstall(caller, &quot;addtwo&quot;, CustomFunctionAddTwo);
+    SilikoFunctionCallerInstall(caller, &quot;addtwo&quot;,
+        CustomFunctionAddTwo);
     SilikoValue inputs[1];
     inputs[0].Status = SILIKO_VAL_INTEGER;
     inputs[0].Integer = 5;
-    SilikoValue result = SilikoFunctionCallerCall(caller, &quot;addtwo&quot;, 1, inputs);
+    SilikoValue result = SilikoFunctionCallerCall(caller,
+        &quot;addtwo&quot;, 1, inputs);
     char *resultString = SilikoValueToString(result);
     printf(&quot;The result is: %s\n&quot;, resultString);
     SilikoValueDeleteString(resultString);
@@ -531,9 +533,12 @@ the expression `2 + 3`. You would first construct a branch node, and two
 leaf nodes to represent the operands.</para>
 
 <programlisting language="C">
-    SilikoSyntaxTreeNode *Operator = SilikoSyntaxTreeNewBranch(&quot;add&quot;);
-    SilikoSyntaxTreeNode *LeftOperand = SilikoSyntaxTreeNewInteger(2);
-    SilikoSyntaxTreeNode *RightOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *Operator =
+        SilikoSyntaxTreeNewBranch(&quot;add&quot;);
+    SilikoSyntaxTreeNode *LeftOperand =
+        SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *RightOperand =
+        SilikoSyntaxTreeNewInteger(2);
     SilikoSyntaxTreePushRight(Operator, LeftOperand);
     SilikoSyntaxTreePushRight(Operator, RightOperand);
 </programlisting>
@@ -549,9 +554,12 @@ equivalent. Thus, the above code sample could also have been written as
 the following:</para>
 
 <programlisting language="C">
-    SilikoSyntaxTreeNode *Operator = SilikoSyntaxTreeNewBranch(&quot;add&quot;);
-    SilikoSyntaxTreeNode *LeftOperand = SilikoSyntaxTreeNewInteger(2);
-    SilikoSyntaxTreeNode *RightOperand = SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *Operator =
+        SilikoSyntaxTreeNewBranch(&quot;add&quot;);
+    SilikoSyntaxTreeNode *LeftOperand =
+        SilikoSyntaxTreeNewInteger(2);
+    SilikoSyntaxTreeNode *RightOperand =
+        SilikoSyntaxTreeNewInteger(2);
     SilikoSyntaxTreePushLeft(Operator, RightOperand);
     SilikoSyntaxTreePushLeft(Operator, LeftOperand);
 </programlisting>
