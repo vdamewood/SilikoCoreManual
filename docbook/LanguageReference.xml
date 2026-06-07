@@ -153,8 +153,8 @@ described in
 section of the W3 XML Reccomendation</link>.</para>
 
 <para><productionset xml:id="LanguageReference.W3Grammar">
-<production xml:id="LanguageReference.W3Grammar.line">
-  <lhs>line</lhs>
+<production xml:id="LanguageReference.W3Grammar.Line">
+  <lhs>Line</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
@@ -224,8 +224,8 @@ section of the W3 XML Reccomendation</link>.</para>
 </production>
 <production xml:id="LanguageReference.W3Grammar.number">
   <lhs>number</lhs>
-  <rhs>&quot;-&quot;?
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+  <rhs>(&quot;-&quot;
+    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>)?
     <nonterminal def="LanguageReference.W3Grammar.unumber">unumber</nonterminal></rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.unumber">
