@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <refentry version="5.1"
   xml:id="Api.SilikoNodePruneChild"
   xmlns="http://docbook.org/ns/docbook">
