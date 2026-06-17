@@ -18,7 +18,7 @@ as this:
 
 <screen>
 ./tutorial &quot;2 + 3 * 5&quot;
-> 17
+&gt; 17
 </screen>
 
 This tutorial assumes you can build with a library and write C code. If
