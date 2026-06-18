@@ -4,15 +4,17 @@
 <?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
   schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <article version="5.1" xml:id="Build"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook">
 <info>
   <title>Building Siliko Core</title>
 </info>
 
-<para>Siliko Core includes files to use CMake https://www.cmake.org to
-generate a build system. Developers can build Siliko Core separately
-from projects that use it, or they can drop Siliko Core into their own
-project’s source code direcxtory as a subdirectory and build Siliko
+<para>Siliko Core includes files to use
+<link xlink:href="https://www.cmake.org">CMake</link> to generate a
+build system. Developers can build Siliko Core separately from projects
+that use it, or they can drop Siliko Core into their own
+project’s source code directory as a subdirectory and build Siliko
 Core alongside their own project using CMake.</para>
 
 <section>
@@ -20,23 +22,77 @@ Core alongside their own project using CMake.</para>
   <title>Requirements and Support</title>
 </info>
 
-<para>Siliko Core requires only a C toolchain, a build tool, and CMake to
-build. Siliko core is written, hopefully, to support as many systems and
+<para>Siliko Core requires a C toolchain, a build tool, and CMake to
+build. Siliko Core is written, hopefully, to support as many systems and
 configurations as possible, but can only be tested on a few systems.
-Siliko Core is tested on FreeBSD, Linux, macOS, and Windows using Clang
-on all systems, GCC on Linux and Windows, and MSVC on Windows. On macOS,
-Apple’s custom build of Clang is used. On Windows, GCC is used with
-MinGW-w64, as built and provided by MSYS2. The build process is
-extensively tested with Ninja on all configurations. Building with GNU
-Make is also tested on macOS, Linux, and Windows with MSYS2. Building
-with xcodebuild and msbuild are also supported on macOS and Windows
-respectively.</para>
+Siliko Core is tested on the following configurations:
 
-<para>Note for Visual Studio: You will need to set up appropriate environment
+<table>
+  <title>Siliko Build Configurations</title>
+<tgroup cols="4">
+<thead>
+  <row>
+    <entry>Environment</entry>
+    <entry>Toolchain</entry>
+    <entry>Build Tools</entry>
+    <entry>ISAs</entry>
+  </row>
+</thead>
+<tbody>
+  <row>
+    <entry>FreeBSD</entry>
+    <entry>Clang</entry>
+    <entry>Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+  <row>
+    <entry>Linux (Fedora)</entry>
+    <entry>GCC</entry>
+    <entry>Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+  <row>
+    <entry>Linux (Fedora)</entry>
+    <entry>Clang</entry>
+    <entry>Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+  <row>
+    <entry>macOS</entry>
+    <entry>Apple Clang</entry>
+    <entry><command>xcodebuild</command>, Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+  <row>
+    <entry>Windows</entry>
+    <entry>Visual C++</entry>
+    <entry><command>msbuild</command>, Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+  <row>
+    <entry>Windows with MSYS2</entry>
+    <entry>GCC</entry>
+    <entry>Ninja, GNU Make</entry>
+    <entry>x86-64</entry>
+  </row>
+  <row>
+    <entry>Windows with MSYS2</entry>
+    <entry>Clang</entry>
+    <entry>Ninja, GNU Make</entry>
+    <entry>ARM64, x86-64</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+</para>
+
+<note>
+<para>For Visual C++, you will need to set up appropriate environment
 variables so CMake can find your toolchain, build tool, and libraries.
 You can use the various developer command prompt items installed with
 Visual Studio to ensure these environment variables are set. Check the
-Visual Studio submenu in the Start menu.</para>
+Visual Studio submenu in the <guimenu>Start</guimenu> menu.</para>
+</note>
 </section>
 
 <section>
@@ -47,8 +103,7 @@ Visual Studio submenu in the Start menu.</para>
 <para>Building Siliko Core is done in two phases, first there is
 configuration, and second is the build proper. After that, Siliko Core
 can be installed or packaged. Under normal conditions, you can configure
-Siliko Core by first making an empty directory, and changing your
-working directory to that directory, then running the
+Siliko Core by first making an empty directory, then running the
 <command>cmake</command> command.</para>
 
 <cmdsynopsis>
@@ -60,7 +115,7 @@ working directory to that directory, then running the
 
 <para>The optional <option>-G</option> flag tells CMake which generator
 to use. Each generator coresponds to a build tool used during the actual
-build process. For example, to use the Ninja build system, you can
+build process. For example, to use the Ninja build tool, you can
 specify <option>-GNinja</option>. If the <option>-G</option> flag is not
 used, CMake will use a default for the system, the latest version of
 Visual Studio on Windows, or Unix Makefiles on other systems. The files
@@ -85,29 +140,16 @@ make a release build, using Ninja to build:</para>
 cmake -GNinja \
   -DCMAKE_BUILD_TYPE:STRING=Release \
   -DBUILD_SHARED_LIBS:BOOL=On \
-  $HOME/src/siliko
+  -S $HOME/src/siliko \
+  -B $HOME/build/siliko
 </screen>
 
-<para>Once CMake has configured Siliko Core, you can use your selected
-build tool (or <command>cmake --build</command>) to run the build
-proper. For example:</para>
+<para>Once CMake has configured Siliko Core, you can use
+<command>cmake --build</command> to run the build proper.</para>
 
 <screen>
-ninja
+cmake --build $HOME/build/siliko
 </screen>
-
-<para>or:</para>
-
-<screen>
-cmake --build .
-</screen>
-
-<note><para>The <literal>.</literal> in the command represents the
-current directory, when you use CMake to run your build tool for you,
-CMake needs to be pointed to the directory where the build files are, so
-a single dot is used here assuming you’re running
-<command>cmake --build</command> right after running CMake to configure
-your project.</para></note>
 </section>
 
 <section>
@@ -119,13 +161,13 @@ your project.</para></note>
 directory so you can use it in your project. CMake automatically picks
 an installation location such as <filename>/usr/local</filename> on Unix
 systems and <filename>C:\Program Files\SilikoCore</filename> on Windows.
-Siliko does not depend on its installation location, so you may install
-the files wherever you wish. For example, to install to
-<envar>$HOME</envar><filename>/stage/siliko-core</filename> you can use
+Siliko Core does not depend on its installation location, so you may
+install the files wherever you wish. For example, to install to
+<envar>$HOME</envar><filename>/stage/siliko</filename> you can use
 this command:</para>
 
 <screen>
-cmake --install . --prefix=$HOME/stage/siliko-core
+cmake --install $HOME/build/siliko --prefix=$HOME/stage/siliko
 </screen>
 
 <para>Once Siliko Core is installed, you should have either one of two
@@ -138,7 +180,7 @@ Siliko Core wasn’t tested.</para>
 <itemizedlist>
 <listitem><para><filename>bin/</filename>: Windows only, holds the
   <filename>SilikoCore.dll</filename> file if Siliko Core
-  was built as a shared library on Windows</para></listitem>
+  was built as a shared library</para></listitem>
 <listitem><para><filename>lib/</filename> (or something else starting
   with <filename>lib...</filename>): the Siliko Core library files,
   including:
@@ -147,12 +189,12 @@ Siliko Core wasn’t tested.</para>
       or import library for DLL built with MSVC</para></listitem>
     <listitem><para><filename>SilikoCore.dll.a</filename>: import
       library for a DLL built with GCC or Clang</para></listitem>
-    <listitem><para><filename>SilikoCore.a</filename>: static library on
-      non-Windows systems</para></listitem>
+    <listitem><para><filename>SilikoCore.a</filename>: static library
+      built with GCC or Clang</para></listitem>
     <listitem><para><filename>SilikoCore.so</filename>: shared library
-      on systems other than Windows and macOS</para></listitem>
+      on FreeBSD, Linux, and similar systems</para></listitem>
     <listitem><para><filename>SilikoCore.dylib</filename>: shared
-      library on macOS systems</para></listitem>
+      library on macOS</para></listitem>
     <listitem><para><filename>cmake/SilikoCore/</filename>: a directory
       containing various files used by CMake to configure projects that
       use Siliko Core</para></listitem>
@@ -164,15 +206,16 @@ Siliko Core wasn’t tested.</para>
 </itemizedlist>
 
 <para>In the second layout, on macOS, when Siliko Core is built with
-<varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> set, Siliko Core is laid
-out as a macOS framework. When built like this, everything is located in
-<filename>Frameworks/SilikoCore.framework/</filename> in standard
-locations specified by Apple. In the base directory are symbolic links
-to files and directories in <filename>Versions/Current</filename> within
-the framework, and <filename>Versions/Current</filename> is itself a
-symbolic link to a directory with a name matching the version number of
-Siliko Core, such as <filename>Versions/1.0.0/</filename>, which
-contains the actual contents of the framework.</para>
+<varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> enabled, Siliko Core is
+laid out as a macOS framework. When built like this, everything is
+located in <filename>Frameworks/SilikoCore.framework/</filename> in
+standard locations specified by Apple. In the base directory are
+symbolic links to files and directories in
+<filename>Versions/Current</filename> within the framework, and
+<filename>Versions/Current</filename> is itself a symbolic link to a
+directory with a name matching the version number of Siliko Core, such
+as <filename>Versions/1.0.0/</filename>, whic contains the actual files
+within the framework.</para>
 
 <itemizedlist>
 <listitem><para><filename>SilikoCore</filename>: This file is the
@@ -201,15 +244,15 @@ Siliko supports these values for all systems:</para>
   single-configuration generator, such as Unix Makefiles, or Ninja,
   set to <literal>Release</literal> for a release build, or to
   <literal>Debug</literal> for a debug build. Leave this unset if you
-  are using a Multi-Config build tool, including Xcode and Visual
+  are using a Multi-Config generator, including Xcode and Visual
   Studio.</para></listitem>
 <listitem><para><varname>SILIKO_CORE_INSTALL_CMAKEDIR</varname>
   (<type>STRING</type>): Location to install CMake files used by other
   projects to find Siliko (ignored if
-  <varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> is on). Specify a
+  <varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> is enabled). Specify a
   relative path to the install location. Default:
-  <literal>lib/cmake/Siliko</literal> or similar, depending on the
-  system.</para></listitem>
+  <literal>&quot;lib/cmake/Siliko&quot;</literal> or similar, depending
+  on the system.</para></listitem>
 </itemizedlist>
 
 <para>These values are specific to macOS:</para>
@@ -225,7 +268,7 @@ Siliko supports these values for all systems:</para>
   <literal>On</literal></para></listitem>
 <listitem><para><varname>SILIKO_CORE_INSTALL_FRAMEWORKDIR</varname>
   (<type>STRING</type>): Locaton to install framework (ignored if
-  <varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> is off). Specify
+  <varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> is disabled). Specify
   relative to the installation location. Default:
   <literal>&quot;Frameworks&quot;</literal></para></listitem>
 </itemizedlist>
