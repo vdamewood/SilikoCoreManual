@@ -39,7 +39,7 @@
 <text x="58" y="44" class="nonterminal">space</text>
 
 <rect x="117" y="32" height="16" width="19" rx="8"/>
-<text x="123" y="44" class="terminal">*</text>
+<text x="123" y="44" class="terminal">^</text>
 
 <rect x="160" y="32" height="16" width="41"/>
 <text x="166" y="44" class="nonterminal">space</text>

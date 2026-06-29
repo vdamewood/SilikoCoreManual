@@ -117,7 +117,7 @@ the C standard-library <function>strtof</function> function to get the
 Siliko’s infix language supports six operators: <literal>+</literal> for
 addition, <literal>-</literal> for subtraction, <literal>*</literal> for
 multiplication, <literal>/</literal> for division, <literal>^</literal>
-for exponentiationand, and <literal>d</literal> for die rolls. Because
+for exponentiation, and <literal>d</literal> for die rolls. Because
 addition, subtraction, multiplication, and division are left
 associative, the infix parser builds syntax trees in reverse when
 parsing sequences of these operators. These operators are also
