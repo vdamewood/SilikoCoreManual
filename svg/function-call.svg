@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="417" height="32" xmlns="http://www.w3.org/2000/svg">
+
+<style type="text/css">
+  @namespace "http://www.w3.org/2000/svg";
+  path, rect, polygon {
+    stroke: black;
+    stroke-width: 1;
+  }
+
+  path {
+    fill: none;
+  }
+
+  rect, polygon {
+    fill: #ddd;
+  }
+
+  text.nonterminal {
+    font-family: "Myriad Pro";
+    font-size: 12px;
+  }
+
+  text.terminal {
+    font-family: "Letter Gothic Std";
+    font-weight: bold;
+    font-size: 12px;
+  }
+</style>
+
+<polygon points=" 28 16  18 12  18 16   8 12   8 20  18 16  18 20"/>
+<polygon points="409 16 399 20 399 16 389 20 389 12 399 16 399 12"/>
+
+<rect x="40" y="8" height="16" width="22"/>
+<text x="46" y="20" class="nonterminal">id</text>
+
+<rect x="74" y="8" height="16" width="41"/>
+<text x="80" y="20" class="nonterminal">space</text>
+
+<rect x="127" y="8" height="16" width="19" rx="8"/>
+<text x="133" y="20" class="terminal">(</text>
+
+<rect x="158" y="8" height="16" width="41"/>
+<text x="164" y="20" class="nonterminal">space</text>
+
+<rect x="211" y="8" height="16" width="82"/>
+<text x="217" y="20" class="nonterminal">argument-list</text>
+
+<rect x="305" y="8" height="16" width="41"/>
+<text x="311" y="20" class="nonterminal">space</text>
+
+<rect x="358" y="8" height="16" width="19" rx="8"/>
+<text x="364" y="20" class="terminal">)</text>
+
+<path d="
+  M 28 16 h 12
+  m 22 0 h 12
+  m 41 0 h 12
+  m 19 0 h 12
+  m 41 0 h 12
+  m 82 0 h 12
+  m 41 0 h 12
+  m 19 0 h 12
+"/>
+
+</svg>

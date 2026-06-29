@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="200" height="56" xmlns="http://www.w3.org/2000/svg">
+
+<style type="text/css">
+  @namespace "http://www.w3.org/2000/svg";
+  path, rect, polygon {
+    stroke: black;
+    stroke-width: 1;
+  }
+
+  path {
+    fill: none;
+  }
+
+  rect, polygon {
+    fill: #ddd;
+  }
+
+  text.nonterminal {
+    font-family: "Myriad Pro";
+    font-size: 12px;
+  }
+
+  text.terminal {
+    font-family: "Letter Gothic Std";
+    font-weight: bold;
+    font-size: 12px;
+  }
+</style>
+
+<polygon points=" 28 16  18 12  18 16   8 12   8 20  18 16  18 20"/>
+<polygon points="192 16 182 20 182 16 172 20 172 12 182 16 182 12"/>
+
+<rect x="52" y="32" height="16" width="96" rx="8"/>
+<text x="58" y="44" class="terminal">[#x9-#xD#20]</text>
+
+<path d="
+  M 28 16 h 144
+  M 52 40 q -12 0 -12 -12 q 0 -12 12 -12
+  M 148 40 q 12 0 12 -12 q 0 -12 -12 -12
+"/>
+
+</svg>

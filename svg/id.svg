@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="440" height="152" xmlns="http://www.w3.org/2000/svg">
+
+<style type="text/css">
+  @namespace "http://www.w3.org/2000/svg";
+  path, rect, polygon {
+    stroke: black;
+    stroke-width: 1;
+  }
+
+  path {
+    fill: none;
+  }
+
+  rect, polygon {
+    fill: #ddd;
+  }
+
+  text.nonterminal {
+    font-family: "Myriad Pro";
+    font-size: 12px;
+  }
+
+  text.terminal {
+    font-family: "Letter Gothic Std";
+    font-weight: bold;
+    font-size: 12px;
+  }
+</style>
+
+<polygon points=" 28 16  18 12  18 16   8 12   8 20  18 16  18 20"/>
+<polygon points="432 16 422 20 422 16 412 20 412 12 422 16 422 12"/>
+
+<rect x="52" y="8" height="16" width="131" rx="8"/>
+<text x="58" y="20" class="terminal">[a-cf-oq-zA-Z0-9]</text>
+
+<rect x="52" y="32" height="16" width="19" rx="8"/>
+<text x="58" y="44" class="terminal">d</text>
+
+<rect x="83" y="32" height="16" width="68" rx="8"/>
+<text x="89" y="44" class="terminal">[A-Za-z]</text>
+
+<rect x="52" y="56" height="16" width="19" rx="8"/>
+<text x="58" y="68" class="terminal">e</text>
+
+<rect x="138" y="56" height="16" width="89" rx="8"/>
+<text x="144" y="68" class="terminal">[A-Za-z0-9]</text>
+
+<rect x="52" y="80" height="16" width="19" rx="8"/>
+<text x="58" y="92" class="terminal">p</text>
+
+<rect x="95" y="80" height="16" width="19" rx="8"/>
+<text x="101" y="92" class="terminal">i</text>
+
+<rect x="95" y="104" height="16" width="110" rx="8"/>
+<text x="101" y="116" class="terminal">[A-hj-Za-z0-9]</text>
+
+<rect x="275" y="32" height="16" width="89" rx="8"/>
+<text x="281" y="44" class="terminal">[A-Za-z0-9]</text>
+
+<path d="
+  M 28 16 h 24
+  m 131 0 h 229
+
+  M 28 16 q 12 0 12 12 q 0 12 12 12
+  m 19 0 h 12
+  m 68 0 h 76 q 12 0 12 -12 q 0 -12 12 -12
+
+  M 40 28 v 24 q 0 12 12 12
+  m 19 0 h 67
+  m 89 0 q 12 0 12 -12 v -24
+  m 125 -12
+    q 12 0 12 12
+    q 0 12 -12 12
+  m -89 0
+    q -12 0 -12 -12
+    q 0 -12 12 -12
+
+  M 40 52 v 24 q 0 12 12 12
+  m 19 0 h 24
+  m 19 0  q 12 0 12 -12 q 0 -12 12 -12
+
+
+  M 71 88 q 12 0 12 12 q 0 12 12 12
+  m 110 0 h 22 q 12 0 12 -12 v -48
+
+  M 83 100 v 24 q 0 12 12 12 h 291
+    q 12 0 12 -12
+    v -96
+    q 0 -12 12 -12
+"/>
+
+</svg>

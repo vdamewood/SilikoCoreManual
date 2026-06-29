@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="229" height="56" xmlns="http://www.w3.org/2000/svg">
+
+<style type="text/css">
+  @namespace "http://www.w3.org/2000/svg";
+  path, rect, polygon {
+    stroke: black;
+    stroke-width: 1;
+  }
+
+  path {
+    fill: none;
+  }
+
+  rect, polygon {
+    fill: #ddd;
+  }
+
+  text.nonterminal {
+    font-family: "Myriad Pro";
+    font-size: 12px;
+  }
+
+  text.terminal {
+    font-family: "Letter Gothic Std";
+    font-weight: bold;
+    font-size: 12px;
+  }
+</style>
+
+<polygon points=" 28 16  18 12  18 16   8 12   8 20  18 16  18 20"/>
+<polygon points="221 16 211 20 211 16 201 20 201 12 211 16 211 12"/>
+
+<rect x="52" y="8" height="16" width="68"/>
+<text x="58" y="20" class="nonterminal">expression</text>
+
+<rect x="52" y="32" height="16" width="41"/>
+<text x="58" y="44" class="nonterminal">space</text>
+
+<rect x="105" y="32" height="16" width="19" rx="8"/>
+<text x="111" y="44" class="terminal">,</text>
+
+<rect x="136" y="32" height="16" width="41"/>
+<text x="142" y="44" class="nonterminal">space</text>
+
+<path d="
+  M 28 16 h 24
+  m 68 0 h 81
+  m -24 0 q 12 0 12 12 q 0 12 -12 12
+  m -41 0 h -12
+  m -19 0 h -12
+  m -41 0
+   q -12 0 -12 -12 q 0 -12 12 -12
+"/>
+
+</svg>

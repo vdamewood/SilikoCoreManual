@@ -4,6 +4,7 @@
 <?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
   schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <article version="5.1" xml:id="LanguageReference"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook">
 <info>
@@ -26,8 +27,44 @@ ignored.</para>
 
 <section>
 <info>
+  <title>Lines</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/line.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+
+<para>Every string or characters processed by the infix parser is called
+a line. A line consists of an expression, surrounded by whitespace,
+ending with a null character. </para>
+</section>
+
+<section>
+<info>
+    <title>Whitespace</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/space.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+
+<para>Except to seperate tokens, whitespace is ignored.</para>
+</section>
+
+<section>
+<info>
     <title>Numbers</title>
 </info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/number.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
 
 <para>A number, can be either an <type>integer</type>, or a
 <type>real</type>. Numbers may optionally be proceeded by a minus
@@ -37,6 +74,12 @@ sign (<literal>-</literal>).</para>
 <info>
   <title>Integers</title>
 </info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/integer.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
 
 <para>An <type>integer</type> is a series of one or more decimal digits.
 The tokenizer passes the series of digits to the C standard-library
@@ -48,6 +91,12 @@ value.</para>
 <info>
   <title>Real Numbers</title>
 </info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/real.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
 
 <para>A <type>real</type> can take one of two forms. In the first form,
 it is is either the strings <literal>e</literal>, or
@@ -120,12 +169,67 @@ function calls from these operations.</para>
 <para>Die rolls can only take a positive integer literal as the second
 operand, so die rolls can’t be chained like other operands. All other
 operators may take arbitrairy expressions as their operands.</para>
+
+<section>
+<info>
+  <title>Expressions</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/expression.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
 </section>
 
 <section>
 <info>
-  <title>Parentheses</title>
+  <title>Terms</title>
 </info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/term.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+</section>
+
+<section>
+<info>
+  <title>Exponents</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/exponent.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+</section>
+
+<section>
+<info>
+  <title>Rolls</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/roll.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+</section>
+
+</section>
+
+<section>
+<info>
+  <title>Atoms</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/atom.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
 
 <para>The Siliko infix language uses parentheses to isolate a portion of
 an expression from the order of operations. Anything inside a pair of
@@ -138,12 +242,40 @@ and operations.</para>
   <title>Function Calls</title>
 </info>
 
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/function-call.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+
 <para>Function calls take the form
 <replaceable>function-name</replaceable><literal>(</literal><replaceable>arguments</replaceable><literal>)</literal>.
 <replaceable>arguments</replaceable> is a comma-separated list of
 expressions. How many parameters a function takes is defined by the
 function, but Siliko Core’s parser requires at least one argument for
 any function call.</para>
+
+<section>
+<info>
+  <title>Identifier</title>
+</info>
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/id.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+</section>
+
+<section>
+<info>
+  <title>Argument Lists</title>
+</info>
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/argument-list.svg" format="svg" scale="100"/>
+  </imageobject>
+</mediaobject>
+</section>
 </section>
 
 <section>
@@ -156,26 +288,26 @@ described in
 <link xlink:href="https://www.w3.org/TR/xml/#sec-notation">the Notation
 section of the W3 XML Reccomendation</link>.</para>
 
-<para><productionset xml:id="LanguageReference.W3Grammar">
+<para><productionset continuation="restarts" xml:id="LanguageReference.W3Grammar">
 <production xml:id="LanguageReference.W3Grammar.Line">
   <lhs>Line</lhs>
-  <rhs><nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+  <rhs><nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     #x0</rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.expression">
   <lhs>expression</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;+&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;-&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal></rhs>
@@ -183,33 +315,33 @@ section of the W3 XML Reccomendation</link>.</para>
 <production xml:id="LanguageReference.W3Grammar.term">
   <lhs>term</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;*&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.term">term</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;/&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal></rhs>
 </production><production xml:id="LanguageReference.W3Grammar.exponent">
   <lhs>exponent</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.roll">roll</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;^&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.exponent">exponent</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.roll">roll</nonterminal></rhs>
 </production><production xml:id="LanguageReference.W3Grammar.roll">
   <lhs>roll</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.atom">atom</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;d&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.integer">integer</nonterminal>
     |
     <nonterminal def="LanguageReference.W3Grammar.atom">atom</nonterminal></rhs>
@@ -219,9 +351,9 @@ section of the W3 XML Reccomendation</link>.</para>
   <rhs><nonterminal def="LanguageReference.W3Grammar.number">number</nonterminal>
     |
     &quot;(&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;)&quot;
     |
     <nonterminal def="LanguageReference.W3Grammar.function-call">function-call</nonterminal></rhs>
@@ -229,37 +361,35 @@ section of the W3 XML Reccomendation</link>.</para>
 <production xml:id="LanguageReference.W3Grammar.number">
   <lhs>number</lhs>
   <rhs>(&quot;-&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>)?
-    <nonterminal def="LanguageReference.W3Grammar.unumber">unumber</nonterminal></rhs>
-</production>
-<production xml:id="LanguageReference.W3Grammar.unumber">
-  <lhs>unumber</lhs>
-  <rhs><nonterminal def="LanguageReference.W3Grammar.integer">integer</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>)?
+    (
+    <nonterminal def="LanguageReference.W3Grammar.integer">integer</nonterminal>
     |
-    <nonterminal def="LanguageReference.W3Grammar.real">real</nonterminal></rhs>
+    <nonterminal def="LanguageReference.W3Grammar.real">real</nonterminal>
+    )</rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.function-call">
   <lhs>function-call</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.id">id</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;(&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.argument-list">argument-list</nonterminal>
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;)&quot;</rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.argument-list">
   <lhs>argument-list</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
     (
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     &quot;,&quot;
-    <nonterminal def="LanguageReference.W3Grammar.S">S</nonterminal>
+    <nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
     <nonterminal def="LanguageReference.W3Grammar.expression">expression</nonterminal>
     )*</rhs>
 </production>
-<production xml:id="LanguageReference.W3Grammar.S">
-  <lhs>S</lhs>
+<production xml:id="LanguageReference.W3Grammar.space">
+  <lhs>space</lhs>
   <rhs>[#x9-#xD#x20]* /* \t \n \v \f \r and ' ' */</rhs>
 </production>
 <production xml:id="LanguageReference.W3Grammar.integer">
