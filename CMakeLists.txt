@@ -206,6 +206,7 @@ list(APPEND FO_FILES "${FO_DIR}/SilikoCoreManual.fo")
 list(APPEND BOOK_PDF_FILES "${PDF_DIR}/SilikoCoreManual.pdf")
 add_custom_command(
     OUTPUT ${FO_DIR}/SilikoCoreManual.fo
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}
     COMMAND ${SAXON} -xi
         -o:${CMAKE_CURRENT_BINARY_DIR}/${FO_DIR}/SilikoCoreManual.fo
         -s:${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}/SilikoCoreManual.xml
@@ -221,6 +222,7 @@ list(APPEND FO_FILES ${FO_DIR}/ApiReference.fo)
 list(APPEND ARTICLE_PDF_FILES "${PDF_DIR}/ApiReference.pdf")
 add_custom_command(
     OUTPUT ${FO_DIR}/ApiReference.fo
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}
     COMMAND ${SAXON} -xi
         -o:${CMAKE_CURRENT_BINARY_DIR}/${FO_DIR}/ApiReference.fo
         -s:${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}/ApiReference.xml
@@ -240,8 +242,9 @@ foreach(XML_FILE ${ARTICLE_NX_FILES})
 
     add_custom_command(
         OUTPUT ${FO_DIR}/${FO_FILE}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}
         COMMAND ${SAXON}
-            -o:${FO_DIR}/${FO_FILE}
+            -o:${CMAKE_CURRENT_BINARY_DIR}/${FO_DIR}/${FO_FILE}
             -s:${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}/${XML_FILE}
             -xsl:${CMAKE_CURRENT_SOURCE_DIR}/${XSL_DIR}/fo.article.xsl
         DEPENDS
@@ -280,7 +283,7 @@ foreach(XML_FILE ${REFENTRY_NX_FILES})
     add_custom_command(
         OUTPUT ${FO_DIR}/${FO_FILE}
         COMMAND ${SAXON}
-            -o:${FO_DIR}/${FO_FILE}
+            -o:${CMAKE_CURRENT_BINARY_DIR}/${FO_DIR}/${FO_FILE}
             -s:${CMAKE_CURRENT_SOURCE_DIR}/${DB_DIR}/${XML_FILE}
             -xsl:${CMAKE_CURRENT_SOURCE_DIR}/${XSL_DIR}/fo.refentry.xsl
         DEPENDS
@@ -307,10 +310,11 @@ foreach(FO_FILE ${FO_FILES})
     string(REPLACE "${FO_DIR}/" "${PDF_DIR}/" PDF_FILE ${PDF_FILE})
     add_custom_command(
         OUTPUT ${PDF_FILE}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${FO_DIR}
         COMMAND ${FOP}
             -c ${FOP_CONFIG_FILE}
-            ${FO_FILE}
-            ${PDF_FILE}
+            ${CMAKE_CURRENT_BINARY_DIR}/${FO_FILE}
+            ${CMAKE_CURRENT_BINARY_DIR}/${PDF_FILE}
         DEPENDS
             ${FO_FILE}
     )
