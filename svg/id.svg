@@ -31,8 +31,8 @@
 <polygon points=" 28 16  18 12  18 16   8 12   8 20  18 16  18 20"/>
 <polygon points="432 16 422 20 422 16 412 20 412 12 422 16 422 12"/>
 
-<rect x="52" y="8" height="16" width="131" rx="8"/>
-<text x="58" y="20" class="terminal">[a-cf-oq-zA-Z0-9]</text>
+<rect x="52" y="8" height="16" width="110" rx="8"/>
+<text x="58" y="20" class="terminal">[a-cf-oq-zA-Z]</text>
 
 <rect x="52" y="32" height="16" width="19" rx="8"/>
 <text x="58" y="44" class="terminal">d</text>
@@ -60,7 +60,7 @@
 
 <path d="
   M 28 16 h 24
-  m 131 0 h 229
+  m 110 0 h 250
 
   M 28 16 q 12 0 12 12 q 0 12 12 12
   m 19 0 h 12
