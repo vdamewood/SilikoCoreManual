@@ -7,12 +7,12 @@
   xml:id="Api.SilikoStringInputCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoStringInputCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoStringInputCreate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Create an input from a string</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,19 +22,20 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SiikoStringSourceNew` calls `SiikoInputSourceNew` to create a
-`SiikoInputSource` that reads from a string.
-
-* `InputString` is a string to read input characters from.
-  `SiikoStringSourceNew` copies the string, so the InputString passed
-  is still managed by the caller.</para>
+<para>The <function>SiikoStringInputCreate</function> function calls
+<function>SiikoInputCreate</function> to create a
+<type>SiikoInput</type> that reads from a duplicate of
+<varname>input_string</varname>. Since <varname>input_string</varname>
+is duplicated, it is still managed by the calling context.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>If successful, `SiikoStringSourceNew` returns pointer
-to a new `SilikoInputSource` object returned by `SilikoInputSourceNew`.
-On failure, `SiikoStringSourceNew` retruns `NULL`. </para>
+<para>If successful, <function>SiikoStringInputCreate</function> returns
+a pointer to a new <type>SiikoInput</type> object returned by
+<function>SiikoInputCreate</function>. On failure, such as when out of
+memory, <function>SiikoStringInputCreate</function> retruns
+<literal>NULL</literal>. </para>
 </refsection>
 </refentry>

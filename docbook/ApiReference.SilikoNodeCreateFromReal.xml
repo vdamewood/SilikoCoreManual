@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCreateFromReal"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCreateFromReal</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCreateFromReal</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create a new real leaf node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,16 +22,16 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNewFromFloat` function generates a new leaf node
-from a floating-point value.</para>
+<para>The <function>SilikoNodeCreateFromReal</function> function
+generates a new real-number leaf node from <varname>source</varname>
+value.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeNewFromFloat` returns a pointer to a
-new leaf `SilikoSyntaxTreeNode` object with the value passed on
-success, or `NULL` if there was a memory error.
-</para>
+<para><function>SilikoNodeCreateFromReal</function> returns a pointer to
+a new leaf <type>SilikoNode</type> object with the value passed on
+success, or <literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeNegate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle><function>SilikoNodeNegate</function></refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeNegate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Negate the value in a node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,10 +23,15 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNegate` function negates the value of a syntax
-tree node.
-
-* `SyntaxTree` is the syntax tree to negate.
-</para>
+<para>The <function>SilikoNodeNegate</function> function negates the
+value of <varname>object</varname>. If <varname>object</varname> is a
+leaf node holding an error, <function>SilikoNodeNegate</function> does
+nothing. If <varname>object</varname> is a leaf node holding an
+<type>integer</type> then the value is multiplied by
+<literal>-1</literal> in place. If <varname>object</varname> is a leaf
+node represending a <type>real</type>, then the value is multiplied by
+<literal>-1.0</literal> in place. If <varname>object</varname> is a
+branch node, then a flag is toggled to negate the value when
+<varname>object</varname> is evaluated.</para>
 </refsection>
 </refentry>

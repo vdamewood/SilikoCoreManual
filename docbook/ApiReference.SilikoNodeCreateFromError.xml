@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeFromError"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCreateFromError</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCreateFromError</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create an error node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,15 +22,16 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNewError` function creates new
-`SilikoSyntaxTreeNode` object representing a syntax error.</para>
+<para>The <function>SilikoNodeCreateFromError</function> function
+creates a new <type>SilikoNode</type> object representing an error as
+specifyed by <varname>source</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeNewError` returns a pointer to a
-new error `SilikoSyntaxTreeNode` object on success, or `NULL` if there
-was a memory error.</para>
+<para><function>SilikoNodeCreateFromError</function> returns a pointer
+to a new error <type>SilikoNode</type> object on success, or
+<literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

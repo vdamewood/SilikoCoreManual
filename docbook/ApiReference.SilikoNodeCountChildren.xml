@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCountChildren"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCountChildren</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCountChildren</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to get the number of child nodes of a branch</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,16 +23,15 @@
 
 <refsection>
 <title>Description</title>
-<para>Gets the number of children branch node has.
-
-* `Parent` is the node from which to retrieve the number of children.</para>
+<para>The <function>SilikoNodeCountChildren</function> function gets the
+number of children a <varname>object</varname> has.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>If `Parent` is a branch node, the return value is the
-number of child nodes the `Parent` has. Otherwise, the return value is
--1 to indicate that `Parent` is not a branch.</para>
+<para>If <varname>object</varname> is a branch node, the return value is
+the number of child nodes <varname>object</varname> has. Otherwise, the
+return value is 0.</para>
 </refsection>
 </refentry>

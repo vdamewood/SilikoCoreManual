@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCreateFromInteger"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCreateFromInteger</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCreateFromInteger</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create a new integer leaf node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,17 +22,16 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNewFromInteger` function generates a new leaf node
-from an integer value.
-
-* `IntegerValue` is the value to be stored in the leaf node.</para>
+<para>The <function>SilikoNodeCreateFromInteger</function> function
+generates a new leaf node from an integer value specified by
+<varname>source</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeNewFromInteger` returns a pointer to
-a new leaf `SilikoSyntaxTreeNode` object with the value passed on success, or
-`NULL` if there was a memory error.</para>
+<para><function>SilikoNodeCreateFromInteger</function> returns a pointer
+to a new leaf <type>>SilikoNode</type> object with the value passed on
+success, or <literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

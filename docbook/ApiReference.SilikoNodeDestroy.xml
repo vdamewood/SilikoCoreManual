@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeDestroy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeDestroy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to delete a node or syntax tree</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,10 +22,8 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeDelete` function deletes a syntax tree node,
-and if the `SilikoSyntaxTreeNode` object is a branch node, deletes its
-child nodes and any other descendant nodes.
-
-* `SyntaxTree` is the `SilikoSyntaxTreeNode` object to delete. </para>
+<para>The <function>SilikoNodeDestroy</function> function deletes a
+<varname>object</varname>, and if <varname>object</varname> is a branch
+node, deletes its child nodes and any other descendant nodes.</para>
 </refsection>
 </refentry>

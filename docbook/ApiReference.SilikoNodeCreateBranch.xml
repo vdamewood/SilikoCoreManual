@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCreateBranch"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCreateBranch</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCreateBranch</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create a new branch node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,17 +22,16 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNewBranch` function creates a new branch
-`SilikoSyntaxTreeNode` object.
-
-* `Id` is the function identifier used by this branch node.</para>
+<para>The <function>SilikoNodeCreateBranch</function> function creates a
+new branch <type>SilikoNode</type> with <varname>function_name</varname>
+as the branch id value.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeNewBranch` returns a pointer to a
-new branch `SilikoSyntaxTreeNode` object with the function identifier
-passed on success, or `NULL` if there was a memory error.</para>
+<para><function>SilikoNodeCreateBranch</function> returns a pointer to a
+new branch <type>SilikoNode</type> object on success, or
+<literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

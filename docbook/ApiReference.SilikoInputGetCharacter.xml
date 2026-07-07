@@ -7,12 +7,12 @@
   xml:id="Api.SilikoGetCharacter"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputGetCharacter</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoInputGetCharacter</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Get the current character from an input</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,24 +22,19 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoDataSourceGet` function gets the current character from a
-`SilikoDataSource` object by calling the get function of the object.
-`Source` is the input source to advance. `Source` must be a value
-returned by `SiolikoDataSourceNew`.
-</para>
+<para>The <function>SilikoInputGetCharacter</function> function gets the
+current character from <varname>object</varname> by calling the
+function pointed to by <varname>getCharacter</varname> in
+the <type>SilikoInputVTable</type> of <varname>object</varname>.</para>
 </refsection>
-
-
-
-
-
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoDataSourceGet` returns return value of the
-call to the get function of the `SilikoDataSource` object (the current
-character if the object has characters to read, or `\0` if the source is
-exhausted).</para>
+<para><function>SilikoInputGetCharacter</function> relays the return
+value of the call to function pointed to by
+<varname>getCharacter</varname>, either the current
+character if <varname>object</varname> has characters to read, or
+<literal>\0</literal> if <varname>object</varname> is exhausted).</para>
 </refsection>
 </refentry>

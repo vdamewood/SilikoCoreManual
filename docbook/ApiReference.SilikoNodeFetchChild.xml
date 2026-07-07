@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeFetchChild"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeFetchChild</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeFetchChild</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve a child from a branch node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,26 +24,20 @@
 
 <refsection>
 <title>Description</title>
-<para>Gets the child of the specified `SilikoSyntaxTreeNode` at the specified
-position, leaving the child in its place.
-
-* `Parent` is a node to get a child node from.
-* `Position` is the position of the requested child. If the value is
-  non-negative, the `Position` is interpreted as an index counting from
-  the left. If the value is negative, `Position` is interpreted as a
-  n index counting from the right, with `-1` as the left element, and
-  so on. If the value passed would count past the end of the list of
-  child nodes, the value is considered out of range, otherwise the value
-  is considered in range.</para>
+<para>The <function>SilikoNodeFetchChild</function> function retrieves
+the child of <varname>object</varname> at the specified
+<varname>child_index</varname>, leaving the child in its place.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>If `parent` is a branch node, and `position` is in
-range, this function returns a pointer to the child. Otherwise, this
-function returns `NULL`. This pointer is still managed by the parent
-and should not be passed to `SilikoSyntaxTreeDelete` or added as a child
-to another branch node.</para>
+<para>If <varname>object</varname> is a branch node, and
+<varname>child_index</varname> is in range,
+<function>SilikoNodeFetchChild</function> returns a pointer to the
+child. Otherwise, <function>SilikoNodeFetchChild</function> returns
+<literal>NULL</literal>. This pointer is still managed by the parent
+and should not be passed to <function>SilikoNodeDestroy</function> or
+added as a child to another branch node.</para>
 </refsection>
 </refentry>

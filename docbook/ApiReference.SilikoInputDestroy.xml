@@ -7,12 +7,12 @@
   xml:id="Api.SilikoInputDestroy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoInputDestroy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Free up resources used by an input</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,11 +22,10 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoDataSourceDelete` function calls the delete function of a
-`SiikoDataSource` object and then deletes the object.
-
-
-* `Source` is the input source to advance. `Source` must be a value
-  returned by `SiolikoDataSourceNew`.</para>
+<para>The <function>SilikoInputDestroy</function> function cleans up
+<varname>object</varname>  by calling the function pointed to by the
+<varname>destroy</varname> pointer in the <type>SilikoInputVTable</type>
+of <varname>object</varname>, and then deletes <varname>object</varname>
+itself.</para>
 </refsection>
 </refentry>

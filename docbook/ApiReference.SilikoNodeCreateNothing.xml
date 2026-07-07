@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCreateNothing"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCreateNothing</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCreateNothing</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create a null node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,17 +22,18 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeNewNothing` function creates a new
-`SilikoSyntaxTreeNode` object representing that the end of input for
-a particular rule has been reached, and that further parsing should be
+<para>The <function>SilikoNodeCreateNothing</function> function creates
+a new <type>SilikoNode</type> object representing that the end of input
+for a particular rule has been reached or that zero items in a
+zero-or-more rule have been read, and that further parsing should be
 done by another rule, such as a parent rule.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeNewError` returns a pointer to a
-new empty `SilikoSyntaxTreeNode` object on success, or `NULL` if there
-was a memory error.</para>
+<para><function>SilikoNodeCreateNothing</function> returns a pointer to
+a new empty <type>SilikoNode</type> object on success, or
+<literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

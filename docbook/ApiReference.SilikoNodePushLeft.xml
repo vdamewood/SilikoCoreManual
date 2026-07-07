@@ -7,12 +7,13 @@
   xml:id="Api.SilikoNodePushLeft"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodePushLeft</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodePushLeft</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to add a child node to a parent node, on the
+    left</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,17 +25,17 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreePushLeft` function adds a child to a branch
-node, to the left of any existing child nodes.
-
-* `BaseTree` is the tree to which the new node is added.
-* `NewBranch` is the new child node to add.</para>
+<para>The <function>SilikoNodePushLeft</function> function adds
+<varname>new_child</varname> to <varname>object</varname>, to the left
+of any existing child nodes.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreePushLeft` returns true if the
-operation was successful, or false if the insertion failed.</para>
+<para><function>SilikoNodePushLeft</function> returns
+<literal>true</literal> if the operation was successful, or
+<literal>false</literal> if the insertion failed, such as if
+<varname>object</varname> is not a branch node.</para>
 </refsection>
 </refentry>

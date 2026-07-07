@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodePruneChild"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodePruneChild</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodePruneChild</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to remove a child from a parent node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,26 +24,22 @@
 
 <refsection>
 <title>Description</title>
-<para>Gets the child of the specified `SilikoSyntaxTreeNode` at the specified
-position, removing the child from the parent.
-
-* `Parent` is a node to get a child node from.
-* `Position` is the position of the requested child. If the value is
-  non-negative, the `Position` is interpreted as an index counting from
-  the left. If the value is negative, `Position` is interpreted as a
-  n index counting from the right, with `-1` as the left element, and
-  so on. If the value passed would count past the end of the list of
-  child nodes, the value is considered out of range, otherwise the value
-  is considered in range.</para>
+<para>The <function>SilikoNodePruneChild</function> function retrieves
+the child of <varname>object</varname> at
+<varname>child_index</varname>, removing the child from
+<varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>If `parent` is a branch node, and `position` is in
-range, this function returns a pointer to the child. Otherwise, this
-function returns `NULL`. This pointer is no longer managed by the parent
-and must be passed to `SilikoSyntaxTreeDelete` or added as a child
-to another branch node to avoid a memory leak.</para>
+<para>If <varname>object</varname> is a branch node, and
+<varname>child_index</varname> is in range,
+<function>SilikoNodePruneChild</function> returns a pointer to the
+child. Otherwise, <function>SilikoNodePruneChild</function> returns
+<literal>NULL</literal>. This pointer is no longer managed by
+<varname>object</varname> and must be passed to
+<function>SilikoNodeDestroy</function> or added as a child to another
+branch node to avoid a memory leak.</para>
 </refsection>
 </refentry>

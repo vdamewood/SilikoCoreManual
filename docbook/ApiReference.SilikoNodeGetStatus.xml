@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeGetStatus"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeGetStatus</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeGetStatus</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Get the status of a node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,16 +23,15 @@
 
 <refsection>
 <title>Description</title>
-<para>The `SilikoSyntaxTreeGetType` function gets the type of the
-`SyntaxTreeNodeObject`.
-
-* `SyntaxTree` is the syntax tree node to prove for its type.</para>
+<para>The <function>SilikoNodeGetStatus</function> function gets the
+status of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para>`SilikoSyntaxTreeGetType` returns a value indicating
-whether the syntax tree node is a leaf, branch, error, or nothing.</para>
+<para><function>SilikoNodeGetStatus</function> returns the status of
+<varname>object</varname>, a value indicating whether
+<varname>object</varname> is a leaf, branch, or nothing.</para>
 </refsection>
 </refentry>
