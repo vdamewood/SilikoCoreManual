@@ -11,10 +11,10 @@
 </info>
 
 <para>Siliko Core provides an interface to integrate parsing and
-mathematical evaluation into a program. A developer can use the simple
-infix parser with the built-in set of functions to provide basic
-functionality, or write their own parser for another syntax, or add
-additional, custom functions to the lnguage.</para>
+evaluating mathematical expressions into a program. A developer can use
+the simple infix parser with the built-in set of functions to provide
+basic functionality, or write their own parser for another syntax, or
+add additional, custom functions to the lnguage.</para>
 
 <section>
 <info>
@@ -56,81 +56,35 @@ additional, custom functions to the lnguage.</para>
 <para>Each header file is associated with a component of Siliko Core,
 such as in-language functions, the lexer, parser, and so on. In the
 <link linkend="Api">API Reference</link> each type and function lists
-which header it requires.</para>
+which header it requires. For convenience,
+<filename>SilikoCore/SilikoCore.h</filename> includes all other
+public headers</para>
 </section>
 
 <section>
 <info>
-  <title>Values and Errors</title>
+  <title>The Parsing Pipeline and the Engine</title>
 </info>
 
-<para>The <filename>SilikoCore/Value.h</filename> header contains three
-types. The <type>SilikoValue</type> type represents a value passed to
-and yielded by the Siliko Core library. The
-<type>SilikoValueStatus</type> enumeration represents which type of
-value a <type>SilikoValue</type> holds: an integer
-(<literal>SilikoValueInteger</literal>), a real number
-(<literal>SilikoValueReal</literal>), or an error
-(<literal>SilikoValueError</literal>). The <type>SilikoError</type>
-enumeration represents an error that Siliko Core can encounter while
-parsing or evaluating expressions, for example a syntax error
-(<literal>SilikoErrorSyntax</literal>) or a division by zero error
-(<literal>SilikoErrorZeroDivision</literal>). For a full list of error
-values, see The <link linkend="Api.SilikoError">SilikoError</link>
-entry in the API Reference.</para>
+<para>Siliko Core uses a pipeline of components to parse input, then
+an engine to evaluate the the resulting syntax tree. The parsing
+pipeline goes through three components: a <type>SilikoInput</type> which
+is responsible for reading characters from some source of text to parse,
+a <type>SilikoLexer</type> which is responsible for converting the
+input characters into meaningful values and symbols, and the
+<function>SilikoParseInfix</function> function which is responsible for
+converting the sequence of symbols and values to an evaluatable
+parse tree.</para>
 
-<para>To make a <type>SilikoValue</type> object, you can use the
-functions, <function>SilikoValueCreateFromInteger</function>, or
-<function>SilikoValueCreateFromReal</function>. These functions take
-a <type>long long int</type>, and <type>double</type>,
-respectively.</para>
+<para>The engine (a <type>SilikoEngine</type> object) is responsible
+for evaluating the syntax tree, and managing the lookup of functions
+that might be used during the evaluation. In the end, The result is
+given as a <type>SilikoValue</type> object which may be an integer, a
+real number, or an error.</para>
 
-<para>
-<programlisting language="C">
-    SilikoValue forty_two = SilikoValueCreateFromInteger(42);
-    SilikoValue pi = SilikoValueCreateFromReal(3.14);
-</programlisting>
-</para>
-
-<para>You can use the <function>SilikoValueGetStatus</function> function
-to determine what type of value a <type>SilikoValue</type> holds. Then,
-based on which type it has, you can use one of
-<function>SilikoValueGetError</function>,
-<function>SilikoValueGetInteger</function>, or
-<function>SilikoValueGetReal</function> to retrieve the value.
-</para>
-
-<para>In the tutorial program, the <type>SilikoValue</type> object
-returned by the parser was simply printed. In a more complex scenario,
-one might imagine using programming logic based on the value of a
-<type>SilikoValue</type>.</para>
-
-<programlisting language="C">
-    SilikoValue result = get_result(); // assume a value from 1 to 20.
-    if (SilikoValueGetStatus(result) == SilikoValueInteger)
-    {
-        if (SilikoValueGetInteger(result) &gt;= 15)
-        {
-            printf(&quot;You find a secret door behind the&quot;
-                &quot; bookcase.\n&quot;);
-        }
-        else
-        {
-            printf(&quot;There appears to be nothing of note in&quot;
-                &quot; the library.\n&quot;);
-        }
-    }
-    else
-    {
-        fprintf(stderr, &quot;Something went wrong.\n&quot;);
-    }
-    SilikoValueDestroy(result);
-</programlisting>
-
-<para>And finally, as we see in this example, when you are done with a
-<type>SilikoValue</type> you must call
-<function>SilikoFunctionDestroy</function> on the
-<type>SilikoValue</type> to avoid memory leaks.</para>
+<para>If you wish, you can implement your own input source, parser,
+or use a different set of functions with the engine, including
+adding your own functions.</para>
 </section>
 
 <section>
@@ -139,12 +93,13 @@ one might imagine using programming logic based on the value of a
 </info>
 
 <para>To provide input to a parser, you must build a
-<type>SilikoInput</type> object that Siliko Core’s lexical analyzer (or
-tokenizer) can use to read input text. To keep the input as versitle as
+<type>SilikoInput</type> object that Siliko Core’s lexical analyzer can
+use to read input text. To keep the input as versitle as
 possible, Siliko Core allows you to construct your own
 <type>SilikoInput</type> behavior to allow for various and disparate
-sources, such as custom string types, network connections, files, or
-anything else that might be developed.</para>
+sources, such as a objects of a GUI library’s custom string type,
+network connections, files, or anything else that might be
+developed.</para>
 
 <section>
 <info>
@@ -160,7 +115,9 @@ that takes a C string as its source.</para>
 
 <para>The <function>SilikoStringInputCreate</function> function will
 copy the string passed to it, and build a new <type>SilikoInput</type>
-object that will read characters from the copied string.</para>
+object that will read characters from the copied string. Other than
+calling this unique function, the resulting <type>SilikoInput</type>
+object is the same as any one made with a custom process.</para>
 </section>
 
 <section>
@@ -168,13 +125,12 @@ object that will read characters from the copied string.</para>
   <title>Building a Custom Input</title>
 </info>
 
-<para>A <type>SilikoInput</type> has five importantant pieces. First, it
+<para>A <type>SilikoInput</type> has two importantant pieces. First, it
 has a state object. This is what you use to keep track of what position
 you are in, which resources you are using, and so on. This should be a
 custom structure that you arrange however you need to fit your custom
-input. The other parts are three function that act on the state object,
-and a <type>SilikoInputVTable</type> structure that that has pointers to
-those three functions.</para>
+input. The second is a <type>SilikoInputVTable</type> which is a table
+of three function pointers that act on the state object.</para>
 
 <programlisting language="C">
 struct SilikoInputVTable
@@ -215,7 +171,7 @@ static char CustomGetCharacter(void *state)
 static void CustomDestroy(void *state)
 {
     struct CustomSourceState *typed_state = state;
-    CustomTypeDestroy(typed_state-&gt;data);
+    /* ... */
     free(state);
 }
 
@@ -225,133 +181,274 @@ static const struct SilikoInputVTable vTable = {
 	.destroy = CustomDestroy
 };
 
-SilikoDataSource *CustomSourceNew(struct MyCustomType *data)
+SilikoDataSource *CustomSourceCreate(struct MyCustomType *data)
 {
-	CustomSourceState *state = NULL;
-	SilikoDataSource *source = NULL;
-
-	if (!(state = malloc(sizeof(CustomSourceState))))
-		return NULL;
+    CustomSourceState *state = NULL;
+    if (!(state = malloc(sizeof(CustomSourceState))))
+		    return NULL;
 
     state-&gt;data = data;
     state-&gt;cursor = 0;
 
+    SilikoDataSource *source = NULL;
     if (!(source = SilikoDataSourceNew(
-		state,
-		CustomSourceAdvance,
-		CustomSourceGet,
-		CustomSourceDelete)))
-	{
-		free(state);
-		return NULL;
-	}
-
-	return source;
+        state,
+        CustomSourceAdvance,
+        CustomSourceGet,
+        CustomSourceDelete)))
+    {
+        free(state);
+        return NULL;
+    }
+    return source;
 }
 </programlisting>
-
 </section>
+
 <section>
 <info>
   <title>Expected Behaviors of Input Functions</title>
 </info>
 
-<para>Siliko Core’s lexer expects data sources to provide a sequence of
-characters. Since it occasionally needs to read the current character
-multiple times, it uses separate <function>advance</function> and
-<function>getCharacter</function> functions to move forward in the
-sequence, and read the current character respectively.</para>
+<para>Siliko Core’s lexical analyzer expects inputs to provide a
+sequence of characters. Since the lexical analyzer occasionally needs to
+read the current character multiple times, it uses separate
+<function>advance</function> and <function>getCharacter</function>
+functions to move forward in the sequence, and read the current
+character respectively.</para>
 
 <para>The <function>advance</function> function should move to the next
-character in the input source, if possible, and return
-<literal>true</literal> if there are more characters to read, and return
-<literal>false</literal> if the input has been exhausted.</para>
+character in the input source, if possible, and must return
+<literal>true</literal> if there are more characters to read, and must
+return <literal>false</literal> if the input has been exhausted.</para>
 
 <para>The <function>getCharacter</function> function returns the current
-character in the sequence. Once the <function>advance</function>
-function returns <literal>false</literal>, indicating the end of input,
-the <function>getCharacter</function> function’s return value should be
-the null character, <literal>'\0'</literal>.</para>
+character in the sequence. Since the lexical analyzer may call this
+function an unspecified number of times between calls to the
+<function>advance</function> function, the
+<function>getCharacter</function> function must be idempotent. Once the
+<function>advance</function> function returns <literal>false</literal>,
+indicating the end of input, the <function>getCharacter</function>
+function’s return value must be the null character,
+<literal>'\0'</literal>.</para>
 
 <para>The <function>destroy</function> function must free up any
 resources used by the <varname>state</varname> object including
 deallocating the <varname>state</varname> object itself. So, if the
 <varname>state</varname> object was allocated with
 <function>malloc</function>, the <varname>state</varname> object should
-be passed to the <function>free</function> function.</para>
+be passed to the <function>free</function> function. If the state
+object was allocated with a platform-specific allocation function,
+the <function>destroy</function> must use the appropriate deallocation
+function to free up the state object.</para>
 </section>
 </section>
 
 <section>
 <info>
-  <title>The Lexer</title>
+  <title>The Lexical Analyzer</title>
 </info>
 
-<para>Siliko Core’s built-in lexer reads characters from a
-<type>SilikoInput</type> object, groups them into lexemes and produces a
-series of tokens from those lexemes. For more detail on the process
-see <link linkend="Parsing">On Parsing</link>.</para>
+<para>Siliko Core’s built-in lexical analyzer, <type>SilikoLexer</type>
+reads characters from a <type>SilikoInput</type> object, groups them
+into lexemes and produces a series of tokens from those lexemes. For
+more detail on the process see
+<link linkend="Parsing">On Parsing</link>.</para>
 
 <section>
 <info>
-  <title>How the Lexer Processes Input</title>
+  <title>How the Lexical Analyzer Processes Input</title>
 </info>
 
-<para>The lexer recognizes the following as single-character lexemes:
-<literal>+</literal>, <literal>-</literal>, <literal>*</literal>,
-<literal>/</literal>, <literal>^</literal>, <literal>,</literal>,
-<literal>(</literal>, <literal>)</literal>. When the lexer encounters
-any one of these characters, it stops processing and yeilds a
-single-character token matching the lexeme. The build-in lexer also
-recognizes <literal>d</literal> as a single-character operator, but will
-look at the next character to make sure it’s not part of a name before
-yielding a token.</para>
+<para>The lexical analyzer recognizes the following as single-character
+lexemes: <literal>+</literal>, <literal>-</literal>,
+<literal>*</literal>, <literal>/</literal>, <literal>^</literal>,
+<literal>,</literal>, <literal>(</literal>, <literal>)</literal>. When
+the lexical analyzer encounters any one of these characters, it stops
+processing and yeilds a single-character token matching the lexeme. The
+lexical analyzer also optionally recognizes <literal>d</literal> as a
+single-character operator, but will look at the next character to make
+sure it’s not part of a name before yielding a token.</para>
 
-<para>The lexer will recognize the lexemes <literal>e</literal> and
-<literal>pi</literal> as real numbers, and yields real-number tokens
-representing their values. A parser using the built-in lexer will not
-see any difference between these lexemes, and their same values entered
-manually.</para>
+<para>The lexical analyzer will optionally recognize the lexemes
+<literal>e</literal> and <literal>pi</literal> as real numbers, and
+yield real-number tokens representing their values. A parser using the
+lexical analyzer with this enabled will not see any difference between
+these lexemes, and their same values entered manually.</para>
 
 <para>Beyond these, the lexer recognizes a sequence of chatacters,
 starting with a letter as an ID, a sequence of numeric digits without
 a decimal point as an integer, and a sequence of numeric digits,
 including a single decimal point, as a real number.</para>
-
 </section>
+
 <section>
 <info>
-<title>Using the Lexer</title>
+<title>Using the Lexical Analyzer</title>
 </info>
 
-<para>Once you have a functioning <type>SilikoInput</type>. The first
-step to using Siliko Core’s lexer is to set one up with the
-<function>SilikoLexerCreate</function> function. It takes a pointer to a
-a <type>SilikoInput</type> object as its sole argument.</para>
+<para>Once you have a functioning <type>SilikoInput</type> oobject. The
+first step to using Siliko Core’s lexical analyzer is to set one up with
+the <function>SilikoLexerCreate</function> function. Its arguments are
+a pointer to a a <type>SilikoInput</type> object, and two boolean
+arguments representing whether to support the <literal>d</literal>
+operator, and whether to support the <literal>e</literal> and
+<literal>pi</literal> constants.</para>
 
 <programlisting language="C">
     SilikoInput *src = SilikoStringInputCreate(&quot;3d6&quot;);
-    SilikoLexer *lexer = SilikoLexerNew(src);
+    SilikoLexer *lexer = SilikoLexerCreate(src, true, true);
 </programlisting>
 
-<para>After that point, you can use the
-<function>SilikoLexerGetToken</function> function to get the next token.
-The Lexer will hold on to this token until
-<function>SilikoLexerAdvance</function> is called to advance to the next
-token.</para>
+<para>After that point, if <function>SilikoLexerCreate</function>
+returned a non-null value, the <type>SilikoLexer</type> object was taken
+ownership of the passed <type>SilikoInput</type> object, and you must
+not pass the <type>SilikoInput</type> to
+<function>SilikoInputDestroy</function>.</para>
+</section>
+
+<section>
+<info>
+  <title>Tokens</title>
+</info>
+<para></para>
+</section>
+
+<section>
+<info>
+  <title>Getting Tokens from the Lexical Analyzer</title>
+</info>
+
+<para>you can use the <function>SilikoLexerGetToken</function> function
+to get the current token. Once <function>SilikoLexerAdvance</function>
+is called, any pointers to previous <type>SilikoToken</type> objects are
+invalidated, so do any processing of the token before calling
+<function>SilikoLexerAdvance</function> and don’t call
+<function>SilikoTokenDestroy</function> on any tokens you get from
+<type>SilikoLexer</type>. The <type>SilikoLexer</type> object will take
+care of that.</para>
 
 <programlisting language="C">
-    SilikoToken first = SilikoLexerGetToken(lexer); // Integer:3
-    SilikoLexerNext(lexer);
-    SilikoToken second = SilikoLexerGetToken(lexer); // Character:d
-    SilikoLexerNext(lexer);
-    SilikoToken third = SilikoLexerGetToken(lexer); // Integer:6
-    SilikoLexerNext(lexer);
-    SilikoToken end = SilikoLexerGetToken(lexer); // End of Input
+    SilikoToken token = SilikoLexerGetToken(lexer); // Integer:3
+    // Do something with token here.
+
+    SilikoLexerNext(lexer); // token now points to a free'd object.
+    token = SilikoLexerGetToken(lexer); // Character:d
+    // Do something with token here.
+
+    SilikoLexerNext(lexer); // Again, token is invalidated.
+    token = SilikoLexerGetToken(lexer); // Integer:6
+    // Do something with token here.
+
+    SilikoLexerNext(lexer); // Token is invalidated here, too.
+    token = SilikoLexerGetToken(lexer); // End of Input
+    // Put it all together here.
 </programlisting>
 
 <para>If you write a parser using <type>SilikoLexer</type>, you can
 build it using any techniques requiring one token of look ahead.</para>
+</section>
+</section>
+
+<section>
+<info>
+<title>The Infix Parser</title>
+</info>
+
+<para>The final piece in the built-in parsing pipeline is the
+<function>SilikoParseInfix</function> function. Which parses input
+in the Siliko infix language. It takes a pointer to a
+<type>SilikoInput</type> object, and returns a pointer to a
+<type>SilikoNode</type> object representing the root node of the syntax
+tree the parser generated.</para>
+
+<section>
+<info>
+<title>Syntax Trees</title>
+</info>
+
+<para>Siliko implements syntax trees with the <type>SilikoNode</type>
+type. A <type>SilikoNode</type> can hold one of two kinds of data, a
+branch, or a leaf. A leaf has a single <type>SilikoValue</type> object,
+and a branch has a function call, and an array of child
+<type>SilikoNode</type> objects representing the arguments to the
+operation or function the branch represents.</para>
+
+<para>There are five functions that will create a
+<type>SilikoNode</type>:</para>
+
+<itemizedlist>
+<listitem><para><function>SilikoNodeCreateFromInteger</function>
+    generates a leaf node with an integer value.</para></listitem>
+<listitem><para><function>SilikoNodeCreateFromReal</function> generates
+    a leaf node with a real-number value.</para></listitem>
+<listitem><para><function>SilikoNodeCreateFromError</function> generates
+    a leaf node representing an error.</para></listitem>
+<listitem><para><function>SilikoNodeCreateBranch</function> generates a
+    branch node, taking the function name as its argument. Child nodes
+    may be added afterward.</para></listitem>
+<listitem><para><function>SilikoNodeCreateNothing</function> generates a
+    null node. This is used to represent when a parser component reports
+    that is has no more to process or that it didn’t receive any tokens
+    representing the rule that it handles, but this is not considered
+    an error.</para></listitem>
+</itemizedlist>
+
+<para>Each of these functions returns a pointer to a
+<type>SilikoNode</type> that will subsequently need to be passed to
+<function>SilikoNodeDestroy</function> to release resources. If you pass
+a branch node to <function>SilikoNodeDestroy</function>, it will also
+handle any child nodes the branch node has.</para>
+
+<para>To construct syntax trees, Siliko Core provides four functions to
+add children to branch nodes:</para>
+
+<itemizedlist>
+  <listitem><para><function>SilikoNodePushLeft</function></para></listitem>
+  <listitem><para><function>SilikoNodePushRight</function></para></listitem>
+  <listitem><para><function>SilikoNodePushCopyLeft</function></para></listitem>
+  <listitem><para><function>SilikoNodePushCopyRight</function></para></listitem>
+</itemizedlist>  
+
+<para>Each branch node keeps track of a list of children from left to
+right. For some functions, the order of the child nodes doesn't matter;
+<code>2 + 5</code> (or <code>add(2, 5)</code>) and <code>5 + 2</code>
+(or <code>add(5, 2)</code>) are effectively equivalent. However, for
+others, the order matters; <code>5 - 3</code> (or
+<code>subtract(5, 3)</code>) and <code>3 - 5</code> (or
+<code>subtract(3, 5)</code>) are not equivalent. So, the ‘Left’
+functions will add the new child to the beginning of the list, while the
+‘Right’ functions add to the end of the list. The functions with ‘Copy’
+will make a copy of the new child and leave the original to the calling
+function to clean up, while the functions without will add the node
+passed directly to the branch node, taking ownership of the
+object.</para>
+
+<para>To construct a syntax tree representing the
+expression <code>2 + 3</code>. You would first construct a branch node,
+and two leaf nodes to represent the operands.</para>
+
+<programlisting language="C">
+    SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
+    SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
+    SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
+    SilikoNodePushRight(Operator, left_operand);
+    SilikoNodePushRight(Operator, right_operand);
+</programlisting>
+
+<para>You can create nodes in any order, so it doesn’t mater if you
+start with the leaves or the branch. You can also add the child nodes
+in forward order with <function>SilikoNodePushRight</function> or
+reverse order with <function>SilikoNodePushLeft</function>. Thus, the
+above code sample could also have been written as the following:</para>
+
+<programlisting language="C">
+    SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
+    SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
+    SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
+    SilikoNodePushLeft(Operator, right_operand);
+    SilikoNodePushLeft(Operator, left_operand);
+</programlisting>
 </section>
 </section>
 
@@ -436,7 +533,7 @@ takes a string representing the name of the function used within the
 Siliko language, and a <type>SilikoFunction</type> object implementing
 the the function.</para>
 
-<para>The function <function>SilikoFunctionCallerCall</function> takes a
+<para>The function <function>SilikoEngineCallFunction</function> takes a
 <type>SilikoEngine</type>, a function name as a C-style string, an
 argument count, and a pointer to the first element in an array of
 <type>SilikoValue</type> pointers. The engine finds the implementation
@@ -445,7 +542,7 @@ the implementation, and returns the result returned by the
 implementation.</para>
 
 <para>When you are finished with the <type>SilikoEngine</type>, pass it
-to the <function>SilikoFunctionCallerDelete</function> function.</para>
+to the <function>SilikoEngineDestroy</function> function.</para>
 
 <para>An example of using a function without parsing anything would look
 like this:</para>
@@ -453,10 +550,26 @@ like this:</para>
 <programlisting language="C">
 #include &lt;stdio.h&gt;
 
-#include &lt;SilikoCore/FunctionCaller.h&gt;
+#include &lt;SilikoCore/Engine.h&gt;
 #include &lt;SilikoCore/Value.h&gt;
 
-SilikoValue CustomFunctionAddTwo(int ArgC, SilikoValue *ArgV);
+SilikoValue *CustomFunctionAddTwo(int ArgC, SilikoValue **ArgV)
+{
+    if (ArgC != 1)
+    return SilikoValueCreateFromError(SilikoErrorFunctionArguments);
+
+    switch (SilikoValueGetStatus(ArgV[0]))
+    {
+    case SilikoValueInteger:
+        return SilikoValueCreateFromInteger(
+            SilikoValueGetInteger(ArgV[0]) + 2);
+    case SilikoValueReal:
+        return SilikoValueCreateFromReal(
+            SilikoValueGetReal(ArgV[0]) + 2.0);
+    default: // This is an error. Propagate it.
+        return SilikoValueCopy(argv[0]);
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -471,7 +584,7 @@ int main(int argc, char *argv[])
     SilikoValue *result = SilikoEngineCallFunction(engine,
         &quot;addtwo&quot;, 1, inputs);
 
-    printf(&quot;The result is: %s\n&quot;,
+    printf(&quot;The result is: %lld\n&quot;,
         SilikoValueGetIteger(result));
 
     SilikoValueDestroy(result);
@@ -483,97 +596,7 @@ int main(int argc, char *argv[])
 
 <section>
 <info>
-<title>Syntax Trees</title>
-</info>
-
-<para>Siliko implements syntax trees with the <type>SilikoNode</type>
-type. A <type>SilikoNode</type> can hold one of two kinds of data, a
-branch, or a leaf. A leaf has a single <type>SilikoValue</type> object,
-and a branch has a function call, and an array of child
-<type>SilikoNode</type> objects representing the arguments to the
-operation or function the branch represents. Am<type>SilikoNode</type>
-can be evaluated, to yield a <type>SilikoValue</type> object with the
-results.</para>
-
-<para>There are five functions that will create a
-<type>SilikoNode</type>:</para>
-
-<itemizedlist>
-<listitem><para><function>SilikoNodeCreateFromInteger</function>
-    generates a leaf node with an integer value.</para></listitem>
-<listitem><para><function>SilikoNodeCreateFromReal</function> generates
-    a leaf node with a real-number value.</para></listitem>
-<listitem><para><function>SilikoNodeCreateFromError</function> generates
-    a leaf node representing an error.</para></listitem>
-<listitem><para><function>SilikoNodeCreateBranch</function> generates a
-    branch node, taking the function name as its argument, without
-    child nodes.</para></listitem>
-<listitem><para><function>SilikoNodeCreateNothing</function> generates a
-    null node. This is used to represent when a parser component reports
-    that is has no more to process or that it didn’t receive any tokens
-    representing the rule that it handles, but this is not considered
-    an error.</para></listitem>
-</itemizedlist>
-
-<para>Each of these functions returns a pointer to a
-<type>SilikoNode</type> that will subsequently need to be passed to
-<function>SilikoNodeDestroy</function> to release resources. If you pass
-a branch node to <function>SilikoNodeDestroy</function>, it will also
-call itself on any child nodes the branch node has.</para>
-
-<para>T construct syntax trees, Siliko Core provides four functions to
-add children to branch nodes:</para>
-
-<itemizedlist>
-  <listitem><para><function>SilikoSyntaxTreePushLeft</function></para></listitem>
-  <listitem><para><function>SilikoSyntaxTreePushRight</function></para></listitem>
-  <listitem><para><function>SilikoSyntaxTreePushCopyLeft</function></para></listitem>
-  <listitem><para><function>SilikoSyntaxTreePushCopyRight</function></para></listitem>
-</itemizedlist>  
-
-<para>Each branch node keeps track of a list of children from left To
-right. For some functions, the order of the child nodes doesn't matter;
-<code>2 + 5</code> (or <code>add(2, 5)</code>) and <code>5 + 2</code>
-(or <code>add(5, 2)</code>) are effectively equivalent. However, for
-others, the order matters; <code>5 - 3</code> (or
-<code>subtract(5, 3)</code>) and <code>3 - 5</code> (or
-<code>subtract(3, 5)</code>) are not equivalent. So, the ‘Left’
-functions will add the new child to the beginning of the left, while the
-‘Right’ functions add to the end of the list. The functions with ‘Copy’
-will make a copy of the new child and leave the original to the calling
-function to clean up, while the functions without will add the node
-passed directly to the branch node, taking ownership of the
-object.</para>
-
-<para>To construct a syntax tree representing the
-expression <code>2 + 3</code>. You would first construct a branch node,
-and two leaf nodes to represent the operands.</para>
-
-<programlisting language="C">
-    SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
-    SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
-    SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
-    SilikoSyntaxTreePushRight(Operator, left_operand);
-    SilikoSyntaxTreePushRight(Operator, right_operand);
-</programlisting>
-
-<para>You can create nodes in any order, so it doesn’t mater if you
-start with the leaves or the branch. You can also add the child nodes
-in forward order with <function>SilikoNodePushRight</function> or
-reverse order with <function>SilikoNodePushRight</function>. Thus, the
-above code sample could also have been written as the following:</para>
-
-<programlisting language="C">
-    SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
-    SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
-    SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
-    SilikoNodePushLeft(Operator, right_operand);
-    SilikoNodePushLeft(Operator, left_operand);
-</programlisting>
-
-<section>
-<info>
-<title>Evaluating</title>
+  <title>Evaluating</title>
 </info>
 
 <para>Once a syntax tree is fully assembled, it can be evaluated with
@@ -590,23 +613,87 @@ failed to find a function.</para>
     SilikoInstallOperations(engine);
     SilikoValue result = SilikoEvaluate(engine, root_node);
 </programlisting>
-</section>
-</section>
+
 
 <section>
 <info>
-<title>The Infix Parser</title>
+  <title>Values and Errors</title>
 </info>
 
-<para>To put it all together, Siliko includes an infix parser,
-<function>SilikoParseInfix</function>. It takes a pointer to a
-<type>SilikoInput</type> object, and returns a pointer to a
-<type>SilikoNode</type> object representing the root node of the syntax
-tree the parser generated.</para>
+<para>The <filename>SilikoCore/Value.h</filename> header contains three
+types. The <type>SilikoValue</type> type represents a value passed to
+and yielded by the Siliko Core library. The
+<type>SilikoValueStatus</type> enumeration represents which type of
+value a <type>SilikoValue</type> holds: an integer
+(<literal>SilikoValueInteger</literal>), a real number
+(<literal>SilikoValueReal</literal>), or an error
+(<literal>SilikoValueError</literal>). The <type>SilikoError</type>
+enumeration represents an error that Siliko Core can encounter while
+parsing or evaluating expressions, for example a syntax error
+(<literal>SilikoErrorSyntax</literal>) or a division by zero error
+(<literal>SilikoErrorZeroDivision</literal>). For a full list of error
+values, see The <link linkend="Api.SilikoError">SilikoError</link>
+entry in the API Reference.</para>
 
-<para>Like any other <type>SilikoNode</type>, you may call
-<function>SilikoEvaluate</function> to evaluate the tree and get the
-resulting value. You must call <function>SilikoNodeDestroy</function>
-on the root node of any syntax trees generated.</para>
+<para>To make a <type>SilikoValue</type> object, you can use the
+functions, <function>SilikoValueCreateFromInteger</function>, or
+<function>SilikoValueCreateFromReal</function>. These functions take
+a <type>long long int</type>, and <type>double</type>,
+respectively.</para>
+
+<para>
+<programlisting language="C">
+    SilikoValue forty_two = SilikoValueCreateFromInteger(42);
+    SilikoValue pi = SilikoValueCreateFromReal(3.14);
+</programlisting>
+</para>
+
+<para>You can use the <function>SilikoValueGetStatus</function> function
+to determine what type of value a <type>SilikoValue</type> holds. Then,
+based on which type it has, you can use one of
+<function>SilikoValueGetError</function>,
+<function>SilikoValueGetInteger</function>, or
+<function>SilikoValueGetReal</function> to retrieve the value.
+</para>
+
+<para>In the tutorial program, the <type>SilikoValue</type> object
+returned by the parser was simply printed. In a more complex scenario,
+one might imagine using programming logic based on the value of a
+<type>SilikoValue</type>.</para>
+
+<programlisting language="C">
+    SilikoEngine *engine = SilikoEngineNew();
+    SilikoInstallOperations(engine);
+    SilikoInput *input = SilikoStringInputCreate("1d20");
+    SilikoNode *tree = SilikoParseInfix(input);
+    SilikoValue result = SilikoEvaluate(engine, tree);
+    SilikoNodeDestroy(tree);
+
+    if (SilikoValueGetStatus(result) == SilikoValueInteger)
+    {
+        if (SilikoValueGetInteger(result) &gt;= 15)
+        {
+            printf(&quot;You find a secret door behind the&quot;
+                &quot; bookcase.\n&quot;);
+        }
+        else
+        {
+            printf(&quot;There appears to be nothing of note in&quot;
+                &quot; the library.\n&quot;);
+        }
+    }
+    else
+    {
+        fprintf(stderr, &quot;Something went wrong.\n&quot;);
+    }
+    SilikoValueDestroy(result);
+    SilikoEngineDestroy(engine);
+</programlisting>
+
+<para>And finally, as we see in this example, when you are done with a
+<type>SilikoValue</type> you must call
+<function>SilikoFunctionDestroy</function> on the
+<type>SilikoValue</type> to avoid memory leaks.</para>
+</section>
 </section>
 </article>
