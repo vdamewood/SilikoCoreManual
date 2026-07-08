@@ -288,7 +288,7 @@ described in
 <link xlink:href="https://www.w3.org/TR/xml/#sec-notation">the Notation
 section of the W3 XML Reccomendation</link>.</para>
 
-<para><productionset continuation="restarts" xml:id="LanguageReference.W3Grammar">
+<para><productionset xml:id="LanguageReference.W3Grammar">
 <production xml:id="LanguageReference.W3Grammar.Line">
   <lhs>Line</lhs>
   <rhs><nonterminal def="LanguageReference.W3Grammar.space">space</nonterminal>
