@@ -1,16 +1,7 @@
-* Convert Markdown to DocBook.
-
-* Update for new API
-
-    * FunctionCaller --> Engine
-    * SyntaxTree(Node) --> Node
-
 * EBNF productions resume from previous production lists. Change
 customization layer to reset each time.
 
 * Replace bibliography template with one that conforms to Chicago
-
-* Fixup xrefs
 
 * Add missing data to API reference pages:
   - "Note: meta manual : no titled ancestor of refentry"
