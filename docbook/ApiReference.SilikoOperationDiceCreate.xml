@@ -17,7 +17,8 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Operation.h&gt;</programlisting>
-<programlisting language="C">SilikoFunction *SilikoOperationDiceCreate(unsigned long long int seed);</programlisting>
+<programlisting language="C">SilikoFunction *SilikoOperationDiceCreate(
+    unsigned long long int seed);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
