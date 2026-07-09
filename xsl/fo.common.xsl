@@ -30,6 +30,10 @@
     <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
+<xsl:template match="d:production" mode="label.markup">
+    <xsl:number count="d:production" level="single"/>
+</xsl:template>
+
 <xsl:param name="default.table.width" select="'100%'"/>
 <xsl:param name="use.extensions" select="'0'"/>
 <xsl:param name="admon.graphics" select="'1'"/>

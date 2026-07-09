@@ -1,6 +1,3 @@
-* EBNF productions resume from previous production lists. Change
-customization layer to reset each time.
-
 * Replace bibliography template with one that conforms to Chicago
 
 * Add missing data to API reference pages:
