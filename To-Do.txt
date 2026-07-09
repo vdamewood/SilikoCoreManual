@@ -1,5 +1,7 @@
 * Replace bibliography template with one that conforms to Chicago
 
+* Fix formatting for <cmdsynopsis> in Build.xml
+
 * Add missing data to API reference pages:
   - "Note: meta manual : no titled ancestor of refentry"
   - Add:
