@@ -109,8 +109,8 @@ Siliko Core by first making an empty directory, then running the
 <cmdsynopsis>
 <command>cmake</command> <arg>-G<replaceable>generator</replaceable></arg>
   <arg rep="repeat">-D<replaceable>option</replaceable>:<replaceable>type</replaceable>=<replaceable>value</replaceable></arg>
- <arg choice="req">-S<replaceable>siliko source</replaceable></arg>
- <arg choice="req">-B<replaceable>build directory</replaceable></arg>
+ <arg choice="req">-S<replaceable>source</replaceable></arg>
+ <arg choice="req">-B<replaceable>builddir</replaceable></arg>
 </cmdsynopsis>
 
 <para>The optional <option>-G</option> flag tells CMake which generator

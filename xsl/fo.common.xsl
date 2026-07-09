@@ -34,6 +34,83 @@
     <xsl:number count="d:production" level="single"/>
 </xsl:template>
 
+<xsl:template match="d:cmdsynopsis">
+  <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:call-template name="inline.monoseq"/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="d:cmdsynopsis/d:command">
+  <xsl:apply-templates/>
+  <xsl:text> </xsl:text>
+</xsl:template>
+
+<xsl:template match="d:group|d:arg" name="group-or-arg">
+  <xsl:variable name="choice" select="@choice"/>
+  <xsl:variable name="rep" select="@rep"/>
+  <xsl:variable name="sepchar">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*/@sepchar">
+        <xsl:value-of select="ancestor-or-self::*/@sepchar"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text> </xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:if test="preceding-sibling::*">
+    <xsl:value-of select="$sepchar"/>
+  </xsl:if>
+  <fo:inline font-weight="bold">
+  <xsl:choose>
+    <xsl:when test="$choice='plain'">
+      <xsl:value-of select="$arg.choice.plain.open.str"/>
+    </xsl:when>
+    <xsl:when test="$choice='req'">
+      <xsl:value-of select="$arg.choice.req.open.str"/>
+    </xsl:when>
+    <xsl:when test="$choice='opt'">
+      <xsl:value-of select="$arg.choice.opt.open.str"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$arg.choice.def.open.str"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="$rep='repeat'">
+      <xsl:value-of select="$arg.rep.repeat.str"/>
+    </xsl:when>
+    <xsl:when test="$rep='norepeat'">
+      <xsl:value-of select="$arg.rep.norepeat.str"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$arg.rep.def.str"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:choose>
+    <xsl:when test="$choice='plain'">
+      <xsl:value-of select="$arg.choice.plain.close.str"/>
+    </xsl:when>
+    <xsl:when test="$choice='req'">
+      <xsl:value-of select="$arg.choice.req.close.str"/>
+    </xsl:when>
+    <xsl:when test="$choice='opt'">
+      <xsl:value-of select="$arg.choice.opt.close.str"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$arg.choice.def.close.str"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  </fo:inline>
+</xsl:template>
+
+<xsl:template match="d:cmdsynopsis/d:arg/d:replaceable">
+  <fo:inline font-weight="normal">
+  <xsl:call-template name="inline.italicmonoseq"/>
+  </fo:inline>
+</xsl:template>
+
 <xsl:param name="default.table.width" select="'100%'"/>
 <xsl:param name="use.extensions" select="'0'"/>
 <xsl:param name="admon.graphics" select="'1'"/>
