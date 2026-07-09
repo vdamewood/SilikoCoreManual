@@ -111,6 +111,32 @@
   </fo:inline>
 </xsl:template>
 
+<xsl:template name="person.name.last-first">
+  <xsl:param name="node" select="."/>
+
+  <xsl:apply-templates select="$node//d:surname[1]"/>
+
+  <xsl:if test="$node//d:surname and $node//d:firstname">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+
+  <xsl:apply-templates select="$node//d:firstname[1]"/>
+
+  <xsl:if test="$node//d:firstname and $node//d:othername">
+    <xsl:text> </xsl:text>
+  </xsl:if>
+
+  <xsl:apply-templates select="$node//d:othername[1]"/>
+</xsl:template>
+
+<xsl:template match="d:title" mode="bibliomixed.mode">
+  <fo:inline>
+    <fo:inline font-style="italic">
+      <xsl:apply-templates mode="bibliomixed.mode"/>
+    </fo:inline>
+  </fo:inline>
+</xsl:template>
+
 <xsl:param name="default.table.width" select="'100%'"/>
 <xsl:param name="use.extensions" select="'0'"/>
 <xsl:param name="admon.graphics" select="'1'"/>

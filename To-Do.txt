@@ -1,5 +1,3 @@
-* Replace bibliography template with one that conforms to Chicago
-
 * Add missing data to API reference pages:
   - "Note: meta manual : no titled ancestor of refentry"
   - Add:
