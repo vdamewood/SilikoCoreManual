@@ -179,8 +179,8 @@ expression <code>2 + 3</code> is a component of a second expression
 which has (<code>2 + 3</code>), <literal>+</literal>, and
 <literal>5</literal> as its component.</para>
 
-<para>Since, each production can simply be the next rule in the list, A
-term, on its own can be an expression, and a number can be a term. This,
+<para>Since each production can simply be the next rule in the list, a
+term on its own can be an expression, and a number can be a term. This,
 combined with the above rule allowing for productions within themselves,
 allows trees to be built respecting the order of operations.</para>
 
