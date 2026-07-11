@@ -278,7 +278,7 @@ any function call.</para>
 </section>
 </section>
 
-<section>
+<section xml:id="LanguageReference.FormalGrammar">
 <info>
   <title>Formal Grammar</title>
 </info>
@@ -286,7 +286,7 @@ any function call.</para>
 <para>This grammar for the Siliko infix language uses the notation
 described in
 <link xlink:href="https://www.w3.org/TR/xml/#sec-notation">the Notation
-section of the W3 XML Reccomendation</link>.</para>
+section of the W3 XML Recommendation</link>.</para>
 
 <para><productionset xml:id="LanguageReference.W3Grammar">
 <production xml:id="LanguageReference.W3Grammar.Line">
