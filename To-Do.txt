@@ -1,3 +1,14 @@
+* Describe tokens in Integrating.xml
+
+* Parsing.xml Add diagrams
+  - lexeme-to-token conversion
+  - Siliko core FSM
+  - full parse tree of parsing example
+
+* Fill in incomplete pages in API reference
+
+* Add version.h symbols to API reference
+
 * Add missing data to API reference pages:
   - "Note: meta manual : no titled ancestor of refentry"
   - Add:
