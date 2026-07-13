@@ -52,7 +52,7 @@ ending with a null character. </para>
   </imageobject>
 </mediaobject>
 
-<para>Except to seperate tokens, whitespace is ignored.</para>
+<para>Except to separate tokens, whitespace is ignored.</para>
 </section>
 
 <section>
@@ -173,7 +173,7 @@ function calls from these operations.</para>
 
 <para>Die rolls can only take a positive integer literal as the second
 operand, so die rolls can’t be chained like other operands. All other
-operators may take arbitrairy expressions as their operands.</para>
+operators may take arbitrary expressions as their operands.</para>
 
 <section>
 <info>

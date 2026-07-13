@@ -12,7 +12,7 @@
 
 <refnamediv>
   <refname><type>SilikoLexer</type></refname>
-  <refpurpose>Type represzenting a lexical analyzer</refpurpose>
+  <refpurpose>Type representing a lexical analyzer</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,7 +22,7 @@
 
 <refsection>
 <title>Description</title>
-<para>A <type>SilikoLexer</type> is a tool used to lexically analize
+<para>A <type>SilikoLexer</type> is a tool used to lexically analyze
 input from a <type>SilikoInput</type>, and converts the input to a
 sequence of meaningful tokens as <type>SilikoToken</type>
 objects.</para>

@@ -24,7 +24,7 @@
 <title>Description</title>
 <para>The <function>SilikoNodeCreateFromError</function> function
 creates a new <type>SilikoNode</type> object representing an error as
-specifyed by <varname>source</varname>.</para>
+specified by <varname>source</varname>.</para>
 </refsection>
 
 <refsection>

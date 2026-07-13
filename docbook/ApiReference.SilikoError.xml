@@ -43,7 +43,7 @@ or evaluation.</para>
 
 <itemizedlist>
   <listitem><para><literal>SilikoErrorNone</literal>: An error state was
-    checked, but no error condition exists. This value is retturned by
+    checked, but no error condition exists. This value is returned by
     <function>SilikoValueGetError</function> when the
     <type>SilikoValue</type> passed to it is not an
     error.</para></listitem>

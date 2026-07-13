@@ -13,7 +13,7 @@
 <refnamediv>
   <refname><type>SilikoInputVTable</type></refname>
   <refpurpose>Structure of function pointers for a
-    <type>SilikoInput</type> objecct</refpurpose>
+    <type>SilikoInput</type> object</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -52,7 +52,7 @@ object.</para>
 
 <para>The <varname>destroy</varname> pointer points to a function that
 takes the state object, and frees up any resources used by the state
-object. The function must also take care of dealocating the state object
-itself if applicable.</para>
+object. The function must also take care of deallocating the state
+object itself if applicable.</para>
 </refsection>
 </refentry>

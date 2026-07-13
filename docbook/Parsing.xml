@@ -29,7 +29,7 @@ computer can more easily work with. A JSON parser might convert JSON
 objects to a programming language’s internal structure types. An XML
 parser can convert an XML document to a tree structure that represents
 how the various elements in the document are organized. Siliko includes
-a parser that converts a mathemetical notation that’s closer to one used
+a parser that converts a mathematical notation that’s closer to one used
 by people than what a computer might use into a tree structure that’s
 easier for a computer to process.</para>
 
@@ -69,7 +69,7 @@ useful as the sequence
 <type>symbol</type>:<literal>*</literal>, and
 <type>number</type>:<literal>3</literal>, a tool called a
 <firstterm>lexical analyzer</firstterm> determines where
-the different peices begin and where they end, and what type they are,
+the different pieces begin and where they end, and what type they are,
 then converts what it finds into a data structure called a
 <firstterm>token</firstterm>. Strictly speaking, the series of bytes to
 be converted for each piece is called a <firstterm>lexeme</firstterm>,
@@ -84,7 +84,7 @@ source code for Siliko Core for a lexical analyzer is
 <para>FIXME: Add diagram showing the lexeme-to-token conversion.</para>
 
 <para>A lexical analyzer works by reading input one character at a time,
-whitling down the possible results as it reads each character until,
+whittling down the possible results as it reads each character until,
 by its internal rules, it has reached the end of input and narrowed down
 the possible type of the input to one type. This is done with a tool
 called a <firstterm>finite-state machine</firstterm>.</para>
@@ -155,7 +155,7 @@ syntax tree representing the operations.</para>
 
 <para>A parser takes small bits of information, such as characters,
 and builds them into structures. It can then build a larger structure
-with the smaller structures. Ultimatly, a parser will make a structure
+with the smaller structures. Ultimately, a parser will make a structure
 representing the totality of its input, such as the complete expression
 passed to Siliko or the entire JSON object passed to a JSON parser.
 These rules are called

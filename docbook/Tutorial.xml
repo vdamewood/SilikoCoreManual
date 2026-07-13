@@ -23,7 +23,8 @@ as this:
 
 This tutorial assumes you can build with a library and write C code. If
 you need help building with the Siliko Core library, see
-<link linkend="Linking">Linking with Siliko Core</link>.</para>
+<link linkend="Linking">Linking Siliko Core with Your
+Project</link>.</para>
 
 <para>To simplify things, Siliko Core includes a single header to
 include all of its public headers. So, to access Siliko Cores types and
@@ -88,7 +89,7 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>With this scafolding built, you can proceed to the practical use
+<para>With this scaffolding built, you can proceed to the practical use
 of the library. Siliko Core needs a source of input characters to parse.
 This is done with the <type>SilikoInput</type> type. Siliko Core
 includes a function, <function>SilikoStringInputCreate</function> that
@@ -294,7 +295,7 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>Once you add the cleanuo code, you will have a program that uses
+<para>Once you add the cleanup code, you will have a program that uses
 the Siliko Core library as a simple infix parser. For a more detailed
 guide to using Siliko Core, see <link linkend="Integrating">Integrating
 Siliko Core into Your Program</link>.</para>

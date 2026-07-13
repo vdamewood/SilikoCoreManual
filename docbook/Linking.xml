@@ -57,7 +57,7 @@ or a static build. (It is essentially a no-op when using the
 <filename>Api.h</filename> from a static build.) So, if you need to
 automate a build using a static version of Siliko Core, it’s a good
 idea to define <symbol>SILIKOCORE_STATIC_DEFINE</symbol>
-indiscriminently. If you wish to build using a shared/DLL copy of
+indiscriminatly. If you wish to build using a shared/DLL copy of
 Siliko Core, you will need the <filename>Api.h</filename> file that was
 generated <emphasis>with the shared library you are
 using</emphasis>.</para>
@@ -69,7 +69,7 @@ using</emphasis>.</para>
 <para>As part of building Siliko Core, CMake generates
 <filename>Config</filename> package files to use Siliko Core in another
 CMake project. To use these in your own build process, you will need to
-do three things. The firstthing is that you will need to find the
+do three things. The first thing is that you will need to find the
 <package>SilikoCore</package> package with the
 <literal>find_package</literal> CMake command.</para>
 

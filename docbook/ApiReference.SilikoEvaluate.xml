@@ -34,7 +34,7 @@ operators and function calls.</para>
 <title>Return Values</title>
 
 <para>The <function>SilikoEvaluate</function> function returns the value
-obtained by evaluating the tree. Error values will propogate based on
+obtained by evaluating the tree. Error values will propagate based on
 the rules within functions called during evaluation. Siliko Core’s
 built-in functions normally return the first error they encounter when
 evaluating from left to right.</para>

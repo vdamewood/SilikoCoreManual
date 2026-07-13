@@ -14,7 +14,7 @@
 evaluating mathematical expressions into a program. A developer can use
 the simple infix parser with the built-in set of functions to provide
 basic functionality, or write their own parser for another syntax, or
-add additional, custom functions to the lnguage.</para>
+add additional, custom functions to the language.</para>
 
 <section>
 <info>
@@ -94,7 +94,7 @@ adding your own functions.</para>
 
 <para>To provide input to a parser, you must build a
 <type>SilikoInput</type> object that Siliko Core’s lexical analyzer can
-use to read input text. To keep the input as versitle as
+use to read input text. To keep the input as versatile as
 possible, Siliko Core allows you to construct your own
 <type>SilikoInput</type> behavior to allow for various and disparate
 sources, such as a objects of a GUI library’s custom string type,
@@ -125,9 +125,9 @@ object is the same as any one made with a custom process.</para>
   <title>Building a Custom Input</title>
 </info>
 
-<para>A <type>SilikoInput</type> has two importantant pieces. First, it
-has a state object. This is what you use to keep track of what position
-you are in, which resources you are using, and so on. This should be a
+<para>A <type>SilikoInput</type> has two important pieces. First, it has
+a state object. This is what you use to keep track of what position you
+are in, which resources you are using, and so on. This should be a
 custom structure that you arrange however you need to fit your custom
 input. The second is a <type>SilikoInputVTable</type> which is a table
 of three function pointers that act on the state object.</para>
@@ -181,7 +181,7 @@ static const struct SilikoInputVTable vTable = {
 	.destroy = CustomDestroy
 };
 
-SilikoDataSource *CustomSourceCreate(struct MyCustomType *data)
+SilikoInput *CustomSourceCreate(struct MyCustomType *data)
 {
     CustomInputState *state = NULL;
     if (!(state = malloc(sizeof(CustomInputState))))
@@ -190,13 +190,13 @@ SilikoDataSource *CustomSourceCreate(struct MyCustomType *data)
     state-&gt;data = data;
     state-&gt;cursor = 0;
 
-    SilikoDataSource *source = NULL;
-    if (!(source = SilikoInputCreate(&amp;vTable, state)))
+    SilikoInput *object = NULL;
+    if (!(object = SilikoInputCreate(&amp;vTable, state)))
     {
         free(state);
         return NULL;
     }
-    return source;
+    return object;
 }
 </programlisting>
 </section>
@@ -261,7 +261,7 @@ lexemes: <literal>+</literal>, <literal>-</literal>,
 <literal>*</literal>, <literal>/</literal>, <literal>^</literal>,
 <literal>,</literal>, <literal>(</literal>, <literal>)</literal>. When
 the lexical analyzer encounters any one of these characters, it stops
-processing and yeilds a single-character token matching the lexeme. The
+processing and yields a single-character token matching the lexeme. The
 lexical analyzer also optionally recognizes <literal>d</literal> as a
 single-character operator, but will look at the next character to make
 sure it’s not part of a name before yielding a token.</para>
@@ -272,7 +272,7 @@ yield real-number tokens representing their values. A parser using the
 lexical analyzer with this enabled will not see any difference between
 these lexemes, and their same values entered manually.</para>
 
-<para>Beyond these, the lexer recognizes a sequence of chatacters,
+<para>Beyond these, the lexer recognizes a sequence of characters,
 starting with a letter as an ID, a sequence of numeric digits without
 a decimal point as an integer, and a sequence of numeric digits,
 including a single decimal point, as a real number.</para>
@@ -283,7 +283,7 @@ including a single decimal point, as a real number.</para>
 <title>Using the Lexical Analyzer</title>
 </info>
 
-<para>Once you have a functioning <type>SilikoInput</type> oobject. The
+<para>Once you have a functioning <type>SilikoInput</type> object. The
 first step to using Siliko Core’s lexical analyzer is to set one up with
 the <function>SilikoLexerCreate</function> function. Its arguments are
 a pointer to a <type>SilikoInput</type> object, and two boolean
@@ -307,7 +307,7 @@ not pass the <type>SilikoInput</type> to
 <info>
   <title>Tokens</title>
 </info>
-<para></para>
+<para>FIXME: Describe tokens.</para>
 </section>
 
 <section>
@@ -435,7 +435,7 @@ and two leaf nodes to represent the operands.</para>
     SilikoNodePushRight(operator, right_operand);
 </programlisting>
 
-<para>You can create nodes in any order, so it doesn’t mater if you
+<para>You can create nodes in any order, so it doesn’t matter if you
 start with the leaves or the branch. You can also add the child nodes
 in forward order with <function>SilikoNodePushRight</function> or
 reverse order with <function>SilikoNodePushLeft</function>. Thus, the
@@ -522,7 +522,7 @@ these functions:</para>
 <type>SilikoEngine</type> object, and return a <type>bool</type>
 indicating whether it was able to install all of the functions it’s
 supposed to install or not. A <literal>false</literal> return value
-indicates that a memory error occured. When this happens, the list of
+indicates that a memory error occurred. When this happens, the list of
 available functions in the function caller is unspecified.</para>
 
 <para>If you wish to implement your own function, it needs to be

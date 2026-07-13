@@ -114,7 +114,7 @@ Siliko Core by first making an empty directory, then running the
 </cmdsynopsis>
 
 <para>The optional <option>-G</option> flag tells CMake which generator
-to use. Each generator coresponds to a build tool used during the actual
+to use. Each generator corresponds to a build tool used during the actual
 build process. For example, to use the Ninja build tool, you can
 specify <option>-GNinja</option>. If the <option>-G</option> flag is not
 used, CMake will use a default for the system, the latest version of
@@ -268,7 +268,7 @@ Siliko supports these values for all systems:</para>
   (<type>BOOL</type>): Build Siliko as a framework. Default:
   <literal>On</literal></para></listitem>
 <listitem><para><varname>SILIKO_CORE_INSTALL_FRAMEWORKDIR</varname>
-  (<type>STRING</type>): Locaton to install framework (ignored if
+  (<type>STRING</type>): Location to install framework (ignored if
   <varname>SILIKO_CORE_BUILD_FRAMEWORK</varname> is disabled). Specify
   relative to the installation location. Default:
   <literal>&quot;Frameworks&quot;</literal></para></listitem>

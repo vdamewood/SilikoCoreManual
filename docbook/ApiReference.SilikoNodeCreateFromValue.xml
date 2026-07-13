@@ -12,7 +12,7 @@
 
 <refnamediv>
   <refname><function>SilikoNodeCreateFromValue</function></refname>
-  <refpurpose>Function to create a leafe node with a specified value</refpurpose>
+  <refpurpose>Function to create a leaf node with a specified value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

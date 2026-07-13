@@ -35,7 +35,7 @@ is duplicated, it is still managed by the calling context.</para>
 <para>If successful, <function>SilikoStringInputCreate</function>
 returns a pointer to a new <type>SilikoInput</type> object returned by
 <function>SilikoInputCreate</function>. On failure, such as when out of
-memory, <function>SilikoStringInputCreate</function> retruns
+memory, <function>SilikoStringInputCreate</function> returns
 <literal>NULL</literal>. </para>
 </refsection>
 </refentry>
