@@ -32,10 +32,10 @@ calling the <varname>advance</varname> function of
 
 <refsection>
 <title>Return Values</title>
-<para><function>SiikoInputAdvance</function> returns the return value of
-the call to the advance function of the passed
-<type>SilikoDataSource</type> object: <literal>true</literal> if the
-object has more characters to read, or <literal>false</literal> if the
-object is exhausted.</para>
+<para><function>SilikoInputAdvance</function> forwards the return value
+of the call to the advance function of <varname>object</varname>:
+<literal>true</literal> if <varname>object</varname> has more characters
+to read, or <literal>false</literal> if <varname>object</varname> is
+exhausted.</para>
 </refsection>
 </refentry>

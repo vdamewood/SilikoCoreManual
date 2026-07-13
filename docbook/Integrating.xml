@@ -106,7 +106,7 @@ developed.</para>
   <title>String Inputs</title>
 </info>
 
-<para>Siliko Core provides a <type>StringInput</type> implementation
+<para>Siliko Core provides an <type>SilikoInput</type> implementation
 that takes a C string as its source.</para>
 
 <programlisting language="C">
@@ -158,19 +158,19 @@ struct CustomInputState
 
 static bool CustomAdvance(void *state)
 {
-    struct CustomSourceState *typed_state = state;
+    struct CustomInputState *typed_state = state;
     /* ... */
 }
 
 static char CustomGetCharacter(void *state)
 {
-    struct CustomSourceState *typed_state = state;
+    struct CustomInputState *typed_state = state;
     /* ... */
 }
 
 static void CustomDestroy(void *state)
 {
-    struct CustomSourceState *typed_state = state;
+    struct CustomInputState *typed_state = state;
     /* ... */
     free(state);
 }
@@ -183,19 +183,15 @@ static const struct SilikoInputVTable vTable = {
 
 SilikoDataSource *CustomSourceCreate(struct MyCustomType *data)
 {
-    CustomSourceState *state = NULL;
-    if (!(state = malloc(sizeof(CustomSourceState))))
+    CustomInputState *state = NULL;
+    if (!(state = malloc(sizeof(CustomInputState))))
 		    return NULL;
 
     state-&gt;data = data;
     state-&gt;cursor = 0;
 
     SilikoDataSource *source = NULL;
-    if (!(source = SilikoDataSourceNew(
-        state,
-        CustomSourceAdvance,
-        CustomSourceGet,
-        CustomSourceDelete)))
+    if (!(source = SilikoInputCreate(&amp;vTable, state)))
     {
         free(state);
         return NULL;
@@ -329,18 +325,19 @@ invalidated, so do any processing of the token before calling
 care of that.</para>
 
 <programlisting language="C">
-    SilikoToken token = SilikoLexerGetToken(lexer); // Integer:3
+    const SilikoToken *token =
+        SilikoLexerGetToken(lexer); // Integer:3
     // Do something with token here.
 
-    SilikoLexerNext(lexer); // token now points to a free'd object.
+    SilikoLexerAdvance(lexer); // token now points to a free'd object.
     token = SilikoLexerGetToken(lexer); // Character:d
     // Do something with token here.
 
-    SilikoLexerNext(lexer); // Again, token is invalidated.
+    SilikoLexerAdvance(lexer); // Again, token is invalidated.
     token = SilikoLexerGetToken(lexer); // Integer:6
     // Do something with token here.
 
-    SilikoLexerNext(lexer); // Token is invalidated here, too.
+    SilikoLexerAdvance(lexer); // Token is invalidated here, too.
     token = SilikoLexerGetToken(lexer); // End of Input
     // Put it all together here.
 </programlisting>
@@ -374,7 +371,7 @@ and a branch has a function call, and an array of child
 <type>SilikoNode</type> objects representing the arguments to the
 operation or function the branch represents.</para>
 
-<para>There are five functions that will create a
+<para>There are six functions that will create a
 <type>SilikoNode</type>:</para>
 
 <itemizedlist>
@@ -384,6 +381,8 @@ operation or function the branch represents.</para>
     a leaf node with a real-number value.</para></listitem>
 <listitem><para><function>SilikoNodeCreateFromError</function> generates
     a leaf node representing an error.</para></listitem>
+<listitem><para><function>SilikoNodeCreateFromValue</function> generates
+    a leaf node by copying a <type>SilikoValue</type>.</para></listitem>
 <listitem><para><function>SilikoNodeCreateBranch</function> generates a
     branch node, taking the function name as its argument. Child nodes
     may be added afterward.</para></listitem>
@@ -432,8 +431,8 @@ and two leaf nodes to represent the operands.</para>
     SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
     SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
     SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
-    SilikoNodePushRight(Operator, left_operand);
-    SilikoNodePushRight(Operator, right_operand);
+    SilikoNodePushRight(operator, left_operand);
+    SilikoNodePushRight(operator, right_operand);
 </programlisting>
 
 <para>You can create nodes in any order, so it doesn’t mater if you
@@ -446,8 +445,8 @@ above code sample could also have been written as the following:</para>
     SilikoNode *right_operand = SilikoNodeCreateFromInteger(3);
     SilikoNode *left_operand = SilikoNodeCreateFromInteger(2);
     SilikoNode *operator = SilikoNodeCreateBranch(&quot;add&quot;);
-    SilikoNodePushLeft(Operator, right_operand);
-    SilikoNodePushLeft(Operator, left_operand);
+    SilikoNodePushLeft(operator, right_operand);
+    SilikoNodePushLeft(operator, left_operand);
 </programlisting>
 </section>
 </section>
@@ -553,19 +552,19 @@ like this:</para>
 #include &lt;SilikoCore/Engine.h&gt;
 #include &lt;SilikoCore/Value.h&gt;
 
-SilikoValue *CustomFunctionAddTwo(int ArgC, SilikoValue **ArgV)
+SilikoValue *CustomFunctionAddTwo(int argc, SilikoValue **argv)
 {
-    if (ArgC != 1)
+    if (argc != 1)
     return SilikoValueCreateFromError(SilikoErrorFunctionArguments);
 
-    switch (SilikoValueGetStatus(ArgV[0]))
+    switch (SilikoValueGetStatus(argv[0]))
     {
     case SilikoValueInteger:
         return SilikoValueCreateFromInteger(
-            SilikoValueGetInteger(ArgV[0]) + 2);
+            SilikoValueGetInteger(argv[0]) + 2);
     case SilikoValueReal:
         return SilikoValueCreateFromReal(
-            SilikoValueGetReal(ArgV[0]) + 2.0);
+            SilikoValueGetReal(argv[0]) + 2.0);
     default: // This is an error. Propagate it.
         return SilikoValueCopy(argv[0]);
     }
@@ -580,16 +579,16 @@ int main(int argc, char *argv[])
     SilikoEngineInstallFunction(engine, "addtwo", addtwo);
 
     SilikoValue *inputs[1];
-    inputs[0] = SilikoValueCreateInteger(5);
+    inputs[0] = SilikoValueCreateFromInteger(5);
     SilikoValue *result = SilikoEngineCallFunction(engine,
         &quot;addtwo&quot;, 1, inputs);
 
     printf(&quot;The result is: %lld\n&quot;,
-        SilikoValueGetIteger(result));
+        SilikoValueGetInteger(result));
 
     SilikoValueDestroy(result);
     SilikoValueDestroy(inputs[0]);
-    SilikoEngineDestroy();
+    SilikoEngineDestroy(engine);
 }
 </programlisting>
 </section>
@@ -601,17 +600,17 @@ int main(int argc, char *argv[])
 
 <para>Once a syntax tree is fully assembled, it can be evaluated with
 the <function>SilikoEvaluate</function> function. The function takes two
-arguments: a <type>SilikoNode</type> pointer, and a
-<type>SilikoEngine</type> pointer. The engine will need to have any
+arguments: a <type>SilikoEngine</type> pointer, and a
+<type>SilikoNode</type> pointer. The engine will need to have any
 functions referenced by the syntax tree installed. If the engine fails
 to find a function name used, it will yield a
 <literal>SilikoErrorFunctionName</literal> error indicating that it
 failed to find a function.</para>
 
 <programlisting language="C">
-    SilikoEngine *engine = SilikoEngineNew();
+    SilikoEngine *engine = SilikoEngineCreate();
     SilikoInstallOperations(engine);
-    SilikoValue result = SilikoEvaluate(engine, root_node);
+    SilikoValue *result = SilikoEvaluate(engine, root_node);
 </programlisting>
 
 
@@ -643,8 +642,8 @@ respectively.</para>
 
 <para>
 <programlisting language="C">
-    SilikoValue forty_two = SilikoValueCreateFromInteger(42);
-    SilikoValue pi = SilikoValueCreateFromReal(3.14);
+    SilikoValue *forty_two = SilikoValueCreateFromInteger(42);
+    SilikoValue *pi = SilikoValueCreateFromReal(3.14);
 </programlisting>
 </para>
 
@@ -662,11 +661,11 @@ one might imagine using programming logic based on the value of a
 <type>SilikoValue</type>.</para>
 
 <programlisting language="C">
-    SilikoEngine *engine = SilikoEngineNew();
+    SilikoEngine *engine = SilikoEngineCreate();
     SilikoInstallOperations(engine);
     SilikoInput *input = SilikoStringInputCreate("1d20");
     SilikoNode *tree = SilikoParseInfix(input);
-    SilikoValue result = SilikoEvaluate(engine, tree);
+    SilikoValue *result = SilikoEvaluate(engine, tree);
     SilikoNodeDestroy(tree);
 
     if (SilikoValueGetStatus(result) == SilikoValueInteger)
@@ -692,7 +691,7 @@ one might imagine using programming logic based on the value of a
 
 <para>And finally, as we see in this example, when you are done with a
 <type>SilikoValue</type> you must call
-<function>SilikoFunctionDestroy</function> on the
+<function>SilikoValueDestroy</function> on the
 <type>SilikoValue</type> to avoid memory leaks.</para>
 </section>
 </section>

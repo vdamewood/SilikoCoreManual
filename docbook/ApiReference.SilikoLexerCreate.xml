@@ -39,7 +39,7 @@ are treated as identifiers.</para>
 <title>Return Values</title>
 
 <para><function>SilikoLexerCreate</function> returns a pointer to a new
-<type>SiikoLexer</type> object if there was no memory error, or
+<type>SilikoLexer</type> object if there was no memory error, or
 <literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

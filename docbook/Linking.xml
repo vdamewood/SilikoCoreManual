@@ -39,7 +39,7 @@ called <filename>Api.h</filename>. This is installed with other header
 files at <code>&lt;SilikoCore/Api.h&gt;</code>. This file is referenced
 from the other headers with an <code>#include</code> statement. It
 contains <code>#define</code> statements for exposing public APIs in
-Siiko Core. Because of platform-specific quirks, it is generated
+Siliko Core. Because of platform-specific quirks, it is generated
 specific to the compiler you use, and whether Siliko Core was built as a
 shared library (DLL on Windows), or as a static library.</para>
 
@@ -48,7 +48,7 @@ use the specific build of Siliko Core with which it was generated. If
 you need to install both a static build and a shared build of Siliko
 Core to the same location, you should install the version of
 <filename>Api.h</filename> that was generated with the shared build of
-Siiko Core. If you do so, you will have to pass
+Siliko Core. If you do so, you will have to pass
 <symbol>SILIKOCORE_STATIC_DEFINE</symbol> as a preprocessor
 <code>#define</code> when building a program that links with the static
 library. The <symbol>SILIKOCORE_STATIC_DEFINE</symbol> define is safe to

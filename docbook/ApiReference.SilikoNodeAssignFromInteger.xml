@@ -4,7 +4,7 @@
 <?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
   schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <refentry version="5.1"
-  xml:id="Api.SilikoNodeAssignFromIteger"
+  xml:id="Api.SilikoNodeAssignFromInteger"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
   <refentrytitle></refentrytitle>
