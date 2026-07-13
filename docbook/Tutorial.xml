@@ -88,14 +88,13 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>With these bits of house-keeping taken care of, you can proceed to
-the more meaty use of the library. Siliko Core needs a source of input
-characters to parse. This is done with the <type>SilikoInput</type>
-type. Siliko Core includes a function,
-<function>SilikoStringInputCreate</function> that will make a new
-<type>SilikoInput</type> object using a simple C string as its input.
-Since <varname>argv[1]</varname> is a normal C string, it can be passed
-to <function>SilikoStringInputCreate</function>.</para>
+<para>With this scafolding built, you can proceed to the practical use
+of the library. Siliko Core needs a source of input characters to parse.
+This is done with the <type>SilikoInput</type> type. Siliko Core
+includes a function, <function>SilikoStringInputCreate</function> that
+will make a new <type>SilikoInput</type> object using a simple C string
+as its input. Since <varname>argv[1]</varname> is a normal C string, it
+can be passed to <function>SilikoStringInputCreate</function>.</para>
 
 <programlisting language="C">
 #include &lt;stdio.h&gt;
@@ -295,8 +294,8 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>And there you have it. A program that uses the Siliko Core library
-as a simple infix parser. For a complete guide to using Siliko Core, see
-<link linkend="Integrating">Integrating Siliko Core into Your
-Program</link>.</para>
+<para>Once you add the cleanuo code, you will have a program that uses
+the Siliko Core library as a simple infix parser. For a more detailed
+guide to using Siliko Core, see <link linkend="Integrating">Integrating
+Siliko Core into Your Program</link>.</para>
 </article>

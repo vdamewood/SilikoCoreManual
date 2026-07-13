@@ -66,7 +66,7 @@ ending with a null character. </para>
   </imageobject>
 </mediaobject>
 
-<para>A number, can be either an <type>integer</type>, or a
+<para>A number can be either an <type>integer</type> or a
 <type>real</type>. Numbers may optionally be proceeded by a minus
 sign (<literal>-</literal>).</para>
 
@@ -105,6 +105,11 @@ decimal digits, followed by a decimal point, optionally followed by one
 or more decimal digits. The tokenizer passes the series of characters to
 the C standard-library <function>strtof</function> function to get the
 <type>real</type> value.</para>
+
+<note>
+<para>The use of <function>strtof</function> is a known bug, and will
+be fixed before full release.</para>
+</note>
 </section>
 </section>
 

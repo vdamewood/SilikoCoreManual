@@ -23,7 +23,7 @@ Core alongside their own project using CMake.</para>
 </info>
 
 <para>Siliko Core requires a C toolchain, a build tool, and CMake to
-build. Siliko Core is written, hopefully, to support as many systems and
+build. Siliko Core is written to support as many systems and
 configurations as possible, but can only be tested on a few systems.
 Siliko Core is tested on the following configurations:
 
@@ -140,15 +140,15 @@ make a release build, using Ninja to build:</para>
 cmake -GNinja \
   -DCMAKE_BUILD_TYPE:STRING=Release \
   -DBUILD_SHARED_LIBS:BOOL=On \
-  -S $HOME/src/siliko \
-  -B $HOME/build/siliko
+  -S $HOME/src/siliko-core \
+  -B $HOME/build/siliko-core
 </screen>
 
 <para>Once CMake has configured Siliko Core, you can use
 <command>cmake --build</command> to run the build proper.</para>
 
 <screen>
-cmake --build $HOME/build/siliko
+cmake --build $HOME/build/siliko-core
 </screen>
 </section>
 
@@ -163,11 +163,12 @@ an installation location such as <filename>/usr/local</filename> on Unix
 systems and <filename>C:\Program Files\SilikoCore</filename> on Windows.
 Siliko Core does not depend on its installation location, so you may
 install the files wherever you wish. For example, to install to
-<envar>$HOME</envar><filename>/stage/siliko</filename> you can use
+<envar>$HOME</envar><filename>/stage/siliko-core</filename> you can use
 this command:</para>
 
 <screen>
-cmake --install $HOME/build/siliko --prefix=$HOME/stage/siliko
+cmake --install $HOME/build/siliko-core \
+    --prefix=$HOME/stage/siliko-core
 </screen>
 
 <para>Once Siliko Core is installed, you should have either one of two

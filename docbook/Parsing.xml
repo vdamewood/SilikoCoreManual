@@ -20,7 +20,7 @@ computer processing the data might represent that number internally as
 four bytes with the values 0, 87, 185, and 183. In this way, a
 representation is distinct from its actual value,
 much like how the number six can be represented as the word
-<wordasword>six</wordasword>, the Roman numeral IV, or the Arabic
+<wordasword>six</wordasword>, the Roman numeral VI, or the Arabic
 numeral 6.</para>
 
 <para><firstterm>Parsing</firstterm> is the process of processing the
@@ -41,7 +41,7 @@ analysis. This step involves the conversion of strings of arbitrary
 characters to usable units. For example, the string
 <code>40+7*11*5+12*3</code> could represent a series of number with a
 symbol between each adjacent pair of numbers, but to the computer, it’s
-12 bytes, with the values
+14 bytes, with the values
 52 (<literal>4</literal>),
 48 (<literal>0</literal>),
 43 (<literal>+</literal>),
@@ -78,7 +78,7 @@ refer to lexemes as tokens. Because lexical analysis converts lexemes to
 tokens, the process is also called <firstterm>tokenization</firstterm>,
 and a lexical analyzer can also be called a
 <firstterm>tokenizer</firstterm>. Another common name, used in the
-source code for Siliko Coee for a lexical analyzer is
+source code for Siliko Core for a lexical analyzer is
 <firstterm>lexer</firstterm>.</para>
 
 <para>FIXME: Add diagram showing the lexeme-to-token conversion.</para>

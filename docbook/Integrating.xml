@@ -67,14 +67,14 @@ public headers</para>
 </info>
 
 <para>Siliko Core uses a pipeline of components to parse input, then
-an engine to evaluate the the resulting syntax tree. The parsing
-pipeline goes through three components: a <type>SilikoInput</type> which
-is responsible for reading characters from some source of text to parse,
-a <type>SilikoLexer</type> which is responsible for converting the
-input characters into meaningful values and symbols, and the
+an engine to evaluate the resulting syntax tree. The parsing pipeline
+goes through three components: a <type>SilikoInput</type> which is
+responsible for reading characters from some source of text to parse, a
+<type>SilikoLexer</type> which is responsible for converting the input
+characters into meaningful values and symbols, and the
 <function>SilikoParseInfix</function> function which is responsible for
-converting the sequence of symbols and values to an evaluatable
-parse tree.</para>
+converting the sequence of symbols and values to an evaluatable parse
+tree.</para>
 
 <para>The engine (a <type>SilikoEngine</type> object) is responsible
 for evaluating the syntax tree, and managing the lookup of functions
@@ -286,7 +286,7 @@ including a single decimal point, as a real number.</para>
 <para>Once you have a functioning <type>SilikoInput</type> oobject. The
 first step to using Siliko Core’s lexical analyzer is to set one up with
 the <function>SilikoLexerCreate</function> function. Its arguments are
-a pointer to a a <type>SilikoInput</type> object, and two boolean
+a pointer to a <type>SilikoInput</type> object, and two boolean
 arguments representing whether to support the <literal>d</literal>
 operator, and whether to support the <literal>e</literal> and
 <literal>pi</literal> constants.</para>
@@ -315,7 +315,7 @@ not pass the <type>SilikoInput</type> to
   <title>Getting Tokens from the Lexical Analyzer</title>
 </info>
 
-<para>you can use the <function>SilikoLexerGetToken</function> function
+<para>You can use the <function>SilikoLexerGetToken</function> function
 to get the current token. Once <function>SilikoLexerAdvance</function>
 is called, any pointers to previous <type>SilikoToken</type> objects are
 invalidated, so do any processing of the token before calling
@@ -530,7 +530,7 @@ installed to the function caller with the
 <function>SilikoEngineInstallFunction</function> function. The function
 takes a string representing the name of the function used within the
 Siliko language, and a <type>SilikoFunction</type> object implementing
-the the function.</para>
+the function.</para>
 
 <para>The function <function>SilikoEngineCallFunction</function> takes a
 <type>SilikoEngine</type>, a function name as a C-style string, an
