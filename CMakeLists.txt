@@ -175,6 +175,11 @@ set(LanguageReference_DEPS
     ${SVG_DIR}/term.svg
 )
 
+set(Parsing_DEPS
+    ${SVG_DIR}/Parsing.ParseTree.svg
+
+)
+
 set(ApiReference_DEPS
     ${REFENTRY_FILES}
 )
@@ -267,7 +272,6 @@ foreach(XML_FILE ${REFENTRY_FILES})
     get_filename_component(BASENAME ${XML_FILE} NAME_WLE)
     get_filename_component(REFNAME ${BASENAME} EXT)
     string(REGEX REPLACE "^\\." "" REFNAME ${REFNAME})
-    message("REFNAME:" ${REFNAME})
 
     set(FO_FILE "${FO_DIR}/${BASENAME}.fo")
     list(APPEND FO_FILES "${FO_FILE}")
