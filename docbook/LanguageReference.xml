@@ -21,108 +21,19 @@ operator comes last. The Siliko infix language also includes support for
 function calls, using a syntax where the function name comes first, and
 its arguments are passed as a comma-separated list between parentheses
 after the function name. The Siliko infix language supports single
-mathematical expression without variables or state. Whitespace
-characters can be used to separate tokens, but are otherwise
-ignored.</para>
-
-<section>
-<info>
-  <title>Lines</title>
-</info>
-
-<mediaobject>
-  <imageobject>
-    <imagedata align="center" fileref="../svg/line.svg" format="svg" scale="100"/>
-  </imageobject>
-</mediaobject>
-
-<para>Every string or characters processed by the infix parser is called
-a line. A line consists of an expression, surrounded by whitespace,
-ending with a null character. </para>
-</section>
-
-<section>
-<info>
-    <title>Whitespace</title>
-</info>
-
-<mediaobject>
-  <imageobject>
-    <imagedata align="center" fileref="../svg/space.svg" format="svg" scale="100"/>
-  </imageobject>
-</mediaobject>
-
-<para>Except to separate tokens, whitespace is ignored.</para>
-</section>
-
-<section>
-<info>
-    <title>Numbers</title>
-</info>
-
-<mediaobject>
-  <imageobject>
-    <imagedata align="center" fileref="../svg/number.svg" format="svg" scale="100"/>
-  </imageobject>
-</mediaobject>
-
-<para>A number can be either an <type>integer</type> or a
-<type>real</type>. Numbers may optionally be proceeded by a minus
-sign (<literal>-</literal>).</para>
-
-<section>
-<info>
-  <title>Integers</title>
-</info>
-
-<mediaobject>
-  <imageobject>
-    <imagedata align="center" fileref="../svg/integer.svg" format="svg" scale="100"/>
-  </imageobject>
-</mediaobject>
-
-<para>An <type>integer</type> is a series of one or more decimal digits.
-The tokenizer passes the series of digits to the C standard-library
-<function>strtoll</function> function to get the <type>integer</type>
-value.</para>
-</section>
-
-<section>
-<info>
-  <title>Real Numbers</title>
-</info>
-
-<mediaobject>
-  <imageobject>
-    <imagedata align="center" fileref="../svg/real.svg" format="svg" scale="100"/>
-  </imageobject>
-</mediaobject>
-
-<para>A <type>real</type> can take one of two forms. In the first form,
-it is is either the strings <literal>e</literal>, or
-<literal>pi</literal>. In the second form, it is a series of one or more
-decimal digits, followed by a decimal point, optionally followed by one
-or more decimal digits. The tokenizer passes the series of characters to
-the C standard-library <function>strtof</function> function to get the
-<type>real</type> value.</para>
-
-<note>
-<para>The use of <function>strtof</function> is a known bug, and will
-be fixed before full release.</para>
-</note>
-</section>
-</section>
+mathematical expression without variables or state.</para>
 
 <section>
 <info>
   <title>Operators</title>
 </info>
 
-<para>Operators are placed between the operands on which they function.
-Siliko’s infix language supports six operators: <literal>+</literal> for
-addition, <literal>-</literal> for subtraction, <literal>*</literal> for
-multiplication, <literal>/</literal> for division, <literal>^</literal>
-for exponentiation, and <literal>d</literal> for die rolls. Because
+<para>In all of these rules, operators are placed between the operands
+on which they function. Siliko’s infix language supports six
+operators: <literal>+</literal> for addition, <literal>-</literal> for
+subtraction, <literal>*</literal> for multiplication,
+<literal>/</literal> for division, <literal>^</literal> for
+exponentiation, and <literal>d</literal> for die rolls. Because
 addition, subtraction, multiplication, and division are left
 associative, the infix parser builds syntax trees in reverse when
 parsing sequences of these operators. These operators are also
@@ -170,10 +81,49 @@ function calls from these operations.</para>
 </tbody>
 </tgroup>
 </table>
+</section>
 
-<para>Die rolls can only take a positive integer literal as the second
-operand, so die rolls can’t be chained like other operands. All other
-operators may take arbitrary expressions as their operands.</para>
+<section>
+<info>
+  <title>Production Descriptions</title>
+</info>
+
+<para>There are 13 productions that describe the Siliko infix
+language.</para>
+
+<section>
+<info>
+  <title>Lines</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/line.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>Line</para></caption>
+</mediaobject>
+
+<para>Every string of characters processed by the infix parser is called
+a line. A line consists of an expression, surrounded by whitespace,
+ending with a null character. </para>
+</section>
+
+<section>
+<info>
+    <title>Whitespace</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/space.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>space</para></caption>
+</mediaobject>
+
+<para>Whitespace consists of the tab, line feed, vertical tab, form
+feed, carriage return, and space characters. Except to separate tokens,
+whitespace is ignored by the lexical analyzer.</para>
+</section>
 
 <section>
 <info>
@@ -184,7 +134,19 @@ operators may take arbitrary expressions as their operands.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/expression.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>expression</para></caption>
 </mediaobject>
+
+<para>By layering the rules for expression, term, exponent, and roll
+into a heierarchy, the infix parser is able to properly implement the
+order of operations. An expression can be a simple term, without any
+plus or minus operators, or it can be a recursive expression followed
+by a plus or minus sign, followed by a term. If you recurse into the
+sub expresion enough, you should eventually run into a simple term,
+which will end the recursive chain and build the associativity for
+addition and subtraction operations. Because sub-expressions are
+evaluated before the expression they are a part of, thus ensuring that
+the leftmost operation is evaluated first.</para>
 </section>
 
 <section>
@@ -196,7 +158,13 @@ operators may take arbitrary expressions as their operands.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/term.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>term</para></caption>
 </mediaobject>
+
+<para>A term is similar to an expression, but with exponent as the next
+layer and with the multiplication operator (as an asterisk,
+<literal>*</literal>) and division operator (as a forward slash,
+<literal>/</literal>) as the operators used.</para>
 </section>
 
 <section>
@@ -208,7 +176,17 @@ operators may take arbitrary expressions as their operands.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/exponent.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>exponent</para></caption>
 </mediaobject>
+
+<para>A exponent differs from an expression or term by being right
+associative. This means that in a chain of exponents, the operation
+on the right is processed first. Because of this, the sub-exponent is
+on the right side in the formal grammar, but other than that the
+parsing looks the same. The components of an exponent are separated by
+a caret character (<literal>^</literal>). This character is used Because
+it resembles how the power is a small, superscript number following the
+base number.</para>
 </section>
 
 <section>
@@ -220,9 +198,14 @@ operators may take arbitrary expressions as their operands.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/roll.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>roll</para></caption>
 </mediaobject>
-</section>
 
+<para>The dice operator is neither right- nor left-associative; it only
+takes an atom as its first argument, and a non-negative integer as its
+second argument. Since the atom production is the end of the chain,
+there are no other rules to chain after a roll. The operator used for
+the dice operator is the lowercase letter <literal>d</literal>.</para>
 </section>
 
 <section>
@@ -234,12 +217,16 @@ operators may take arbitrary expressions as their operands.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/atom.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>atom</para></caption>
 </mediaobject>
 
-<para>The Siliko infix language uses parentheses to isolate a portion of
-an expression from the order of operations. Anything inside a pair of
+<para>An atom is the final, unsplittable, rule at the base of Every
+expression. An atom can either be another expression between
+parentheses, a function call, or a number, Anything inside a pair of
 parentheses will be evaluated independently of any surrounding values
-and operations.</para>
+and operations. A function call is handled independently of its
+surroundings naturally, and the only processing the prser does for
+numbers is to determine if they have a negative sign or not.</para>
 </section>
 
 <section>
@@ -251,14 +238,12 @@ and operations.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/function-call.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>function-call</para></caption>
 </mediaobject>
 
-<para>Function calls take the form
-<replaceable>function-name</replaceable><literal>(</literal><replaceable>arguments</replaceable><literal>)</literal>.
-<replaceable>arguments</replaceable> is a comma-separated list of
-expressions. How many parameters a function takes is defined by the
-function, but Siliko Core’s parser requires at least one argument for
-any function call.</para>
+<para>Function calls start with an ID, followed by an argument list
+between parentheses.</para>
+</section>
 
 <section>
 <info>
@@ -268,7 +253,16 @@ any function call.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/id.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>id</para></caption>
 </mediaobject>
+
+<para>An identifier is any series of alphanumeric characters starting
+with a letter, except for <literal>d</literal>, <literal>e</literal>,
+<literal>pi</literal>, or a <literal>d</literal> immediately followed by
+a numeral. This exception for <literal>d</literal> followed by a numeral
+allows for notation like <code>&quot;3d6&quot;</code> to be used without
+needing to add a space between the dice roll operator and the number of
+faces.</para>
 </section>
 
 <section>
@@ -279,7 +273,69 @@ any function call.</para>
   <imageobject>
     <imagedata align="center" fileref="../svg/argument-list.svg" format="svg" scale="100"/>
   </imageobject>
+  <caption><para>argument-list</para></caption>
 </mediaobject>
+
+<para>An argument list is a comma-separated list of expressions. How
+many parameters a function takes is defined by the function, but Siliko
+Core’s parser requires at least one argument for any function
+call.</para>
+</section>
+
+<section>
+<info>
+    <title>Numbers</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/number.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>number</para></caption>
+</mediaobject>
+
+<para>A number can be either an <type>integer</type> or a
+<type>real</type>, optionally proceeded by a minus
+sign (<literal>-</literal>).</para>
+</section>
+
+<section>
+<info>
+  <title>Integers</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/integer.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>integer</para></caption>
+</mediaobject>
+
+<para>An <type>integer</type> is a series of one or more decimal digits.
+The tokenizer passes the series of digits to the C standard-library
+<function>strtoll</function> function to get the <type>integer</type>
+value.</para>
+</section>
+
+<section>
+<info>
+  <title>Real Numbers</title>
+</info>
+
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/real.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>real</para></caption>
+</mediaobject>
+
+<para>A <type>real</type> can take one of two forms. In the first form,
+it is is either the strings <literal>e</literal>, or
+<literal>pi</literal>. In the second form, it is a series of one or more
+decimal digits, followed by a decimal point, optionally followed by one
+or more decimal digits. The tokenizer passes the series of characters to
+the C standard-library <function>strtod</function> function to get the
+<type>real</type> value.</para>
 </section>
 </section>
 
