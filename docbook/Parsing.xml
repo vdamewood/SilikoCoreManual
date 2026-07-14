@@ -145,7 +145,12 @@ multiplication operations, as operands. It would also determine the
 operands of the multiplication operations. It will then generate a
 syntax tree representing the operations.</para>
 
-<para>FIXME: Add diagram of full parse tree.</para>
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/Parsing.ParseTree.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>A parse tree</para></caption>
+</mediaobject>
 </section>
 
 <section>

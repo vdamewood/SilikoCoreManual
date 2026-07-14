@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="169" height="192" xmlns="http://www.w3.org/2000/svg">
+
+<style type="text/css">
+  @namespace "http://www.w3.org/2000/svg";
+  path, rect, polygon {
+    stroke: black;
+    stroke-width: 1;
+  }
+
+  path {
+    fill: none;
+  }
+
+  rect, polygon {
+    fill: #ddd;
+  }
+
+  text {
+    font-family: "Myriad Pro";
+    font-size: 12px;
+  }
+</style>
+
+<rect x="77" y="8" height="16" width="19"/>
+<text x="83" y="20">+</text>
+
+<rect x="32" y="48" height="16" width="19"/>
+<text x="38" y="60">+</text>
+<rect x="123" y="48" height="16" width="17"/>
+<text x="129" y="60">*</text>
+
+<rect x="8" y="88" height="16" width="24"/>
+<text x="14" y="100" class="nonterminal">40</text>
+<rect x="52" y="88" height="16" width="17"/>
+<text x="58" y="100" class="nonterminal">*</text>
+<rect x="99" y="88" height="16" width="24"/>
+<text x="105" y="100" class="nonterminal">12</text>
+<rect x="143" y="88" height="16" width="18"/>
+<text x="149" y="100" class="nonterminal">3</text>
+
+<rect x="32" y="128" height="16" width="17"/>
+<text x="38" y="140" class="nonterminal">*</text>
+<rect x="69" y="128" height="16" width="18"/>
+<text x="75" y="140" class="nonterminal">5</text>
+
+<rect x="13" y="168" height="16" width="18"/>
+<text x="19" y="180" class="nonterminal">7</text>
+<rect x="51" y="168" height="16" width="24"/>
+<text x="57" y="180" class="nonterminal">11</text>
+
+<path d="
+  M  77  24 L  42  48
+  M  96  24 L 132  48
+  M  32  64 L  20  88
+  M  51  64 L  61  88
+  M 123  64 L 111  88
+  M 140  64 L 152  88
+  M  52 104 L  40 128
+  M  69 104 L  78 128
+  M  32 144 L  22 168
+  M  49 144 L  63 168
+"/>
+</svg>

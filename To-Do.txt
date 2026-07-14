@@ -1,7 +1,6 @@
 * Parsing.xml Add diagrams
   - lexeme-to-token conversion
   - Siliko core FSM
-  - full parse tree of parsing example
 
 * Fill in incomplete pages in API reference
 
