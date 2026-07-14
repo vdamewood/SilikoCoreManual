@@ -1,5 +1,3 @@
-* Describe tokens in Integrating.xml
-
 * Parsing.xml Add diagrams
   - lexeme-to-token conversion
   - Siliko core FSM
