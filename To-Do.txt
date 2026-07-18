@@ -1,7 +1,3 @@
-* Parsing.xml Add diagrams
-  - lexeme-to-token conversion
-  - Siliko core FSM
-
 * Fill in incomplete pages in API reference
 
 * Add version.h symbols to API reference

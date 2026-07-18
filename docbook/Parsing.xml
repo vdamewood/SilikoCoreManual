@@ -81,8 +81,6 @@ and a lexical analyzer can also be called a
 source code for Siliko Core for a lexical analyzer is
 <firstterm>lexer</firstterm>.</para>
 
-<para>FIXME: Add diagram showing the lexeme-to-token conversion.</para>
-
 <para>A lexical analyzer works by reading input one character at a time,
 whittling down the possible results as it reads each character until,
 by its internal rules, it has reached the end of input and narrowed down
@@ -111,7 +109,13 @@ itself in a more convenient form, such as the machine’s internal
 floating-point representation. The Lexical analyzer then passes this
 token on to the syntactic analyzer.</para>
 
-<para>FIXME: Add diagram showing Siliko core FSM.</para>
+<mediaobject>
+  <imageobject>
+    <imagedata align="center" fileref="../svg/Parsing.Fsm.svg" format="svg" scale="100"/>
+  </imageobject>
+  <caption><para>The finite-state machine in Siliko Core’s infix
+    parser</para></caption>
+</mediaobject>
 </section>
 
 

@@ -176,8 +176,8 @@ set(LanguageReference_DEPS
 )
 
 set(Parsing_DEPS
+    ${SVG_DIR}/Parsing.Fsm.svg
     ${SVG_DIR}/Parsing.ParseTree.svg
-
 )
 
 set(ApiReference_DEPS
