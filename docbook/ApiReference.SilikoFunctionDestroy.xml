@@ -7,12 +7,12 @@
   xml:id="Api.SilikoFunctionDestroy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoFunctionDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoFunctionDestroy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to clean up an in-language function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,6 +23,10 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoFunctionDestroy</function> function calls
+  the <function>destroy</function> function in
+  <varname>object</varname>’s <type>SilikoFunctionVTable</type>, then
+  deallocates the memory used by <varname>object</varname>
+  itself.</para>
 </refsection>
 </refentry>

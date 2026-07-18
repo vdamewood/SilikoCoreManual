@@ -7,12 +7,13 @@
   xml:id="Api.SilikoFunctionCall"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoFunctionCall</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoFunctionCall</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to invoke the implementation of an in-language
+    function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,12 +26,17 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoFunctionCall</function> function invokes
+  <varname>object</varname> by calling the <function>call</function>
+  function in <varname>object</varname>’s
+  <type>SilikoFunctionVTable</type> padding <varname>argc</varname>
+  and <varname>argv</varname> to <function>call</function>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoFunctionCall</function> forwards the return
+  value yielded by <function>call</function>.</para>
 </refsection>
 </refentry>
