@@ -7,23 +7,29 @@
   xml:id="Api.SilikoNodeAssign"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeAssign</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeAssign</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Set the value of a node to match another</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/Node.h&gt;</programlisting>
 <programlisting language="C">void SilikoNodeAssign(
     SilikoNode *object,
-    const SilikoNode *sright_side);</programlisting>
+    const SilikoNode *right_side);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeAssign</function> function assigns the
+value of <varname>right_side</varname> to the object that
+<varname>object</varname> points to. If <varname>object</varname>
+previously had child nodes, they are passed to
+<function>SilikoNodeDestroy</function>. If
+<varname>right_side</varname> has child elements, then a deep copy is
+made when copying the values to <varname>object</varname>.</para>
 </refsection>
 </refentry>

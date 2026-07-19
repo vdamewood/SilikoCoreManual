@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeGetId"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeGetId</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeGetId</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Get the function name of a branch node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,18 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeGetId</function> gets the function name
+of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoNodeGetId</function> returns a pointer to the
+function name held by <varname>object</varname> if
+<varname>object</varname> is a branch node, or
+<literal>NULL</literal> if not. If a valid pointer is returned, it
+remains owned by <varname>object</varname> and must not be deallocated
+by the caller.</para>
 </refsection>
 </refentry>

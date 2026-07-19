@@ -7,12 +7,13 @@
   xml:id="Api.SilikoNodeInsert"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeInsert</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeInsert</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Insert a node into the child list of another
+    node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,12 +26,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeInsert</function> function inserts
+<varname>new_child</varname> into the child list of
+<varname>object</varname> at <varname>position</varname>.
+<function>SilikoNodeInsert</function> will fail if
+<varname>object</varname> is not a branch node, if
+<varname>new_child</varname> is <literal>NULL</literal> or if
+<varname>position</varname> is past the end of the child list.
+<varname>object</varname> takes ownership of
+<varname>new_child</varname>
+and will deallocate it when <varname>object</varname>
+is passed to <function>SilikoNodeDestroy</function> or to an assign
+function as the destination object.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoNodeInsert</function> returns
+<literal>true</literal> if it succeeded, or <literal>false</literal>
+if it failed. </para>
 </refsection>
 </refentry>

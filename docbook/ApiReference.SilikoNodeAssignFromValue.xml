@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeAssignFromValue"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeAssignFromValue</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeAssignFromValue</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Set a node to a value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,6 +24,12 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeAssignFromValue</function> function
+assigns the value of <varname>right_side</varname> to the object that
+<varname>object</varname> points to. If <varname>object</varname>
+previously had child nodes, they are passed to
+<function>SilikoNodeDestroy</function>. The value from
+<varname>right_side</varname> is copied, so the calling context retains
+ownership of <varname>right_side</varname>.</para>
 </refsection>
 </refentry>

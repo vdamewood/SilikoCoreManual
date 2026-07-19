@@ -7,12 +7,13 @@
   xml:id="Api.SilikoNodePushCopyLeft"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodePushCopyLeft</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodePushCopyLeft</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to copy and add a child node to a parent node, on
+    the left</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,12 +25,18 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodePushCopyLeft</function> function copies
+<varname>new_child</varname> and adds the copy to
+<varname>object</varname>, to the left of any existing child
+nodes.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoNodePushCopyLeft</function> returns
+<literal>true</literal> if the operation was successful, or
+<literal>false</literal> if the insertion failed, such as if
+<varname>object</varname> is not a branch node.</para>
 </refsection>
 </refentry>

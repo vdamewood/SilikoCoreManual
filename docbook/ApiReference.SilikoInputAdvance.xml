@@ -7,12 +7,12 @@
   xml:id="Api.SilikoInputAdvance"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputAdvance</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoInputAdvance</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to move the input forward</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeAssignFromError"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeAssignFromError</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeAssignFromError</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Set a node to an error value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,6 +24,10 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeAssignFromError</function> function
+assigns the value of <varname>right_side</varname> to the object that
+<varname>object</varname> points to. If <varname>object</varname>
+previously had child nodes, they are passed to
+<function>SilikoNodeDestroy</function>.</para>
 </refsection>
 </refentry>

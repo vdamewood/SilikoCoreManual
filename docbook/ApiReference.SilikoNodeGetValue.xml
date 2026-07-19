@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeGetValue"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeGetValue</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeGetValue</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Get the value of a leaf node.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,20 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeGetValue</function> retrieves the value
+of <varname>object</varname> if <varname>object</varname> is a leaf
+node. To get the effective value of a branch node, use
+<function>SilikoEvaluate</function> instead.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoNodeGetValue</function> returns a pointer to
+the <type>SilikoValue</type> object held by <varname>object</varname>
+if <varname>object</varname> is a leaf node, <literal>NULL</literal>
+otherwise. If <function>SilikoNodeGetValue</function> returns a valid
+pointer, the object point to is still owned by
+<varname>object</varname> and must not be deallocated.</para>
 </refsection>
 </refentry>

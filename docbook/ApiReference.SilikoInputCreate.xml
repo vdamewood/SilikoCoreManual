@@ -7,7 +7,7 @@
   xml:id="Api.SilikoInputCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoInputCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
@@ -24,12 +24,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoInputCreate</function> function creates a
+  <type>SilikoInput</type> objecr with
+  <varname>source_table</varname> as its
+  <type>SilikoInputVTable</type> and
+  <varname>source_state</varname> as its state object.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoInputCreate</function> returns a pointer
+to the newly created object if successful, or <literal>NULL</literal>
+if there is an error. If <function>SilikoInputCreate</function>
+returns a valid pointer, then the object must be passed to
+<function>SilikoInputDestroy</function> to avoid a memory error,
+and <varname>source_state</varname> will be cleaned up when the object
+is passed to <function>SilikoInputDestroy</function>. If
+<function>SilikoInputCreate</function> returns
+<literal>NULL</literal>, then the calling context is still responsible
+for cleaning up <varname>source_state</varname>.</para>
 </refsection>
 </refentry>

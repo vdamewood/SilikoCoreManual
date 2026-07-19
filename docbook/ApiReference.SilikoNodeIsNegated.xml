@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeIsNegated"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeIsNegated</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeIsNegated</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to determine if a node has been negated</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,21 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeIsNegated</function> determines If
+<varname>object</varname> has been negated. A leaf node is negated if
+its value is negative. A branch node is negated if its
+‘negated’ flag is set by a previous call to
+<function>SilikoNodeNegate</function>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoNodeIsNegated</function> returns
+<literal>true</literal> if <varname>object</varname> is a leaf node
+with a value less than 0 or 0.0 or if <varname>object</varname> is a
+branch node and its ‘negated’ flag is set.
+<function>SilikoNodeIsNegated</function> returns
+<literal>false</literal> in all other conditions.</para>
 </refsection>
 </refentry>

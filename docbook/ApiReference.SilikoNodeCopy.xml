@@ -7,12 +7,12 @@
   xml:id="Api.SilikoNodeCopy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoNodeCopy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoNodeCopy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Create a copy of a node</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,15 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoNodeCopy</function> function copies the value
+of <varname>source</varname> into a new <type>SilikoNode</type>
+object. If <varname>source</varname> is a branch, then a deep copy
+is made.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
-
-<para></para>
+<para><function>SilikoNodeCopy</function> returns the copy created if
+successful, or <literal>NULL</literal> if an error occured.</para>
 </refsection>
 </refentry>
