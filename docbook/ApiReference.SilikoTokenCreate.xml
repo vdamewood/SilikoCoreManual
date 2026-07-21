@@ -7,12 +7,12 @@
   xml:id="Api.SilikoTokenCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenCreate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create a token without a value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,7 +22,10 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenCreate</function> function creates a new
+token with no value. The status will be
+<literal>SilikoTokenUnset</literal>. Such a token may be used as a
+placeholder or sentinal value.</para>
 </refsection>
 
 <refsection>

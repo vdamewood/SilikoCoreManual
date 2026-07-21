@@ -7,12 +7,12 @@
   xml:id="Api.SilikoTokenDestroy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenDestroy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to deallocate a token</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,6 +22,8 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenDestroy</function> function deletes
+<varname>object</varname>. If <varname>object</varname> is an
+identifier, the string value is deallocated as well.</para>
 </refsection>
 </refentry>

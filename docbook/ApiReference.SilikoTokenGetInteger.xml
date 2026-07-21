@@ -7,12 +7,13 @@
   xml:id="Api.SilikoTokenGetInteger"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenGetInteger</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenGetInteger</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve the integer value of a
+    token</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +23,17 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenGetInteger</function> function gets the
+integer value of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenGetInteger</function> returns the integer
+  value of <varname>object</varname> if <varname>object</varname>
+  holds an integer value. If <varname>object</varname> does not
+  hold an integer token, then
+  <function>SilikoTokenGetCharacter</function> returns 0.</para>
 </refsection>
 </refentry>

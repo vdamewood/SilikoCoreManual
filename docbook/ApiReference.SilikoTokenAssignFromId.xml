@@ -7,12 +7,13 @@
   xml:id="Api.SilikoTokenAssignFromId"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenAssignFromId</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenAssignFromId</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to set a token to indicate an
+    identifier</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,6 +25,10 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenAssignFromId</function> function
+sets the object pointed to by <varname>object</varname> to indicate an
+identifier token with the value of <varname>right_side</varname>. The
+value of <varname>right_side</varname> is copied, so the calling contect
+retains ownership of <varname>right_side</varname>.</para>
 </refsection>
 </refentry>

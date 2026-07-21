@@ -7,12 +7,13 @@
   xml:id="Api.SilikoTokenGetReal"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenGetReal</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenGetReal</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve the real-number value of a
+    token</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +23,18 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenGetReal</function> function gets the
+real-number value of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenGetReal</function> returns the real-number
+  value of <varname>object</varname> if <varname>object</varname>
+  holds a real-number value. If <varname>object</varname> does not
+  hold a real-number token, then
+  <function>SilikoTokenGetReal</function> returns a NaN (not a number)
+  value.</para>
 </refsection>
 </refentry>

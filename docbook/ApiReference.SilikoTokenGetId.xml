@@ -7,12 +7,13 @@
   xml:id="Api.SilikoTokenGetId"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenGetId</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenGetId</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve the identifier value of a
+    token</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +23,20 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenGetId</function> function gets the
+identifier value of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenGetId</function> returns the identifier
+  value of <varname>object</varname> if <varname>object</varname>
+  holds an identifier value. If <varname>object</varname> does not
+  hold an identifier, then <function>SilikoTokenGetId</function> returns
+  <literal>NULL</literal>. If <function>SilikoTokenGetId</function>
+  returns a valid pointer, then the string pointed to is owned by
+  <varname>object</varname> and must not be deallocated by the calling
+  context.</para>
 </refsection>
 </refentry>

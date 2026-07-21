@@ -7,12 +7,13 @@
   xml:id="Api.SilikoTokenGetStatus"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenGetStatus</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenGetStatus</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to determine the kind of value a token
+    represemts</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +24,18 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenGetStatus</function> function gets the
+status of <varname>object</varname>. The status can be used to determine
+which kind of value the token holds.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenGetStatus</function> returns the status
+  of <varname>object</varname>. If <varname>object</varname> is
+  <literal>NULL</literal>, then
+  <function>SilikoTokenGetStatus</function> returns
+  <literal>SilikoTokenUnset</literal>.</para>
 </refsection>
 </refentry>

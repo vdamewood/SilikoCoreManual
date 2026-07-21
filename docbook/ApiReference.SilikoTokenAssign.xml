@@ -7,12 +7,12 @@
   xml:id="Api.SilikoTokenAssign"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoTokenAssign</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoTokenAssign</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to set one token to another</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,6 +24,8 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoTokenAssign</function> sets the value of
+the <type>SilikoToken</type> pointed to by <varname>object</varname>
+to the value in <varname>right_side</varname>.</para>
 </refsection>
 </refentry>
