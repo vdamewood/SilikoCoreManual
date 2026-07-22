@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueCreate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to make a zero-value value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,16 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueCreate</function> function creates a new
+value. Its status will be <literal>SilikoValueInteger</literal> and
+its integer value will be <literal>0</literal>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenCreate</function> returns a
+pointer to the newly created <type>SilikoToken</type> object if
+successful, or <literal>NULL</literal> on failure.</para>
 </refsection>
 </refentry>

@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueGetError"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueGetError</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueGetError</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve an error value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,20 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueGetError</function> function gets the
+error value of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoValueGetError</function> returns the error
+  value of <varname>object</varname> if <varname>object</varname>
+  holds an error value. If <varname>object</varname> does not
+  hold an error, then
+  <function>SilikovalueGetError</function> returns
+  <literal>SilikoErrorNone</literal>. If <varname>object</varname> is
+  <literal>NULL</literal> then <function>SilikoValueGetError</function>
+  returns <literal>SilikoErrorNullObject</literal>.</para>
 </refsection>
 </refentry>

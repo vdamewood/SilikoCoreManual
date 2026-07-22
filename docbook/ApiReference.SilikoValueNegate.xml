@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueNegate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueNegate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueNegate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to negate a value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,9 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
-</refsection>
-
-<refsection>
-<title>Return Values</title>
-
-<para></para>
+<para>The <function>SilikoValueNegate</function> negates the value
+that <varname>object</varname> holds. If <varname>object</varname>
+doesn't hold an integer or real-number value, then
+<function>SilikoValueNegate</function> has no effect.</para>
 </refsection>
 </refentry>

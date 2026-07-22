@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueAssign"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueAssign</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueAssign</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to set one value to another</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,6 +24,8 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueAssign</function> function assigns the
+value of <varname>right_side</varname> to the object that
+<varname>object</varname> points to.</para>
 </refsection>
 </refentry>

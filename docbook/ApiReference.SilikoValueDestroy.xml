@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueDestroy"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueDestroy</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueDestroy</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to delete a value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,6 +22,7 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueDestroy</function> function deletes
+<varname>object</varname>.</para>
 </refsection>
 </refentry>

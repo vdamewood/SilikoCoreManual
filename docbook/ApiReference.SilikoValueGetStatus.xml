@@ -7,7 +7,7 @@
   xml:id="Api.SilikoValueGetStatus"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueGetStatus</refentrytitle>
 </refmeta>
 
 <refnamediv>
@@ -23,12 +23,17 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueGet</function> function gets the
+status of <varname>object</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoValueGetStatus</function> returns the status
+  of <varname>object</varname> indicating which kind of value
+  <varname>object</varname> holds. If <varname>object</varname> is
+  <literal>NULL</literal>, <function>SilikoValueGetStatus</function>
+  returns <literal>SilikoValueError</literal>.</para>
 </refsection>
 </refentry>

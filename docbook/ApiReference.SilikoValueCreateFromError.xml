@@ -7,12 +7,12 @@
   xml:id="Api.SilikoValueCreateFromError"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoValueCreateFromError</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoValueCreateFromError</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to make an error value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,17 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoValueCreateFromError</function> function
+creates a new value. Its status will be
+<literal>SilikoValueError</literal> and its error value will be
+<varname>source</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoTokenCreateFromError</function> returns a
+pointer to the newly created <type>SilikoToken</type> object if
+successful, or <literal>NULL</literal> on failure.</para>
 </refsection>
 </refentry>
