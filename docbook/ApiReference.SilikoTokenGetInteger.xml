@@ -34,6 +34,6 @@ integer value of <varname>object</varname>.</para>
   value of <varname>object</varname> if <varname>object</varname>
   holds an integer value. If <varname>object</varname> does not
   hold an integer token, then
-  <function>SilikoTokenGetCharacter</function> returns 0.</para>
+  <function>SilikoTokenGetInteger</function> returns 0.</para>
 </refsection>
 </refentry>
