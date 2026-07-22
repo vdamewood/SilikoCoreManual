@@ -7,12 +7,12 @@
   xml:id="Api.SilikoPureFunctionCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoPureFunctionCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoPureFunctionCreate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Create a wrapper for a pure function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +23,17 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoPureFunctionCreate</function> creates A
+<type>SilikoFunction</type> object that wraps
+<varname>function</varname> which must be a function that requires no
+state object.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoPureFunctionCreate</function> returns the newly
+created object if successful, or <literal>NULL</literal> if there was
+an error.</para>
 </refsection>
 </refentry>
