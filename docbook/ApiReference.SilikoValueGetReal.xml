@@ -12,7 +12,7 @@
 
 <refnamediv>
   <refname><function>SilikoValueGetReal</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to retrieve a real-number value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
