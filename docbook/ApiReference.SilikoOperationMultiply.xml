@@ -7,12 +7,12 @@
   xml:id="Api.SilikoOperationMultiply"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoOperationMultiply</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoOperationMultiply</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement multiplication</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,24 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoOperationMultiply</function> function
+calculates the product of the values passed in <varname>argv</varname> 
+where <varname>argc</varname> is the number of values passed.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoOperationMultiply</function> returns a pointer to
+an object representing the result of the multiplication
+operation.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoOperationMultiply</function> function conforms
+to Siliko Core’s interface for pure functions and can be installed into
+a <type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

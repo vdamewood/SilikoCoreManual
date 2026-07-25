@@ -7,12 +7,13 @@
   xml:id="Api.SilikoOperationDiceCreate"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoOperationDiceCreate</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoOperationDiceCreate</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to create an object to simulate dice
+    rolls</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,12 +24,19 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoOperationDiceCreate</function> function
+makes a new <type>SilikoFunction</type> object using an implementation
+of a 64-bit Meesenne Twister, seeded by <varname>seed</varname>, to
+generate dice roll results. This object is used by Siliko Core to
+implement  its <literal>d</literal> operator.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para>A pointer to the newly created <type>SilikoFunction</type> object
+if successful, <literal> NULL</literal> if there was an error. This
+object can be used to call the dice operator logic directly, or
+installed into a <type>SilikoEngine</type> object.</para>
 </refsection>
 </refentry>

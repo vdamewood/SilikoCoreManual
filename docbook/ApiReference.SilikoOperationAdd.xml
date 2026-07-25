@@ -7,12 +7,12 @@
   xml:id="Api.SilikoOperationAdd"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoOperationAdd</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoOperationAdd</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement addition</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,23 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoOperationAdd</function> function calculates
+the sum of the values passed in <varname>argv</varname> where
+<varname>argc</varname> is the number of values passed.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoOperationAdd</function> returns a pointer to an
+object representing the result of the addition operation.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoOperationAdd</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

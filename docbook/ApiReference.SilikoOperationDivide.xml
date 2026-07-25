@@ -7,12 +7,12 @@
   xml:id="Api.SilikoOperationDivide"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoOperationDivide</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoOperationDivide</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement division</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,29 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoOperationDivide</function> function
+calculates the cumulative quotient of the values passed in
+<varname>argv</varname>, that it, it starts with
+<varname>argv[0]</varname> and divides by each value from
+<varname>argv[1]</varname> to <varname>argv[argc-1]</varname> where
+<varname>argc</varname> is the number of values passed.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoOperationDivide</function> returns a pointer to an
+object representing the result of the division operation. If
+<varname>argv[1]</varname> or any later argument is zero, the object
+rreturned will represent the error value
+<literal>SilikoErrorZeroDivision</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoOperationDivide</function> function conforms
+to Siliko Core’s interface for pure functions and can be installed into
+a <type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

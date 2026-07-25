@@ -7,12 +7,12 @@
   xml:id="Api.SilikoOperationPower"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoOperationPower</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoOperationPower</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement exponentiation</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,26 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>THe <function>SilikoOperationPower</function> function calculates
+the result of raising the values in <varname>argv</varname> to a power
+determined by starting with <varname>argv[argc-2]</varname> to the power
+of <varname>argv[argc-1]</varname>, then raising each preceeding value
+in <varname>argv</varname> to the running power until it reaches
+<varname>argv[0]</varname> and raises it to the running power. </para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoOperationPower</function> returns a pointer to an
+object representing the result of the exponentiation operation.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoOperationPower</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>
