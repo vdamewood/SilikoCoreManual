@@ -1,5 +1,3 @@
-* Fill in incomplete pages in API reference
-
 * Add version.h symbols to API reference
 
 * Add missing data to API reference pages:
