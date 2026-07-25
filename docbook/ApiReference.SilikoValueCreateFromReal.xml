@@ -21,6 +21,7 @@
 </refsynopsisdiv>
 
 <refsection>
+<title>Description</title>
 <para>The <function>SilikoValueCreateFromReal</function> function
 creates a new value. Its status will be
 <literal>SilikoValueReal</literal> and its real-number value will be
