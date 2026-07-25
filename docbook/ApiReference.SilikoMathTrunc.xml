@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathTrunc"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathTrunc</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathTrunc</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement truncation</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,26 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathTrunc</function> truncates the value of
+<varname>argv[0]</varname> to the whole-number portion of its
+value.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathTrunc</function> returns a pointer to an
+object representing the result of the truncation function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathTrunc</function> function conforms to SilikoCore’s
+interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

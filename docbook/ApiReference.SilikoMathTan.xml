@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathTan"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathTan</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathTan</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement tangent</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathTan</function> calculates the tangent of
+<varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathTan</function> returns a pointer to an
+object representing the result of the tangent function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathTan</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

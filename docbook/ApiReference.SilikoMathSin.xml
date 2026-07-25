@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathSin"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathSin</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathSin</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement sine</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathSin</function> calculates the sine of
+<varname>argv[0]</varname> in radians.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathSin</function> returns a pointer to an
+object representing the result of the sine function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathSin</function> function conforms to
+SilikoCore’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

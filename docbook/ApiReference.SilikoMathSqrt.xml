@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathSqrt"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathSqrt</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathSqrt</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement square root</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathSqrt</function> calculates the square root
+of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathSqrt</function> returns a pointer to an
+object representing the result of the square root function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathSqrt</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

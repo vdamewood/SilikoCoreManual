@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathCeil"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathCeil</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathCeil</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement ceiling</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,26 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathCeil</function> calculates the ceiling of
+<varname>argv[0]</varname>, which is the lowest whole number greater
+than or equal to <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathCeil</function> returns a pointer to an
+object representing the result of the ceiling function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathCeil</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

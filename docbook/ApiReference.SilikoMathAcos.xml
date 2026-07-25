@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathAcos"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathAcos</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathAcos</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement arc cosine</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,24 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathAcos</function> calculates the arc cosine,
+in radiens, of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathAcos</function> returns a pointer to an
+object representing the result of the arc cosine function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
 </refsection>
-</refentry>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathAcos</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
+</refsection></refentry>

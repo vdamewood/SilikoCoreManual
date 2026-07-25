@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathTanh"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathTanh</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathTanh</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement hyperbolic tangent</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathTanh</function> calculates the hyperbolic
+tangent of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathTanh</function> returns a pointer to an
+object representing the result of the hyperbolic tangent function. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathTanh</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>

@@ -7,12 +7,12 @@
   xml:id="Api.SilikoMathLog10"
   xmlns="http://docbook.org/ns/docbook">
 <refmeta>
-  <refentrytitle></refentrytitle>
+  <refentrytitle>SilikoMathLog10</refentrytitle>
 </refmeta>
 
 <refnamediv>
   <refname><function>SilikoMathLog10</function></refname>
-  <refpurpose></refpurpose>
+  <refpurpose>Function to implement base-10 logarithm</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,12 +22,25 @@
 
 <refsection>
 <title>Description</title>
-<para></para>
+<para>The <function>SilikoMathLog10</function> calculates the base-10
+logarithm of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>
 <title>Return Values</title>
 
-<para></para>
+<para><function>SilikoMathLog10</function> returns a pointer to an
+object representing the result of the logarithm. If
+<varname>argc</varname> is not <literal>1</literal>, the returned value
+will be an error value with value
+<literal>SilikoErrorFunctionArguments</literal>.</para>
+</refsection>
+
+<refsection>
+<title>Conformance</title>
+<para>The <function>SilikoMathLog10</function> function conforms to
+Siliko Core’s interface for pure functions and can be installed into a
+<type>SilikoEngine</type> if wrapped with
+<function>SilikoPureFunctionCreate</function>.</para>
 </refsection>
 </refentry>
