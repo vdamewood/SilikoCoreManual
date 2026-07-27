@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 
 <para>After you have your string input setup, you can pass it on to a
 lexer with the <function>SilikoLexerCreate</function> function. This
-will make a <type>SilikoLexer</object> object that you can then pass
+will make a <type>SilikoLexer</type> object that you can then pass
 to the infix parser. The infix parser will generate a syntax tree
 representing the expression you passed to it, and return a pointer to
 the root node of that tree.</para>
