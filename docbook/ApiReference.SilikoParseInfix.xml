@@ -17,18 +17,18 @@
 
 <refsynopsisdiv>
 <programlisting language="C">#include &lt;SilikoCore/ParseInfix.h&gt;</programlisting>
-<programlisting language="C">SilikoNode *SilikoParseInfix(SilikoInput *input);</programlisting>
+<programlisting language="C">SilikoNode *SilikoParseInfix(SilikoLexer *lexer);</programlisting>
 </refsynopsisdiv>
 
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoParseInfix</function> function parses
-the Siliko infix language from a <type>SilikoLexer</type> which reads
-a series of characters from <varname>input</varname>. The
-<function>SilikoParseInfix</function> then generates a syntax tree of
-<type>SilikoNode</type> objects representing the parsed input. The
-parser will take ownership of <varname>input</varname>, and call
-<function>SilikoInputDestroy</function> on it when finished.</para>
+the Siliko infix language from tokens supplied by
+<varname>lexer</varname>. <function>SilikoParseInfix</function>
+generates a syntax tree of <type>SilikoNode</type> objects representing
+the parsed input. The
+parser takes ownership of <varname>lexer</varname>, and will call
+<function>SilikoLexerDestroy</function> on it when finished.</para>
 </refsection>
 
 <refsection>

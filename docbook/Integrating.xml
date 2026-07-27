@@ -10,11 +10,11 @@
   <title>Integrating Siliko Core into Your Program</title>
 </info>
 
-<para>Siliko Core provides an interface to integrate parsing and
-evaluating mathematical expressions into a program. A developer can use
-the simple infix parser with the built-in set of functions to provide
-basic functionality, or write their own parser for another syntax, or
-add additional, custom functions to the language.</para>
+<para>Siliko Core provides tools to parse and evaluate mathematical
+expressions. A developer can use the simple infix parser with the
+built-in set of functions to provide basic functionality, or write their
+own parser for another syntax, or add additional, custom functions to
+the language.</para>
 
 <section>
 <info>
@@ -365,7 +365,7 @@ build it using any techniques requiring one token of look ahead.</para>
 <para>The final piece in the built-in parsing pipeline is the
 <function>SilikoParseInfix</function> function. Which parses input
 in the Siliko infix language. It takes a pointer to a
-<type>SilikoInput</type> object, and returns a pointer to a
+<type>SilikoLexer</type> object, and returns a pointer to a
 <type>SilikoNode</type> object representing the root node of the syntax
 tree the parser generated.</para>
 
@@ -533,10 +533,10 @@ these functions:</para>
 indicating whether it was able to install all of the functions it’s
 supposed to install or not. A <literal>false</literal> return value
 indicates that a memory error occurred. When this happens, the list of
-available functions in the function caller is unspecified.</para>
+available functions in the engine is unspecified.</para>
 
 <para>If you wish to implement your own function, it needs to be
-installed to the function caller with the
+installed to the engine with the
 <function>SilikoEngineInstallFunction</function> function. The function
 takes a string representing the name of the function used within the
 Siliko language, and a <type>SilikoFunction</type> object implementing

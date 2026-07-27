@@ -124,16 +124,18 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>After you have your string input setup, you can pass it on to the
-infix parser with the <function>SilikoParseInfix</function> function.
-The infix parser will generate a syntax tree representing the expression
-you passed to it, and return a pointer to the root node of that
-tree.</para>
+<para>After you have your string input setup, you can pass it on to a
+lexer with the <function>SilikoLexerCreate</function> function. This
+will make a <type>SilikoLexer</object> object that you can then pass
+to the infix parser. The infix parser will generate a syntax tree
+representing the expression you passed to it, and return a pointer to
+the root node of that tree.</para>
 
 <programlisting language="C">
     // Code to use the Siliko Core library
     SilikoInput *source = SilikoStringInputCreate(argv[1]);
-    SilikoNode *tree = SilikoParseInfix(source);    
+    SilikoLexer *lexer = SilikoLexer(source, true, true);
+    SilikoNode *tree = SilikoParseInfix(lexer);    
 </programlisting>
 
 <para>You can then evaluate the syntax tree to get a result from
@@ -198,14 +200,15 @@ is an error.</para>
     }
 </programlisting>
 
-<para>Some cleanup is needed for these objects, too. Because the infix
-parser consumes the <type>SilikoInput</type>, the parser also takes care
+<para>Some cleanup is needed for these objects, too. Because the lexer
+consumes the <type>SilikoInput</type>, the lexer also takes care
 of cleaning up the <type>SilikoInput</type>, so you do not need to clean
-up the <type>SilikoInput</type>, nor should you. The
-<type>SilikoNode</type> returned by
-<function>SilikoParseInfix</function> and the <type>SilikoValue</type>
-returned by <function>SilikoEvaluate</function> do need to be cleaned
-up. Siliko Core provides functions,
+up the <type>SilikoInput</type>, nor should you. Likewise, the parser
+takes ownership of the lexer, so then the parser is finished, it will
+clean up the lexer, and thus also the input. The <type>SilikoNode</type>
+returned by <function>SilikoParseInfix</function> and the
+<type>SilikoValue</type> returned by <function>SilikoEvaluate</function>
+do need to be cleaned up. Siliko Core provides functions,
 <function>SilikoNodeDestroy</function> to clean up a
 <type>SilikoNode</type> and its branches, and
 <function>SilikoValueDestroy</function> to clean up a
@@ -243,7 +246,8 @@ int main(int argc, char *argv[])
 
     // Code to use the Siliko Core library
     SilikoInput *source = SilikoStringInputCreate(argv[1]);
-    SilikoNode *tree = SilikoParseInfix(source);   
+    SilikoLexer *lexer = SilikoLexer(source, true, true);
+    SilikoNode *tree = SilikoParseInfix(lexer);
     SilikoValue *result = SilikoEvaluate(engine, tree);
 
     // Print the result
