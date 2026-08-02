@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionMajor"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionMajor</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionMajor</varname></refname>
+  <refpurpose>Integer holding major version number</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const unsigned int SilikoVersionMajor;</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionMajor</varname> value holds the
+major version number of the Siliko Core library. The major version is
+incremented (and the minor and patch version numbers are reset to zero)
+when a breaking change is made to Siliko Core’s API. </para>
+</refsection>
+</refentry>

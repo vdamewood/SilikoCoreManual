@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionString"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionString</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionString</varname></refname>
+  <refpurpose>String holding full version number</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const char SilikoVersionString[];</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionString</varname> value contains a string
+with the version (major.minor.patch) and prerelease suffix.</para>
+</refsection>
+</refentry>

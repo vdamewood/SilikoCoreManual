@@ -157,6 +157,14 @@ set(REFENTRY_FILES
     ${DB_DIR}/ApiReference.SilikoValueGetStatus.xml
     ${DB_DIR}/ApiReference.SilikoValueNegate.xml
     ${DB_DIR}/ApiReference.SilikoValueStatus.xml
+    ${DB_DIR}/ApiReference.SilikoVersionCopyright.xml
+    ${DB_DIR}/ApiReference.SilikoVersionMajor.xml
+    ${DB_DIR}/ApiReference.SilikoVersionMinor.xml
+    ${DB_DIR}/ApiReference.SilikoVersionPackageSuffix.xml
+    ${DB_DIR}/ApiReference.SilikoVersionPatch.xml
+    ${DB_DIR}/ApiReference.SilikoVersionPrereleaseSuffix.xml
+    ${DB_DIR}/ApiReference.SilikoVersionString.xml
+    ${DB_DIR}/ApiReference.SilikoVersionStringWithPackage.xml
 )
 
 set(LanguageReference_DEPS

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionPatch"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionPatch</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionPatch</varname></refname>
+  <refpurpose>Integer holding patch version number</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const unsigned int SilikoVersionPatch;</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionPatch</varname> value holds the
+patch version number of the Siliko Core library. The patch version is
+incremented when a bug fix is made that doesn’t change Siliko Core’s
+API.</para>
+</refsection>
+</refentry>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionMinor"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionMinor</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionMinor</varname></refname>
+  <refpurpose>Integer holding minor version number</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const unsigned int SilikoVersionMinor;</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionMinor</varname> value holds rhe
+minor version number of the Siliko Core library. The minor version is
+incremented (and the patch version number is reset to zero)
+when a non-breaking addition is made to Siliko Core’s API.</para>
+</refsection>
+</refentry>

@@ -136,5 +136,12 @@
 <xi:include href="ApiReference.SilikoValueGetStatus.xml"/>
 <xi:include href="ApiReference.SilikoValueNegate.xml"/>
 <xi:include href="ApiReference.SilikoValueStatus.xml"/>
-
+<xi:include href="ApiReference.SilikoVersionCopyright.xml"/>
+<xi:include href="ApiReference.SilikoVersionMajor.xml"/>
+<xi:include href="ApiReference.SilikoVersionMinor.xml"/>
+<xi:include href="ApiReference.SilikoVersionPackageSuffix.xml"/>
+<xi:include href="ApiReference.SilikoVersionPatch.xml"/>
+<xi:include href="ApiReference.SilikoVersionPrereleaseSuffix.xml"/>
+<xi:include href="ApiReference.SilikoVersionString.xml"/>
+<xi:include href="ApiReference.SilikoVersionStringWithPackage.xml"/>
 </article>

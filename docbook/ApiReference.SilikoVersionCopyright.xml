@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionCopyright"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionCopyright</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionCopyright</varname></refname>
+  <refpurpose>String holding copyright statement</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const char SilikoVersionCopyright[];</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionCopyright</varname> value holds the
+copyrightm statement for Siliko Core.</para>
+</refsection>
+</refentry>

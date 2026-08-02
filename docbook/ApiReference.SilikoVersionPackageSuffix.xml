@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/rng/docbook.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://cdn.docbook.org/schema/5.1/sch/docbook.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<refentry version="5.1"
+  xml:id="Api.SilikoVersionPackageSuffix"
+  xmlns="http://docbook.org/ns/docbook">
+<refmeta>
+  <refentrytitle>SilikoVersionPackageSuffix</refentrytitle>
+</refmeta>
+
+<refnamediv>
+  <refname><varname>SilikoVersionPackageSuffix</varname></refname>
+  <refpurpose>String holding packager’s version suffix</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<programlisting language="C">#include &lt;SilikoCore/Version.h&gt;</programlisting>
+<programlisting language="C">extern const char SilikoVersionPackageSuffix[];</programlisting>
+</refsynopsisdiv>
+
+<refsection>
+<title>Description</title>
+<para>The <varname>SilikoVersionPackageSuffix</varname> value holds a
+suffix that packagers (such as for Linux distributions or other
+repositories) can use to identify their particular package version.
+<varname>SilikoVersionPackageSuffix</varname> is an empty string in
+first-party releases and may be empty if the packager has no suffixing
+scheme.</para>
+</refsection>
+</refentry>
