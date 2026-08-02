@@ -298,7 +298,7 @@ foreach(XML_FILE ${REFENTRY_FILES})
             ${XSL_DIR}/fo.common.xsl
     )
 
-    set(MAN_FILE "${MAN_DIR}/${REFNAME}.1")
+    set(MAN_FILE "${MAN_DIR}/${REFNAME}.3")
     list(APPEND REFENTRY_MAN_FILES "${MAN_FILE}")
     add_custom_command(
         OUTPUT "${MAN_FILE}"

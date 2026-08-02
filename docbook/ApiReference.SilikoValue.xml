@@ -6,8 +6,23 @@
 <refentry version="5.1"
   xml:id="Api.SilikoValue"
   xmlns="http://docbook.org/ns/docbook">
+<info>
+  <productname>Siliko Core</productname>
+  <author>
+    <personname>
+      <firstname>Vincent</firstname>
+      <surname>Damewood</surname>
+    </personname>
+    <personblurb><para>Programmer</para></personblurb>
+  </author>
+</info>
+
 <refmeta>
   <refentrytitle>SilikoValue</refentrytitle>
+  <manvolnum>3</manvolnum>
+  <refmiscinfo class="source">Siliko</refmiscinfo>
+  <refmiscinfo class="manual">Siliko API Reference</refmiscinfo>
+  <refmiscinfo class="version">0.0</refmiscinfo>
 </refmeta>
 
 <refnamediv>
