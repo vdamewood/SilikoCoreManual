@@ -168,19 +168,19 @@ set(REFENTRY_FILES
 )
 
 set(LanguageReference_DEPS
-    ${SVG_DIR}/argument-list.svg
-    ${SVG_DIR}/atom.svg
-    ${SVG_DIR}/exponent.svg
-    ${SVG_DIR}/expression.svg
-    ${SVG_DIR}/function-call.svg
-    ${SVG_DIR}/id.svg
-    ${SVG_DIR}/integer.svg
-    ${SVG_DIR}/line.svg
-    ${SVG_DIR}/number.svg
-    ${SVG_DIR}/real.svg
-    ${SVG_DIR}/roll.svg
-    ${SVG_DIR}/space.svg
-    ${SVG_DIR}/term.svg
+    ${SVG_DIR}/LanguageReference.ArgumentList.svg
+    ${SVG_DIR}/LanguageReference.Atom.svg
+    ${SVG_DIR}/LanguageReference.Exponent.svg
+    ${SVG_DIR}/LanguageReference.Expression.svg
+    ${SVG_DIR}/LanguageReference.FunctionCall.svg
+    ${SVG_DIR}/LanguageReference.Id.svg
+    ${SVG_DIR}/LanguageReference.Integer.svg
+    ${SVG_DIR}/LanguageReference.Line.svg
+    ${SVG_DIR}/LanguageReference.Number.svg
+    ${SVG_DIR}/LanguageReference.Real.svg
+    ${SVG_DIR}/LanguageReference.Roll.svg
+    ${SVG_DIR}/LanguageReference.Space.svg
+    ${SVG_DIR}/LanguageReference.Term.svg
 )
 
 set(Parsing_DEPS

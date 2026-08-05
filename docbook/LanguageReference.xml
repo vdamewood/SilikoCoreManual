@@ -98,7 +98,7 @@ language.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/line.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Line.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>Line</para></caption>
 </mediaobject>
@@ -115,7 +115,7 @@ ending with a null character. </para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/space.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Space.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>space</para></caption>
 </mediaobject>
@@ -132,7 +132,7 @@ whitespace is ignored by the lexical analyzer.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/expression.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Expression.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>expression</para></caption>
 </mediaobject>
@@ -157,7 +157,7 @@ operations.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/term.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Term.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>term</para></caption>
 </mediaobject>
@@ -175,7 +175,7 @@ layer and with the multiplication operator (as an asterisk,
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/exponent.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Exponent.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>exponent</para></caption>
 </mediaobject>
@@ -197,7 +197,7 @@ notation.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/roll.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Roll.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>roll</para></caption>
 </mediaobject>
@@ -216,7 +216,7 @@ the dice operator is the lowercase letter <literal>d</literal>.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/atom.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Atom.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>atom</para></caption>
 </mediaobject>
@@ -237,7 +237,7 @@ numbers is to determine if they have a negative sign or not.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/function-call.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.FunctionCall.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>function-call</para></caption>
 </mediaobject>
@@ -252,7 +252,7 @@ between parentheses.</para>
 </info>
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/id.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Id.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>id</para></caption>
 </mediaobject>
@@ -272,7 +272,7 @@ faces.</para>
 </info>
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/argument-list.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.ArgumentList.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>argument-list</para></caption>
 </mediaobject>
@@ -290,7 +290,7 @@ call.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/number.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Number.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>number</para></caption>
 </mediaobject>
@@ -307,7 +307,7 @@ sign (<literal>-</literal>).</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/integer.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Integer.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>integer</para></caption>
 </mediaobject>
@@ -325,7 +325,7 @@ value.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/real.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/LanguageReference.Real.svg" format="svg" scale="100"/>
   </imageobject>
   <caption><para>real</para></caption>
 </mediaobject>
