@@ -47,7 +47,7 @@ real-number value of <varname>object</varname>.</para>
 
 <para><function>SilikoTokenGetReal</function> returns the real-number
   value of <varname>object</varname> if <varname>object</varname>
-  holds a real-number value. If <varname>object</varname> does not
+  holds a real-number token. If <varname>object</varname> does not
   hold a real-number token, then
   <function>SilikoTokenGetReal</function> returns a NaN (not a number)
   value.</para>

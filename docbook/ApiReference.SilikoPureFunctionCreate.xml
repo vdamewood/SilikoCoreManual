@@ -38,8 +38,8 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoPureFunctionCreate</function> creates A
-<type>SilikoFunction</type> object that wraps
+<para>The <function>SilikoPureFunctionCreate</function> function creates
+a <type>SilikoFunction</type> object that wraps
 <varname>function</varname> which must be a function that requires no
 state object.</para>
 </refsection>

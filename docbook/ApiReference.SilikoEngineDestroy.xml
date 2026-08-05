@@ -27,7 +27,7 @@
 
 <refnamediv>
   <refname><function>SilikoEngineDestroy</function></refname>
-  <refpurpose>Function to clean-up a <type>SilikoEngine</type></refpurpose>
+  <refpurpose>Function to cleanup a <type>SilikoEngine</type></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoValueCopy</function> function copies
-<varname>source</varname> into a new <type>SilikoToken</type>
+<varname>source</varname> into a new <type>SilikoValue</type>
 object.</para>
 </refsection>
 
@@ -46,7 +46,7 @@ object.</para>
 <title>Return Values</title>
 
 <para><function>SilikoValueCopy</function> returns a pointer to the new
-<type>SilikoValue</type> object if seccessful, <literal>NULL</literal>
+<type>SilikoValue</type> object if successful, <literal>NULL</literal>
 otherwise.</para>
 </refsection>
 </refentry>

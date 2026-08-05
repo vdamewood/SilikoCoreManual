@@ -38,7 +38,7 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoValueGet</function> function gets the
+<para>The <function>SilikoValueGetStatus</function> function gets the
 status of <varname>object</varname>.</para>
 </refsection>
 

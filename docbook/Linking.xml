@@ -57,7 +57,7 @@ or a static build. (It is essentially a no-op when using the
 <filename>Api.h</filename> from a static build.) So, if you need to
 automate a build using a static version of Siliko Core, it’s a good
 idea to define <symbol>SILIKOCORE_STATIC_DEFINE</symbol>
-indiscriminatly. If you wish to build using a shared/DLL copy of
+indiscriminately. If you wish to build using a shared/DLL copy of
 Siliko Core, you will need the <filename>Api.h</filename> file that was
 generated <emphasis>with the shared library you are
 using</emphasis>.</para>
@@ -69,9 +69,8 @@ using</emphasis>.</para>
 <para>As part of building Siliko Core, CMake generates
 <filename>Config</filename> package files to use Siliko Core in another
 CMake project. To use these in your own build process, you will need to
-do three things. The first thing is that you will need to find the
-<package>SilikoCore</package> package with the
-<literal>find_package</literal> CMake command.</para>
+do three things. First, find the <package>SilikoCore</package> package
+with the <literal>find_package</literal> CMake command.</para>
 
 <programlisting language="cmake">
 find_package(SilikoCore)
@@ -107,10 +106,11 @@ cmake --install $HOME/build/siliko-core \
 
 <para>CMake can find Siliko Core if you set the
 <envar>SilikoCore_ROOT</envar> environment variable to
-<envar>$HOME</envar><filename>/stage/siliko</filename> in this example.
-Thus, assuming you have a working <filename>CMakeLists.txt</filename>
-file for your project, with the above lines of code, you could run this
-sequence of commands to configure your application with CMake:</para>
+<envar>$HOME</envar><filename>/stage/siliko-core</filename> in this
+example. Thus, assuming you have a working
+<filename>CMakeLists.txt</filename> file for your project, with the
+above lines of code, you could run this sequence of commands to
+configure your application with CMake:</para>
 
 <programlisting language="shell">
 export SilikoCore_ROOT=$HOME/stage/siliko-core
@@ -144,9 +144,8 @@ would compile your source file like so:
 <replaceable class="command">$CC</replaceable> -I$HOME/stage/siliko-core/include main.c
 </programlisting>
 
-Where the <replaceable class="command">$CC</replaceable> command could
-be substituted with <command>gcc</command> or <command>clang</command>,
-whichever one you are using.</para>
+<replaceable class="command">$CC</replaceable> can be either
+<command>gcc</command> or <command>clang</command>.</para>
 
 <para>Then, when linking your program, link with the library as
 such:</para>
@@ -191,8 +190,8 @@ clang -F $HOME/stage/siliko-core/Frameworks -framework SilikoCore \
 
 <para>Dynamic link libraries on Windows are built with two components:
 the DLL file itself, used by the program at runtime, and an
-<firstterm>import library</firstterm> used at built time to embed
-information about the DLL into the program. With GCC and Clang Import
+<firstterm>import library</firstterm> used at build time to embed
+information about the DLL into the program. With GCC and Clang, import
 libraries are given the same name as the DLL, followed by
 <filename>.a</filename>. So, a DLL called
 <filename>SilikoCore.dll</filename> will have a companion import library
@@ -206,8 +205,8 @@ application.</para>
 <section>
 <title>Building with Microsoft Visual C++ (Command Line)</title>
 
-<para>Make sure your shell environment is setup to build. The easiest
-way to do this is to use the Developer Powershell or Developer Command
+<para>Make sure your shell environment is set up to build. The easiest
+way to do this is to use the Developer PowerShell or Developer Command
 Prompt items in the Start menu under the submenu for Visual Studio. For
 full details on setting this up, see
 <link xlink:href="https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line">Use
@@ -272,13 +271,13 @@ to the <guilabel>Search Paths</guilabel> section. Add the directory
 holding <filename>SilikoCore.framework</filename> to the
 <guilabel>Framework Search Paths</guilabel> value. In this example, that
 would be
-<envar>$HOME</envar><filename>/stage/siliko/Frameworks</filename>.
+<envar>$HOME</envar><filename>/stage/siliko-core/Frameworks</filename>.
 Finally, in the <guilabel>General</guilabel> tab find
 <guilabel>Frameworks, Libraries, and Embedded Content</guilabel>. Click
-the <guibutton>+</guibutton> button, and in the windows that opens,
+the <guibutton>+</guibutton> button, and in the window that opens,
 select <guilabel>Add Other...</guilabel>, then <guilabel>Add
 files...</guilabel>. Find and select the
-<filename>Siliko.framework</filename> directory, and click the
+<filename>SilikoCore.framework</filename> directory, and click the
 <guibutton>Open</guibutton> button.</para>
 </section>
 

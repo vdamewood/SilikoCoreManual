@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoMathAtan</function> calculates the arc
-tangent, in radiens, of <varname>argv[0]</varname>.</para>
+tangent, in radians, of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>

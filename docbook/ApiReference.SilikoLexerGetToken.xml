@@ -45,7 +45,7 @@ current token from <varname>object</varname>.</para>
 <title>Return Values</title>
 
 <para>A pointer to a <type>SilikoToken</type> object representing the
-current token. This object is managed by <varname>object</varname> and
+current token. The object is managed by <varname>object</varname> and
 must not be passed to <function>SilikoTokenDestroy</function>. The
 pointer is valid until <function>SilikoLexerAdvance</function> is
 called on <varname>object</varname>.</para>

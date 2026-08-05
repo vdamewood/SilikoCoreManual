@@ -40,7 +40,7 @@
 <para>THe <function>SilikoOperationPower</function> function calculates
 the result of raising the values in <varname>argv</varname> to a power
 determined by starting with <varname>argv[argc-2]</varname> to the power
-of <varname>argv[argc-1]</varname>, then raising each preceeding value
+of <varname>argv[argc-1]</varname>, then raising each preceding value
 in <varname>argv</varname> to the running power until it reaches
 <varname>argv[0]</varname> and raises it to the running power. </para>
 </refsection>

@@ -46,8 +46,8 @@ creates a new value. Its status will be
 <refsection>
 <title>Return Values</title>
 
-<para><function>SilikoTokenCreateFromReal</function> returns a
-pointer to the newly created <type>SilikoToken</type> object if
+<para><function>SilikoValueCreateFromReal</function> returns a
+pointer to the newly created <type>SilikoValue</type> object if
 successful, or <literal>NULL</literal> on failure.</para>
 </refsection>
 </refentry>

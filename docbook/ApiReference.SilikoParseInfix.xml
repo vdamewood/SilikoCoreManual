@@ -49,8 +49,7 @@ parser takes ownership of <varname>lexer</varname>, and will call
 <refsection>
 <title>Return Value</title>
 <para><function>SilikoParseInfix</function> returns a pointer to the
-root node of the syntax tree generated from parsing the input from the
-input source or <literal>NULL</literal> if it is unable to allocate
-memory.</para>
+root node of the syntax tree generated from parsing the input source or
+<literal>NULL</literal> if it is unable to allocate memory.</para>
 </refsection>
 </refentry>

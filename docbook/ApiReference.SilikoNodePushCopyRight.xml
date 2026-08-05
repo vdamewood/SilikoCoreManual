@@ -40,7 +40,7 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoNodePushRight</function> function copies
+<para>The <function>SilikoNodePushCopyRight</function> function copies
 <varname>new_child</varname> and adds the copy to
 <varname>object</varname>, to the right of any existing child
 nodes.</para>

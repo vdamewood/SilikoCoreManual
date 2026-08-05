@@ -37,7 +37,7 @@
 
 <refsection>
 <title>Description</title>
-<para>A <type>SilikoLexer</type> is a tool used to lexically analyze
+<para>A <type>SilikoLexer</type> is lexically analyzes
 input from a <type>SilikoInput</type>, and converts the input to a
 sequence of meaningful tokens as <type>SilikoToken</type>
 objects.</para>

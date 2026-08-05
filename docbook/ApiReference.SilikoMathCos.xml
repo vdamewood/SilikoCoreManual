@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoMathCos</function> calculates the cosine of
-<varname>argv[0]</varname>, in radiens.</para>
+<varname>argv[0]</varname>, in radians.</para>
 </refsection>
 
 <refsection>

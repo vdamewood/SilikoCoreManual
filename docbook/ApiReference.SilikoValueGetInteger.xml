@@ -48,7 +48,7 @@ integer value of <varname>object</varname>.</para>
 <para><function>SilikoValueGetInteger</function> returns the integer
   value of <varname>object</varname> if <varname>object</varname>
   holds an integer value. If <varname>object</varname> does not
-  hold an integer token, then
-  <function>SilikovalueGetInteger</function> returns 0.</para>
+  hold an integer value, then
+  <function>SilikoValueGetInteger</function> returns 0.</para>
 </refsection>
 </refentry>

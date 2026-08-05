@@ -59,7 +59,7 @@ identifier.</para>
   not set and holds no usable value.</para></listitem>
 <listitem><para><literal>SilikoTokenInteger</literal>: The token is an
   integer.</para></listitem>
-<listitem><para><literal>SilikoTokenReal</literal>: The token is a rea;
+<listitem><para><literal>SilikoTokenReal</literal>: The token is a real
   number.</para></listitem>
 <listitem><para><literal>SilikoTokenCharacter</literal>: The token is a
   character, such as an operator or parenthesis.</para></listitem>

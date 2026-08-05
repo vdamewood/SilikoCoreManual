@@ -40,7 +40,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoFunctionCreate</function> function creates a
-  <type>SilikoFunction</type> objecr with
+  <type>SilikoFunction</type> object with
   <varname>source_table</varname> as its
   <type>SilikoFunctionVTable</type> and
   <varname>source_state</varname> as its state object.</para>
@@ -53,7 +53,7 @@
 to the newly created object if successful, or <literal>NULL</literal>
 if there is an error. If <function>SilikoFunctionCreate</function>
 returns a valid pointer, then the object must be passed to
-<function>SilikoFunctionDestroy</function> to avoid a memory error,
+<function>SilikoFunctionDestroy</function> to avoid a memory leak,
 and <varname>source_state</varname> will be cleaned up when the object
 is passed to <function>SilikoFunctionDestroy</function>. If
 <function>SilikoFunctionCreate</function> returns

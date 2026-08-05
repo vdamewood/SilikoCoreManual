@@ -39,7 +39,7 @@ easier for a computer to process.</para>
 <para>When parsing, there are two major steps. The first step is lexical
 analysis. This step involves the conversion of strings of arbitrary
 characters to usable units. For example, the string
-<code>40+7*11*5+12*3</code> could represent a series of number with a
+<code>40+7*11*5+12*3</code> could represent a series of numbers with a
 symbol between each adjacent pair of numbers, but to the computer, it’s
 14 bytes, with the values
 52 (<literal>4</literal>),
@@ -55,7 +55,7 @@ symbol between each adjacent pair of numbers, but to the computer, it’s
 49 (<literal>1</literal>),
 50 (<literal>2</literal>),
 42 (<literal>*</literal>), and
-51 (<literal>3</literal>). In order for this series of bytes to be
+51 (<literal>3</literal>). To make this series of bytes
 useful as the sequence
 <type>number</type>:<literal>40</literal>,
 <type>symbol</type>:<literal>+</literal>,
@@ -176,7 +176,7 @@ such a language, but notations like JSON, and formats like XML are also
 languages.</para>
 
 <para>Here is a simple example of a grammar in what is called
-<firstterm>extended Backus-Naur form.</firstterm>:</para>
+<firstterm>extended Backus-Naur form</firstterm>:</para>
 
 <productionset>
 <production xml:id="Parsing.Grammar.Expression">
@@ -216,10 +216,10 @@ version used by the World Wide Web Consortium, in
 section of the XML Recommendation</link>.</para>
 </note>
 
-<para>A simple example of a production is <code>[0-9]+</code>.
+<para>A simple example of a production is <code>[0-9]+</code>,
 written using regular expression notation to simplify the rules. Each
 production is identified by a name. This name, and the text the
-production represents is called a <firstterm>nonterminal</firstterm>.
+production represents are called a <firstterm>nonterminal</firstterm>.
 A <firstterm>terminal</firstterm> is a literal character such as
 <literal>&apos;+&apos;</literal>.</para>
 

@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <type>SilikoInput</type> type represents a user-provided
-source characters to be used by a lexical analyzr to convert to
+source of characters to be used by a lexical analyzer to convert to
 tokens.</para>
 </refsection>
 </refentry>

@@ -28,7 +28,7 @@
 <refnamediv>
   <refname><function>SilikoTokenGetStatus</function></refname>
   <refpurpose>Function to determine the kind of value a token
-    represemts</refpurpose>
+    represents</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

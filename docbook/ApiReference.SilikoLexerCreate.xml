@@ -54,7 +54,7 @@ are treated as identifiers.</para>
 <title>Return Values</title>
 
 <para><function>SilikoLexerCreate</function> returns a pointer to a new
-<type>SilikoLexer</type> object if there was no memory error, or
-<literal>NULL</literal> if there was a memory error.</para>
+<type>SilikoLexer</type> object if successful, or
+<literal>NULL</literal> if memory allocation failed.</para>
 </refsection>
 </refentry>

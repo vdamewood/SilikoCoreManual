@@ -49,7 +49,7 @@ error value of <varname>object</varname>.</para>
   value of <varname>object</varname> if <varname>object</varname>
   holds an error value. If <varname>object</varname> does not
   hold an error, then
-  <function>SilikovalueGetError</function> returns
+  <function>SilikoValueGetError</function> returns
   <literal>SilikoErrorNone</literal>. If <varname>object</varname> is
   <literal>NULL</literal> then <function>SilikoValueGetError</function>
   returns <literal>SilikoErrorNullObject</literal>.</para>

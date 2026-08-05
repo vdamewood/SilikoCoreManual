@@ -39,7 +39,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoTokenCreateFromInteger</function> function
-creates a new <type>SilikoToken</type> representing the the integer
+creates a new <type>SilikoToken</type> representing the integer
 passed as <varname>source</varname>.</para>
 </refsection>
 

@@ -53,7 +53,7 @@
 to the newly created object if successful, or <literal>NULL</literal>
 if there is an error. If <function>SilikoInputCreate</function>
 returns a valid pointer, then the object must be passed to
-<function>SilikoInputDestroy</function> to avoid a memory error,
+<function>SilikoInputDestroy</function> to avoid a memory leak,
 and <varname>source_state</varname> will be cleaned up when the object
 is passed to <function>SilikoInputDestroy</function>. If
 <function>SilikoInputCreate</function> returns

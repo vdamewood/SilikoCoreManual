@@ -215,7 +215,7 @@ symbolic links to files and directories in
 <filename>Versions/Current</filename> within the framework, and
 <filename>Versions/Current</filename> is itself a symbolic link to a
 directory with a name matching the version number of Siliko Core, such
-as <filename>Versions/1.0.0/</filename>, whic contains the actual files
+as <filename>Versions/1.0.0/</filename>, which contains the actual files
 within the framework.</para>
 
 <itemizedlist>

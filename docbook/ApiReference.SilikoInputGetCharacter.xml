@@ -50,6 +50,6 @@ the <type>SilikoInputVTable</type> of <varname>object</varname>.</para>
 value of the call to function pointed to by
 <varname>getCharacter</varname>, either the current
 character if <varname>object</varname> has characters to read, or
-<literal>\0</literal> if <varname>object</varname> is exhausted).</para>
+<literal>\0</literal> if <varname>object</varname> is exhausted.</para>
 </refsection>
 </refentry>

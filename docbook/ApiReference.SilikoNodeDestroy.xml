@@ -37,7 +37,7 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoNodeDestroy</function> function deletes a
+<para>The <function>SilikoNodeDestroy</function> function deletes
 <varname>object</varname>, and if <varname>object</varname> is a branch
 node, deletes its child nodes and any other descendant nodes.</para>
 </refsection>

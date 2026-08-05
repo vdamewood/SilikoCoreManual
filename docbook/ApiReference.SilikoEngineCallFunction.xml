@@ -27,7 +27,7 @@
 
 <refnamediv>
   <refname><function>SilikoEngineCallFunction</function></refname>
-  <refpurpose>Function to call in-language function</refpurpose>
+  <refpurpose>Function to call an in-language function</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

@@ -37,7 +37,7 @@
 
 <refsection>
 <title>Description</title>
-<para>A <type>SilikoValue</type> represents value used by Siliko Core,
+<para>A <type>SilikoValue</type> represents a value used by Siliko Core,
 either a 64-bit integer, a 64-bit real number, or an error as a
 <type>SilikoError</type>.</para>
 </refsection>

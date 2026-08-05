@@ -39,7 +39,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoTokenCreateEndOfInput</function> function
-creates a new <type>SilikoToken</type> representing the ind of
+creates a new <type>SilikoToken</type> representing the end of
 input.</para>
 </refsection>
 

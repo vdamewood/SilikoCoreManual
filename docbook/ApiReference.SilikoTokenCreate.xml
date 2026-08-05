@@ -40,7 +40,7 @@
 <para>The <function>SilikoTokenCreate</function> function creates a new
 token with no value. The status will be
 <literal>SilikoTokenUnset</literal>. Such a token may be used as a
-placeholder or sentinal value.</para>
+placeholder or sentinel value.</para>
 </refsection>
 
 <refsection>

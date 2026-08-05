@@ -41,15 +41,14 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoEngineInstallFunction</function> installs
-the function implementation <varname>new_function</varname> into
-<varname>object</varname> with the in-language name
-<varname>function_name</varname>. If the engine is passed to
-<function>SilikoEvaluate</function> the function can be called by the
-name <varname>function_name</varname>, and the function can be retrieved
-by <varname>function_name</varname> with
+<para>The <function>SilikoEngineInstallFunction</function> function
+installs the function implementation <varname>new_function</varname>
+into <varname>object</varname> with the in-language name
+<varname>function_name</varname>. C code can access the function with
 <function>SilikoEngineCallFunction</function> and
-<function>SilikoEngineFetchFunction</function>.</para>
+<function>SilikoEngineFetchFunction</function>.
+<function>SilikoEvaluate</function> uses this mechanism to look up
+functions in expressions.</para>
 </refsection>
 
 <refsection>

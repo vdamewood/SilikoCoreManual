@@ -38,7 +38,7 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoNodeIsNegated</function> determines If
+<para>The <function>SilikoNodeIsNegated</function> determines whether
 <varname>object</varname> has been negated. A leaf node is negated if
 its value is negative. A branch node is negated if its
 ‘negated’ flag is set by a previous call to

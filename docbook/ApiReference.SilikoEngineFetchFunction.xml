@@ -40,7 +40,8 @@
 <refsection>
 <title>Description</title>
 
-<para>Fetch the function identified by <varname>function_name</varname>
+<para>The <function>SilikoEngineFetchFunction</function> function
+fetches the function identified by <varname>function_name</varname>
 from <varname>object</varname>. This function exists mainly for unit
 testing.</para>
 </refsection>

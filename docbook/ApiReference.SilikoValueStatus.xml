@@ -45,7 +45,7 @@
 <refsection>
 <title>Description</title>
 <para>The <type>SilikoValueStatus</type> enumeration is used
-to indicate whether an <type>SilikoValue</type> object is an integer
+to indicate whether a <type>SilikoValue</type> object is an integer
 value, a real value, or an error.</para>
 </refsection>
 

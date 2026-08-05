@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoMathAcos</function> calculates the arc cosine,
-in radiens, of <varname>argv[0]</varname>.</para>
+in radians, of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>

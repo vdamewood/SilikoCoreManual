@@ -49,7 +49,7 @@ character value of <varname>object</varname>.</para>
   value of <varname>object</varname> if <varname>object</varname>
   holds a character value. If <varname>object</varname> does not
   hold a character token, then
-  <function>SilikoTokenGetCharacter</function> returns the backspace
+  <function>SilikoTokenGetCharacter</function> returns the delete
   character (0x7f).</para>
 </refsection>
 </refentry>

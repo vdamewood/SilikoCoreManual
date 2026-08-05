@@ -38,9 +38,10 @@
 <refsection>
 <title>Description</title>
 
-<para>The <function>SilikoInstallOperations</function> function installs
-the operators used by the infix parser to handle operators into
-<varname>destination</varname>.</para>
+<para>The <function>SilikoInstallOperations</function> function
+installs a selection of functions into <varname>destination</varname>.
+These functions correspond to operators supported by
+<function>SilikoParseInfix</function>.</para>
 </refsection>
 
 <refsection>

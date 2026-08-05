@@ -27,7 +27,7 @@
 
 <refnamediv>
   <refname><function>SilikoValueCreate</function></refname>
-  <refpurpose>Function to make a zero-value value</refpurpose>
+  <refpurpose>Function to make a zero value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -45,8 +45,8 @@ its integer value will be <literal>0</literal>.</para>
 <refsection>
 <title>Return Values</title>
 
-<para><function>SilikoTokenCreate</function> returns a
-pointer to the newly created <type>SilikoToken</type> object if
+<para><function>SilikoValueCreate</function> returns a
+pointer to the newly created <type>SilikoValue</type> object if
 successful, or <literal>NULL</literal> on failure.</para>
 </refsection>
 </refentry>

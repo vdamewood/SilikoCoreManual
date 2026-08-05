@@ -46,7 +46,7 @@ number of children a <varname>object</varname> has.</para>
 <title>Return Values</title>
 
 <para>If <varname>object</varname> is a branch node, the return value is
-the number of child nodes <varname>object</varname> has. Otherwise, the
+the number of child nodes in <varname>object</varname>. Otherwise, the
 return value is 0.</para>
 </refsection>
 </refentry>

@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <type>SilikoToken</type> represents a token yielded by a
-lexical analyser. it can represent an integer value, a real number,
+lexical analyser. It can represent an integer value, a real number,
 a single-character token, a function identifier, the end of an input,
 or nothing as a default value.</para>
 </refsection>

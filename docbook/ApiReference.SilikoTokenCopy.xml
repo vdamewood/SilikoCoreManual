@@ -46,7 +46,7 @@ object.</para>
 <title>Return Values</title>
 
 <para><function>SilikoTokenCopy</function> returns a pointer to the new
-<type>SilikoToken</type> object if seccessful, <literal>NULL</literal>
+<type>SilikoToken</type> object if successful, <literal>NULL</literal>
 otherwise.</para>
 </refsection>
 </refentry>

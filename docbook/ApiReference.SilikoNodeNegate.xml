@@ -44,7 +44,7 @@ leaf node holding an error, <function>SilikoNodeNegate</function> does
 nothing. If <varname>object</varname> is a leaf node holding an
 <type>integer</type> then the value is multiplied by
 <literal>-1</literal> in place. If <varname>object</varname> is a leaf
-node represending a <type>real</type>, then the value is multiplied by
+node representing a <type>real</type>, then the value is multiplied by
 <literal>-1.0</literal> in place. If <varname>object</varname> is a
 branch node, then a flag is toggled to negate the value when
 <varname>object</varname> is evaluated.</para>

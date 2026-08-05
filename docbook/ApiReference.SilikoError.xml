@@ -48,9 +48,8 @@
 
 <refsection>
 <title>Description</title>
-<para>The <type>SilikoError</type> enumeration represents any error
-codes for errors encountered or produced by Siliko Core during parsing
-or evaluation.</para>
+<para>The <type>SilikoError</type> enumeration represents codes for
+errors encountered during parsing or evaluation.</para>
 </refsection>
 
 <refsection>

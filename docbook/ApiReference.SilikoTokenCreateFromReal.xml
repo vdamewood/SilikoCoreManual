@@ -39,7 +39,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoTokenCreateFromReal</function> function
-creates a new <type>SilikoToken</type> representing the the real number
+creates a new <type>SilikoToken</type> representing the real number
 passed as <varname>source</varname>.</para>
 </refsection>
 

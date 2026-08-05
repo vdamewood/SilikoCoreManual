@@ -41,11 +41,11 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoFunctionCall</function> function invokes
-  <varname>object</varname> by calling the <function>call</function>
-  function in <varname>object</varname>’s
-  <type>SilikoFunctionVTable</type> padding <varname>argc</varname>
-  and <varname>argv</varname> to <function>call</function>.</para>
+
+<para>The <function>SilikoFunctionCall</function> function calls the
+<function>call</function> function in <varname>object</varname>’s
+<type>SilikoFunctionVTable</type> forwarding <varname>argc</varname>
+and <varname>argv</varname> to <function>call</function>.</para>
 </refsection>
 
 <refsection>

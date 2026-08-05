@@ -38,7 +38,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoMathAsin</function> calculates the xarc sine,
-in radiens, of <varname>argv[0]</varname>.</para>
+in radians, of <varname>argv[0]</varname>.</para>
 </refsection>
 
 <refsection>

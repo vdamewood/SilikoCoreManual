@@ -39,7 +39,7 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoTokenCreateFromCharacter</function> function
-creates a new <type>SilikoToken</type> representing the the character
+creates a new <type>SilikoToken</type> representing the character
 passed as <varname>source</varname>.</para>
 </refsection>
 

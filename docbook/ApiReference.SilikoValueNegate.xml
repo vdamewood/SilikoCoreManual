@@ -38,8 +38,8 @@
 
 <refsection>
 <title>Description</title>
-<para>The <function>SilikoValueNegate</function> negates the value
-that <varname>object</varname> holds. If <varname>object</varname>
+<para>The <function>SilikoValueNegate</function> function negates the
+value that <varname>object</varname> holds. If <varname>object</varname>
 doesn't hold an integer or real-number value, then
 <function>SilikoValueNegate</function> has no effect.</para>
 </refsection>

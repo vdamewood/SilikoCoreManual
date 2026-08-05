@@ -39,8 +39,9 @@
 <title>Description</title>
 
 <para>The <function>SilikoInstallMathFunctions</function> function
-installs the functions supporting the C <filename>math.h</filename>
-functions into <varname>destination</varname>.</para>
+installs a selection of functions into <varname>destination</varname>.
+These functions corresponding to functions in the C
+standard library’s <filename>math.h</filename> header.</para>
 </refsection>
 
 <refsection>

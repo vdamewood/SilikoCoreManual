@@ -46,6 +46,6 @@ is made.</para>
 <refsection>
 <title>Return Values</title>
 <para><function>SilikoNodeCopy</function> returns the copy created if
-successful, or <literal>NULL</literal> if an error occured.</para>
+successful, or <literal>NULL</literal> if an error occurred.</para>
 </refsection>
 </refentry>

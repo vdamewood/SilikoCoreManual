@@ -46,7 +46,7 @@ generates a new leaf node from an integer value specified by
 <title>Return Values</title>
 
 <para><function>SilikoNodeCreateFromInteger</function> returns a pointer
-to a new leaf <type>>SilikoNode</type> object with the value passed on
+to a new leaf <type>SilikoNode</type> object with the value passed on
 success, or <literal>NULL</literal> if there was a memory error.</para>
 </refsection>
 </refentry>

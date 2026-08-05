@@ -51,7 +51,7 @@ node. To get the effective value of a branch node, use
 the <type>SilikoValue</type> object held by <varname>object</varname>
 if <varname>object</varname> is a leaf node, <literal>NULL</literal>
 otherwise. If <function>SilikoNodeGetValue</function> returns a valid
-pointer, the object point to is still owned by
+pointer, the <type>SilikoValue</type> returned remains owned by
 <varname>object</varname> and must not be deallocated.</para>
 </refsection>
 </refentry>

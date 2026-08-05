@@ -39,9 +39,9 @@
 <refsection>
 <title>Description</title>
 <para>The <function>SilikoTokenCreateFromId</function> function
-creates a new <type>SilikoToken</type> representing the the identifier
+creates a new <type>SilikoToken</type> representing the identifier
 passed as <varname>source</varname>. <varname>source</varname> is
-copies, so the calling context retains ownership of
+copied, so the calling context retains ownership of
 <varname>source</varname>.</para>
 </refsection>
 

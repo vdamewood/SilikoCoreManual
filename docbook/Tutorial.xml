@@ -27,7 +27,7 @@ you need help building with the Siliko Core library, see
 Project</link>.</para>
 
 <para>To simplify things, Siliko Core includes a single header to
-include all of its public headers. So, to access Siliko Cores types and
+include all of its public headers. So, to access Siliko Core’ßs types and
 functions, you should <code>#include</code> this header.</para>
 
 <programlisting language="C">
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
 }
 </programlisting>
 
-<para>After you have your string input setup, you can pass it on to a
+<para>After you have your string input set up, you can pass it on to a
 lexer with the <function>SilikoLexerCreate</function> function. This
 will make a <type>SilikoLexer</type> object that you can then pass
 to the infix parser. The infix parser will generate a syntax tree
@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
     // Make sure there is an argument to process:
     if (argc != 2)
     {
-        fprintf(stderr, &quot;usage: %s &lt;expression&gt;&quot;, argv[0]);
+        fprintf(stderr, &quot;usage: %s &lt;expression&gt;\n&quot;, argv[0]);
         return 1;
     }
 

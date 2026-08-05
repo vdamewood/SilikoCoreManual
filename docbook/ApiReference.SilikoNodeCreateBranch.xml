@@ -39,7 +39,7 @@
 <title>Description</title>
 <para>The <function>SilikoNodeCreateBranch</function> function creates a
 new branch <type>SilikoNode</type> with <varname>function_name</varname>
-as the branch id value.</para>
+as its branch iddentifier.</para>
 </refsection>
 
 <refsection>
