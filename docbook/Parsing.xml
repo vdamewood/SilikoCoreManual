@@ -151,9 +151,9 @@ syntax tree representing the operations.</para>
 
 <mediaobject>
   <imageobject>
-    <imagedata align="center" fileref="../svg/Parsing.ParseTree.svg" format="svg" scale="100"/>
+    <imagedata align="center" fileref="../svg/Parsing.SyntaxTree.svg" format="svg" scale="100"/>
   </imageobject>
-  <caption><para>A parse tree</para></caption>
+  <caption><para>A syntax tree</para></caption>
 </mediaobject>
 </section>
 
