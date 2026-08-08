@@ -704,4 +704,18 @@ must call <function>SilikoValueDestroy</function> on the
 <type>SilikoValue</type> to avoid memory leaks.</para>
 </section>
 </section>
+
+<section>
+<info>
+  <title>Threading Considerations</title>
+</info>
+<para>In order to keep the codebase simple, Siliko Core itself doesn’t
+support threading or use any threading API to ensure that it‘s thread
+safe. Calling code is responsible for threading issues. Siliko Core has
+some design considerations to help. Siliko Core doesn’t use global
+state. The built-in operators and functions are reentrant except for the
+dice operator. The important consideration when using Siliko Core in
+threaded code is that objects must not be mutated while being accessed
+concurrently.</para>
+</section>
 </article>
