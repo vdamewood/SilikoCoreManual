@@ -199,7 +199,6 @@ set(SilikoCoreManual_DEPS
 )
 
 find_program(SAXON   saxon)
-find_program(SAXON6  saxon6)
 find_program(FOP     fop)
 find_program(PANDOC  pandoc)
 
@@ -302,9 +301,9 @@ foreach(XML_FILE ${REFENTRY_FILES})
     list(APPEND REFENTRY_MAN_FILES "${MAN_FILE}")
     add_custom_command(
         OUTPUT "${MAN_FILE}"
-        COMMAND ${SAXON6}
-            ${CMAKE_CURRENT_SOURCE_DIR}/${XML_FILE}
-            ${CMAKE_CURRENT_SOURCE_DIR}/${XSL_DIR}/man.refentry.xsl
+        COMMAND ${SAXON}
+            -s:${CMAKE_CURRENT_SOURCE_DIR}/${XML_FILE}
+            -xsl:${CMAKE_CURRENT_SOURCE_DIR}/${XSL_DIR}/man.refentry.xsl
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${MAN_DIR}
         DEPENDS
             ${XML_FILE}
