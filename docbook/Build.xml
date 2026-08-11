@@ -66,7 +66,7 @@ Siliko Core is tested on the following configurations:
   <row>
     <entry>Windows</entry>
     <entry>Visual C++</entry>
-    <entry><command>msbuild</command>, Ninja, GNU Make</entry>
+    <entry><command>msbuild</command>, Ninja</entry>
     <entry>ARM64, x86-64</entry>
   </row>
   <row>
